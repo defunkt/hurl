@@ -80,8 +80,12 @@ input[type=password].form-beta {
     margin-left: 6px !important;
 }
 .header-delete {
-  margin-right: -20px;
-  opacity: 0.5;
+    float:right;
+    margin-right: -20px;
+    padding-top: 7px;
+}
+.header-delete img {
+    opacity: 0.5;
 }
 /* buttons */
 button {
