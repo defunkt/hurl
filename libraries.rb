@@ -21,7 +21,7 @@ rescue LoadError
   abort "** Please `gem install curb`"
 end
 
-$LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor/ohm-0.0.6/lib'
+$LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor/ohm-0.0.16/lib'
 require 'ohm'
 
 $LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor/redis-rb/lib'
