@@ -47,10 +47,6 @@ module Hurl
       @errors
     end
 
-    def valid?
-      validate
-    end
-
     def save
       if valid?
         @saved = true
@@ -65,6 +61,10 @@ module Hurl
 
     def saved=(saved)
       @saved = saved
+    end
+
+    def valid?
+      saved? || validate
     end
 
     def validate
@@ -93,7 +93,7 @@ module Hurl
     end
 
     def self.from_json(json)
-      from_hash Yajl::Parser.parse(json) if json
+      from_hash Yajl::Parser.parse(json) rescue nil
     end
 
     def to_hash

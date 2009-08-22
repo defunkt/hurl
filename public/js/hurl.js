@@ -116,8 +116,15 @@ $(document).ready(function() {
   // sign in
   function registerSigninFormHandler() {
     $('#facebox form').submit(function() {
-      $(this).ajaxSubmit(function(body) {
-        $('.error-msg').html(body).show()
+      $(this).ajaxSubmit(function(res) {
+        var data = JSON.parse(res)
+
+        if (data.error) {
+          $('.error-msg').html(data.error).show()
+        } else if (data.success) {
+          $(document).trigger('close.facebox')
+          window.location = '/'
+        }
       })
       return false
     })
