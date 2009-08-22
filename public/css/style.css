@@ -44,19 +44,8 @@ blockquote, q {
 	quotes: "" "";
 }
 /* forms */
-/*input {
-    font: 1em Georgia,serif;
-    padding: 0.365em 4px;
-}
-input[type=text],
-input[type=password],
-textarea {
-    border: 1px solid #dfe1e0;
-    border-color: #ccc #ccc #dfe1e0 #dfe1e0;
-}*/
 label {
     display: block;
-    /*color: #666;*/
     font-size: 16px;
 }
 select, input, textarea {
@@ -103,6 +92,9 @@ body {
     background: #000 url(/img/background.jpg) repeat;
     color: #333;
 }
+p {
+    margin: 10px 0;
+}
 .clearwrap {
     overflow: hidden;
 }
@@ -115,7 +107,8 @@ body {
 #content {
 }
 h1#logo {
-    font: 1.5em "Helvetica Neue", Arial, sans-serif;
+    font: 2em "Helvetica Neue", Arial, sans-serif;
+    color: #826373;
 }
 .code-wrap {
     background-color: #e9eaea;
