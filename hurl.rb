@@ -59,7 +59,7 @@ class Hurl < Sinatra::Base
       curl.send("http_#{method.downcase}", *fields)
       json :header  => pretty_print_headers(curl.header_str),
            :body    => pretty_print(curl.content_type, curl.body_str),
-           :request => pretty_print_requests(requests)
+           :request => pretty_print_requests(requests, fields)
     rescue => e
       json :error => "error: #{e}"
     end
@@ -121,10 +121,12 @@ class Hurl < Sinatra::Base
   end
 
   # accepts an array of request headers and formats them
-  def pretty_print_requests(requests = [])
-    requests.map do |request|
+  def pretty_print_requests(requests = [], fields = [])
+    headers = requests.map do |request|
       pretty_print_headers request
-    end.join
+    end
+
+    headers.join + fields.join('&')
   end
 
 
