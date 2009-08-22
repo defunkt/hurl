@@ -1,45 +1,4 @@
-var Hurl = {
-  headers: [
-    "Accept",
-    "Accept-Charset",
-    "Accept-Encoding",
-    "Accept-Language",
-    "Accept-Ranges",
-    "Authorization",
-    "Cache-Control",
-    "Connection",
-    "Cookie",
-    "Content-Length",
-    "Content-Type",
-    "Date",
-    "Expect",
-    "From",
-    "Host",
-    "If-Match",
-    "If-Modified-Since",
-    "If-None-Match",
-    "If-Range",
-    "If-Unmodified-Since",
-    "Max-Forwards",
-    "Pragma",
-    "Proxy-Authorization",
-    "Range",
-    "Referer",
-    "Upgrade",
-    "User-Agent",
-    "Via",
-    "Warn"
-  ],
-
-  autocompleteHeaders: function(el) {
-    $(el).autocompleteArray(this.headers, {
-      delay: 40,
-      onItemSelect: function() {
-        $(el).siblings('input').focus()
-      }
-    })
-  }
-}
+var Hurl = {}
 
 $(document).ready(function() {
   // add auth
