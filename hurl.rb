@@ -64,6 +64,18 @@ module Hurl
       redirect '/'
     end
 
+    post '/signin/' do
+      email, password = params.values_at(:email, :password)
+      user = User.find_by_email(email)
+
+      if user && user.password == password
+        create_session(:email => email)
+        json :success => true
+      else
+        json :error => 'incorrect email or password'
+      end
+    end
+
     post '/signup/' do
       email, password = params.values_at(:email, :password)
       user = User.create(:email => email, :password => password)

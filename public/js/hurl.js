@@ -114,7 +114,21 @@ $(document).ready(function() {
   })
 
   // sign in
-  function registerSigninFormHandler() {
+  function registerSigninFormHandlers() {
+    $('#facebox .sign-up-submit').click(function() {
+      var form = $('#facebox form'), action = form.attr('action')
+      form.attr('action', '/signup/')
+      form.submit()
+      return false
+    })
+
+    $('#facebox .sign-in-submit').click(function() {
+      var form = $('#facebox form'), action = form.attr('action')
+      form.attr('action', '/signin/')
+      form.submit()
+      return false
+    })
+
     $('#facebox form').submit(function() {
       $(this).ajaxSubmit(function(res) {
         var data = JSON.parse(res)
@@ -134,7 +148,7 @@ $(document).ready(function() {
   $('a[rel*=facebox]').facebox({ opacity: 0.4 })
   $(document).bind('reveal.facebox', function() {
     Hurl.labelHints('#facebox input[title]')
-    registerSigninFormHandler()
+    registerSigninFormHandlers()
     $('#facebox .footer').remove()
   })
 
