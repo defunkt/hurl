@@ -119,7 +119,7 @@ module Hurl
     # update auth based on auth type
     def add_auth(auth, curl, params)
       if auth == 'basic'
-        username, password = params.values_at(:basic_username, :basic_password)
+        username, password = params.values_at(:username, :password)
         encoded = Base64.encode64("#{username}:#{password}").strip
         curl.headers['Authorization'] = "Basic #{encoded}"
       end
