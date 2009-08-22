@@ -49,6 +49,7 @@ $(document).ready(function() {
     return false
   })
 
+  // remove header
   function registerRemoveHeaderHandlers(el) {
     $(el).find('.header-delete').click(function() {
       $(this).parents('p:first').remove()
