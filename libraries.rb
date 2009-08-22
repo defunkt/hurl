@@ -1,4 +1,5 @@
 require 'open3'
+require 'uri'
 require 'albino'
 
 begin

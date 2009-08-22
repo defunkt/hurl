@@ -32,8 +32,9 @@ class Hurl < Sinatra::Base
 
     begin
       curl.send "http_#{method.downcase}"
-      json :header => pretty_print_headers(curl.header_str),
-           :body   => pretty_print(curl.content_type, curl.body_str)
+      json :header  => pretty_print_headers(curl.header_str),
+           :body    => pretty_print(curl.content_type, curl.body_str),
+           :request => pretty_print_request(curl, method)
     rescue => e
       json :error => "error: #{e}"
     end
@@ -72,6 +73,17 @@ class Hurl < Sinatra::Base
     end
 
     "<div class='highlight'><pre>#{lines.join}</pre></div>"
+  end
+
+  def pretty_print_request(curl, method = "GET")
+    pretty_print_headers build_request(curl, method)
+  end
+
+  def build_request(curl, method = "GET")
+    url = URI.parse(curl.url)
+    lines = []
+    lines << "#{method} #{url.path} HTTP/1.1"
+    lines.join("\n")
   end
 
 
