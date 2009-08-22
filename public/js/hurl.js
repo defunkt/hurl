@@ -52,4 +52,21 @@ $(document).ready(function() {
     $('#code-response').toggle()
     return false
   })
+
+  // in-field labels
+	$('input[title]').each(function() {
+		if($(this).val() === '') {
+			$(this).val($(this).attr('title')).css('color', '#E9EAEA')
+		}
+		$(this).focus(function() {
+			if($(this).val() === $(this).attr('title')) {
+				$(this).val('').addClass('focused').css('color', '#333')
+			}
+		})
+		$(this).blur(function() {
+			if($(this).val() === '') {
+				$(this).val($(this).attr('title')).removeClass('focused').css('color', '#E9EAEA')
+			}
+		})
+	})
 })
