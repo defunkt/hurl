@@ -21,6 +21,10 @@ class Hurl < Sinatra::Base
     erb :index
   end
 
+  get '/about/' do
+    erb :about
+  end
+
   post '/' do
     url, method, auth = params.values_at(:url, :method, :auth)
     curl = Curl::Easy.new(url)

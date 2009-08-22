@@ -159,6 +159,9 @@ h1#logo a:hover {
   float: right;
   margin-top: 14px;
 }
+#page {
+  margin-top: 30px;
+}
 #footer {
   margin-top: 40px;
   background-color: #826373;
