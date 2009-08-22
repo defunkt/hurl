@@ -49,7 +49,9 @@ class Hurl < Sinatra::Base
     fields = []
     if method == 'POST'
       params["param-keys"].each_with_index do |name, i|
-        fields << Curl::PostField.content(name, params["param-vals"][i])
+        value = params["param-vals"][i]
+        next if name.to_s.empty? || value.to_s.empty?
+        fields << Curl::PostField.content(name, value)
       end
     end
 
