@@ -131,6 +131,8 @@ module Hurl
 
     # if key or value is empty, remove the pair
     def clean_arrays(keys, values)
+      return unless keys.is_a?(Array) && values.is_a?(Array)
+
       keys.each_with_index do |key, i|
         if keys[i].to_s.empty? or values[i].to_s.empty?
           keys.delete_at(i)
@@ -173,10 +175,10 @@ module Hurl
     end
 
     def save_hurl(params)
-      puts params.inspect
       id = Digest::SHA1.hexdigest(params.to_s)
       json = Yajl::Encoder.encode(params)
       redis.set(id, json)
+      @user.add_hurl(id) if @user
       id
     end
 
