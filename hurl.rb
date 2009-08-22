@@ -22,7 +22,7 @@ class Hurl < Sinatra::Base
   end
 
   post '/' do
-    url, method = params.values_at(:url, :method)
+    url, method, auth = params.values_at(:url, :method, :auth)
     curl = Curl::Easy.new(url)
 
     requests = []
@@ -35,6 +35,13 @@ class Hurl < Sinatra::Base
 
     # ensure a method is set
     method = method.to_s.empty? ? 'GET' : method
+
+    # basic auth
+    if auth == 'basic'
+      username, password = params.values_at(:basic_username, :basic_password)
+      encoded = Base64.encode64("#{username}:#{password}")
+      curl.headers['Authorization'] = "Basic #{encoded}"
+    end
 
     begin
       curl.send "http_#{method.downcase}"

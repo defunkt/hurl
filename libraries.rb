@@ -1,6 +1,7 @@
 require 'open3'
 require 'uri'
 require 'albino'
+require 'base64'
 
 begin
   require 'sinatra/base'

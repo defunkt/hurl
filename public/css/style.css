@@ -71,7 +71,8 @@ select.form-alpha {
 input[type=text].form-alpha {
     width: 280px;
 }
-input[type=text].form-beta {
+input[type=text].form-beta,
+input[type=password].form-beta {
     width: 439px;
 }
 .form-beta {

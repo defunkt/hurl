@@ -45,7 +45,7 @@ $(document).ready(function() {
   // add auth
   $('#select-auth').change(function() {
     $('#select-auth option:selected').each(function() {
-      var auth_type = $(this).attr('id')
+      var auth_type = $(this).attr('value')
       if (auth_type == 'basic'){
         $('#basic-auth-fields').show()
       } else {
