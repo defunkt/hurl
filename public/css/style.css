@@ -56,7 +56,7 @@ textarea {
 }*/
 label {
     display: block;
-    color: #666;
+    /*color: #666;*/
     font-size: 16px;
 }
 select, input, textarea {
@@ -77,6 +77,7 @@ select, input, textarea {
 /* buttons */
 button {
     font: 1em "Helvetica Neue", Arial, sans-serif;
+    color: #333;
     padding: 0.365em 10px;
     line-height: 1.4em;
     font-weight: bold;
@@ -114,7 +115,7 @@ h1#logo {
 }
 .code-text {
     width: 800px;
-    background-color: #999;
+    background-color: #e9eaea;
     padding: 4px;
     margin: 8px 0;
     min-height: 200px;
