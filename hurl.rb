@@ -58,24 +58,14 @@ module Hurl
       # ensure a method is set
       method = method.to_s.empty? ? 'GET' : method
 
-      # basic auth
-      if auth == 'basic'
-        username, password = params.values_at(:basic_username, :basic_password)
-        encoded = Base64.encode64("#{username}:#{password}").strip
-        curl.headers['Authorization'] = "Basic #{encoded}"
-      end
+      # update auth
+      add_auth(auth, curl, params)
 
       # arbitrary headers
       add_headers_from_arrays(curl, params["header-keys"], params["header-vals"])
 
-      fields = []
-      if method == 'POST'
-        params["param-keys"].each_with_index do |name, i|
-          value = params["param-vals"][i]
-          next if name.to_s.empty? || value.to_s.empty?
-          fields << Curl::PostField.content(name, value)
-        end
-      end
+      # arbitrary params
+      fields = fields_from_arrays(method, params["param-keys"], params["param-vals"])
 
       begin
         curl.send("http_#{method.downcase}", *fields)
@@ -92,11 +82,16 @@ module Hurl
     # http helpers
     #
 
-    # accepts two arrays: keys and values
-    # the elements in keys must map to the
-    # elements in values
-    #
-    # empty values means the key is ignored
+    # update auth based on auth type
+    def add_auth(auth, curl, params)
+      if auth == 'basic'
+        username, password = params.values_at(:basic_username, :basic_password)
+        encoded = Base64.encode64("#{username}:#{password}").strip
+        curl.headers['Authorization'] = "Basic #{encoded}"
+      end
+    end
+
+    # headers from non-empty keys and values
     def add_headers_from_arrays(curl, keys, values)
       keys, values = Array(keys), Array(values)
 
@@ -104,6 +99,20 @@ module Hurl
         next if values[i].to_s.empty?
         curl.headers[key] = values[i]
       end
+    end
+
+    # post params from non-empty keys and values
+    def fields_from_arrays(method, keys, values)
+      fields = []
+      if method == 'POST'
+        keys, values = Array(keys), Array(values)
+        keys.each_with_index do |name, i|
+            value = values[i]
+            next if name.to_s.empty? || value.to_s.empty?
+            fields << Curl::PostField.content(name, value)
+          end
+      end
+      fields
     end
 
 
