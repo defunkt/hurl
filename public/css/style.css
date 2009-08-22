@@ -79,6 +79,10 @@ input[type=password].form-beta {
 .form-beta {
     margin-left: 6px !important;
 }
+.header-delete {
+  margin-right: -20px;
+  opacity: 0.5;
+}
 /* buttons */
 button {
     font: 1em "Helvetica Neue", Arial, sans-serif;
