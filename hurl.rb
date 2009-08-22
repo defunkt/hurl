@@ -39,8 +39,10 @@ class Hurl < Sinatra::Base
   end
 
   post '/' do
-    url, method, body = params.values_at(:url, :method, :body)
+    url, method = params.values_at(:url, :method)
     curl = Curl::Easy.new(url)
+
+#     curl.follow_location = true
 
     # ensure a method is set
     method = method.to_s.empty? ? 'GET' : method
