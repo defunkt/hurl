@@ -53,7 +53,7 @@ input[type=password],
 textarea {
   -x-system-font:none;
   color:#333;
-  font-family: "Helvetica Neue", Arial, sans-serif;
+  font: 1em "lucida Grande",arial,sans-serif;
   font-size: 16px;
   font-size-adjust:none;
   font-stretch: normal;
@@ -63,7 +63,7 @@ textarea {
   line-height: normal;
   padding: 5px;
   border: 1px solid #bbb;
-  width: 750px;
+  width: 748px;
   margin: 2px 0;
 }
 select.form-alpha {
@@ -76,7 +76,7 @@ input[type=text].form-alpha,
 }
 input[type=text].form-beta,
 input[type=password].form-beta {
-  width: 445px;
+  width: 444px;
 }
 .form-beta {
   margin-left: 6px !important;
@@ -124,7 +124,7 @@ button:active {
 }
 /* general */
 body {
-  font: 1em "Helvetica Neue", Arial, sans-serif;
+  font: 1em "lucida Grande",arial,sans-serif;
   background: #251a1e url(/img/background.jpg) repeat;
   color: #333;
 }
@@ -156,7 +156,7 @@ a:hover {
   margin-bottom: 30px;
 }
 h1#logo {
-  font: 2em "Helvetica Neue", Arial, sans-serif;
+  font-size: 2em;
   color: #826373;
 }
 h1#logo a:hover {
