@@ -53,8 +53,12 @@
 </form>
 <div id="request-and-response" style="display:none;">
   <p>
-    <span class="toggle-reqres" style="display: none;">request : <a class="toggle-reqres-link" href="#">response</a></span>
-    <span class="toggle-reqres"><a class="toggle-reqres-link" href="#">request</a> : response</span>
+    <span class="toggle-reqres" style="display: none;">
+      <span class="tab-current">request</span> <a class="toggle-reqres-link" href="#">response</a>
+    </span>
+    <span class="toggle-reqres">
+      <a class="toggle-reqres-link" href="#">request</a> <span class="tab-current">response</span>
+    </span>
   </p>
   <div id="code-request" class="code-wrap" style="display: none;">
     <div id="request" class="code-text">

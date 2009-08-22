@@ -198,7 +198,21 @@ h1#logo a:hover {
 #hurl-form {
   margin: 20px 0;
 }
+.tab-current,
+.toggle-reqres-link {
+  padding: 6px;
+  margin-right: 4px;
+}
+.tab-current,
+.toggle-reqres-link:hover {
+  background-color: #826373;
+  color: #fff;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  text-decoration: none;
+}
 .code-wrap {
+  margin-top: 14px;
   background-color: #e9eaea;
   padding: 8px 16px;
   -moz-border-radius: 5px;
