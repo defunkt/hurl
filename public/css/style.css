@@ -74,6 +74,9 @@ select, input, textarea {
     width: 168px;
     border: 1px solid #bbb;
 }
+input, textarea {
+    width: 800px;
+}
 /* buttons */
 button {
     font: 1em "Helvetica Neue", Arial, sans-serif;
