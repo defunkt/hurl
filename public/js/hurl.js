@@ -55,6 +55,8 @@ $(document).ready(function() {
   $('#add-param').click(function() {
     var newField = $('#param-fields').clone()
     newField.toggle().attr('id', '')
+    newField.find('.form-alpha').attr('title', 'name')
+    newField.find('.form-beta').attr('title', 'value')
     Hurl.labelHints( newField.find('input[title]') )
     registerRemoveHandlers( newField, '.param-delete' )
     $(this).parent().append( newField )
@@ -66,6 +68,8 @@ $(document).ready(function() {
     var newField = $('#header-fields').clone()
     newField.toggle().attr('id', '')
     Hurl.autocompleteHeaders( newField.find('.form-alpha') )
+    newField.find('.form-alpha').attr('title', 'name')
+    newField.find('.form-beta').attr('title', 'value')
     Hurl.labelHints( newField.find('input[title]') )
     registerRemoveHandlers( newField, '.header-delete' )
     $(this).parent().append( newField )
