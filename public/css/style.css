@@ -45,39 +45,39 @@ blockquote, q {
 }
 /* forms */
 label {
-    font-size: 16px;
+  font-size: 16px;
 }
 select,
 input[type=text],
 input[type=password],
 textarea {
-    -x-system-font:none;
-    color:#333;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-size: 16px;
-    font-size-adjust:none;
-    font-stretch: normal;
-    font-style: normal;
-    font-variant: normal;
-    font-weight: normal;
-    line-height: normal;
-    padding: 5px;
-    border: 1px solid #bbb;
-    width: 750px;
-    margin: 2px 0;
+  -x-system-font:none;
+  color:#333;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-size-adjust:none;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: normal;
+  padding: 5px;
+  border: 1px solid #bbb;
+  width: 750px;
+  margin: 2px 0;
 }
 select.form-alpha {
-    width: 290px;
+  width: 290px;
 }
 input[type=text].form-alpha {
-    width: 280px;
+  width: 280px;
 }
 input[type=text].form-beta,
 input[type=password].form-beta {
-    width: 445px;
+  width: 445px;
 }
 .form-beta {
-    margin-left: 6px !important;
+  margin-left: 6px !important;
 }
 .header-delete {
     float:right;
@@ -89,66 +89,63 @@ input[type=password].form-beta {
 }
 /* buttons */
 button {
-    font: 1em "Helvetica Neue", Arial, sans-serif;
-    color: #333;
-    padding: 0.365em 10px;
-    line-height: 1.4em;
-    font-weight: bold;
-    cursor: pointer;
-    background: #e9eaea url(/img/buttonbg.png) repeat-x;
-    border: 1px solid #ccc;
-    text-shadow: 1px 1px 0 #fff;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
+  font: 1em "Helvetica Neue", Arial, sans-serif;
+  color: #333;
+  padding: 0.365em 10px;
+  line-height: 1.4em;
+  font-weight: bold;
+  cursor: pointer;
+  background: #e9eaea url(/img/buttonbg.png) repeat-x;
+  border: 1px solid #ccc;
+  text-shadow: 1px 1px 0 #fff;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
 }
 button:hover {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 button:active {
-    opacity: 1;
+  opacity: 1;
 }
 #send-wrap {
-    height: 40px;
+  height: 40px;
 }
 #send-wrap img {
-    padding: 0.8em 10px;
-    line-height: 1.4em;
+  padding: 0.8em 10px;
+  line-height: 1.4em;
 }
 #spinner {
-    padding-right: 9px 1px;
-    display: none;
+  padding-right: 9px 1px;
+  display: none;
 }
 /* general */
 body {
-    font: 1em "Helvetica Neue", Arial, sans-serif;
-    background: #000 url(/img/background.jpg) repeat;
-    color: #333;
+  font: 1em "Helvetica Neue", Arial, sans-serif;
+  background: #000 url(/img/background.jpg) repeat;
+  color: #333;
 }
 p {
-    margin: 6px 0;
+  margin: 6px 0;
 }
 a {
   text-decoration: none;
   color: #826373;
 }
-a:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
+a:hover   
 .clearwrap {
-    overflow: hidden;
+  overflow: hidden;
 }
 #inset {
-    background-color: #fff;
-    width: 760px;
-    margin: 0 auto;
-    padding: 20px 50px;
+  background-color: #fff;
+  width: 760px;
+  margin: 0 auto;
+  padding: 20px 50px;
 }
 #content {
 }
 h1#logo {
-    font: 2em "Helvetica Neue", Arial, sans-serif;
-    color: #826373;
+  font: 2em "Helvetica Neue", Arial, sans-serif;
+  color: #826373;
 }
 h1#logo a:hover {
   text-decoration: none;
@@ -161,16 +158,16 @@ h1#logo a:hover {
   margin: 20px 0;
 }
 .code-wrap {
-    background-color: #e9eaea;
-    padding: 8px 16px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+  background-color: #e9eaea;
+  padding: 8px 16px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
 }
 .code-text {
-    padding: 2px;
-    min-height: 60px;
-    max-height: 400px;
-    overflow-y: auto;
-    font-family:'Bitstream Vera Sans Mono','Courier',monospace;
-    font-size: 14px;
+  padding: 2px;
+  min-height: 60px;
+  max-height: 400px;
+  overflow-y: auto;
+  font-family:'Bitstream Vera Sans Mono','Courier',monospace;
+  font-size: 14px;
 }
