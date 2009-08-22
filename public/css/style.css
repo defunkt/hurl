@@ -110,21 +110,22 @@ body {
     background-color: #fff;
     width: 900px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 50px;
 }
 #content {
-    width: 800px;
-    margin: 0 50px;
 }
 h1#logo {
     font: 1.5em "Helvetica Neue", Arial, sans-serif;
 }
-.code-text {
-    width: 800px;
+.code-wrap {
     background-color: #e9eaea;
-    padding: 4px;
+    padding: 8px 16px;
     margin: 8px 0;
-    min-height: 200px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
+}
+.code-text {
+    min-height: 60px;
+    max-height: 400px;
+    overflow-y: auto;
 }
