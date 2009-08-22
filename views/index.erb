@@ -41,12 +41,12 @@
       no auth
     </label>
     <label>
-      <input type="radio" name="auth" value="basic"/>
+      <input type="radio" name="auth" value="basic" <% if @hurl['auth']=='basic'%>checked="checked"<% end %> />
       HTTP basic
     </label>
     <div id="basic-auth-fields" style="display:none;">
-      <input type="text" name="basic_username" class="form-alpha" title="username"/>
-      <input type="password" name="basic_password" class="form-beta" title="password"/>
+      <input type="text" name="basic_username" class="form-alpha" title="username" value="<%= @hurl['basic_username']%>"/>
+      <input type="password" name="basic_password" class="form-beta" title="password" value="<%= @hurl['basic_password']%>"/>
     </div>
   </p>
   <p>
