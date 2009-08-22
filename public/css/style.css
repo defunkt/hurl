@@ -113,6 +113,7 @@ button:active {
 }
 #send-wrap {
   height: 40px;
+  margin-top: 10px;
 }
 #send-wrap img {
   padding: 0.8em 10px;
