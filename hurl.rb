@@ -43,7 +43,7 @@ module Hurl
       user = User.create(:email => email, :password => password)
 
       if user.valid?
-        "sweet!"
+        json :success => true
       else
         json :error => user.errors.to_s
       end
