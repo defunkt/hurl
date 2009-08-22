@@ -46,17 +46,18 @@ class Hurl < Sinatra::Base
     # arbitrary headers
     add_headers_from_arrays(curl, params["header-keys"], params["header-vals"])
 
-    fields = []
     if method == 'POST'
+      fields = []
       params["param-keys"].each_with_index do |name, i|
         value = params["param-vals"][i]
         next if name.to_s.empty? || value.to_s.empty?
         fields << Curl::PostField.content(name, value)
       end
+      curl.post_body = fields.join('&')
     end
 
     begin
-      curl.send("http_#{method.downcase}", *fields)
+      curl.send "http_#{method.downcase}"
       json :header  => pretty_print_headers(curl.header_str),
            :body    => pretty_print(curl.content_type, curl.body_str),
            :request => pretty_print_requests(requests, fields)
