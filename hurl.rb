@@ -49,9 +49,11 @@ class Hurl < Sinatra::Base
     if type.include? 'json'
       pretty_print_json(content)
     elsif type.include? 'xml'
-      pretty_print_xml(content)
+      Albino.colorize(content, :xml)
+    elsif type.include? 'html'
+      Albino.colorize(content, :html)
     else
-      content
+      content.inspect
     end
   end
 
@@ -65,9 +67,5 @@ class Hurl < Sinatra::Base
     end
 
     Albino.colorize(ret, :js)
-  end
-
-  def pretty_print_xml(content)
-    Albino.colorize(content, :xml)
   end
 end
