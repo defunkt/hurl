@@ -121,7 +121,7 @@ button:active {
 /* general */
 body {
   font: 1em "Helvetica Neue", Arial, sans-serif;
-  background: #000 url(/img/background.jpg) repeat;
+  background: #251a1e url(/img/background.jpg) repeat;
   color: #333;
 }
 p {
