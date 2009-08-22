@@ -77,7 +77,8 @@ module Hurl
         curl.send("http_#{method.downcase}", *fields)
         json :header  => pretty_print_headers(curl.header_str),
         :body    => pretty_print(curl.content_type, curl.body_str),
-        :request => pretty_print_requests(requests, fields)
+        :request => pretty_print_requests(requests, fields),
+        :hurl_id => save_hurl(params)
       rescue => e
         json :error => "error: #{e}"
       end
@@ -119,6 +120,14 @@ module Hurl
           end
       end
       fields
+    end
+
+    def save_hurl(params)
+      puts params.inspect
+      id = Digest::SHA1.hexdigest(params.to_s)
+      json = Yajl::Encoder.encode(params)
+      redis.set(id, json)
+      id
     end
 
 
