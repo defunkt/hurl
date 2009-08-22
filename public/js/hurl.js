@@ -115,6 +115,13 @@ $(document).ready(function() {
     return false
   })
 
+  // facebox
+  $('a[rel*=facebox]').facebox()
+  $(document).bind('reveal.facebox', function() {
+    //$('#facebox :text:first').focus()
+    $('#facebox .footer').remove()
+  })
+
   // in-field labels
 	Hurl.labelHints('input[title]')
 })
