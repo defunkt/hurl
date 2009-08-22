@@ -1,4 +1,5 @@
 require 'open3'
+require 'albino'
 
 begin
   require 'sinatra/base'
@@ -34,17 +35,21 @@ class Hurl < Sinatra::Base
   post '/' do
     url, method, body = params.values_at(:url, :method, :body)
     curl = Curl::Easy.new(url)
+
     if method
       curl.send "http_#{method.downcase}"
     else
       curl.http_get
     end
-    pretty_print curl.content_type, curl.body_str
+
+    pretty_print(curl.content_type, curl.body_str)
   end
 
   def pretty_print(type, content)
     if type.include? 'json'
       pretty_print_json(content)
+    elsif type.include? 'xml'
+      pretty_print_xml(content)
     else
       content
     end
@@ -58,6 +63,11 @@ class Hurl < Sinatra::Base
       stdin.close
       ret = stdout.read.strip
     end
-    ret
+
+    Albino.colorize(ret, :js)
+  end
+
+  def pretty_print_xml(content)
+    Albino.colorize(content, :xml)
   end
 end
