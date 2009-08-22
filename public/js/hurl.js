@@ -44,9 +44,17 @@ $(document).ready(function() {
     newField.toggle().attr('id', '')
     Hurl.autocompleteHeaders( newField.find('.form-alpha') )
     Hurl.labelHints( newField.find('input[title]') )
+    registerRemoveHeaderHandlers( newField )
     $(this).parent().append( newField )
     return false
   })
+
+  function registerRemoveHeaderHandlers(el) {
+    $(el).find('.header-delete').click(function() {
+      $(this).parents('p:first').remove()
+      return false
+    })
+  }
 
   // hurl it!
   $('#hurl-form').submit(function() {
