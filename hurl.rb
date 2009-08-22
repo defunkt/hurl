@@ -49,7 +49,7 @@ class Hurl < Sinatra::Base
 
     begin
       curl.send "http_#{method.downcase}"
-      json :header => curl.header_str,
+      json :header => pretty_print(:headers, curl.header_str),
            :body   => pretty_print(curl.content_type, curl.body_str)
     rescue => e
       json :error => "error: #{e}"
@@ -63,12 +63,15 @@ class Hurl < Sinatra::Base
   end
 
   def pretty_print(type, content)
+    type = type.to_s
     if type.include? 'json'
       pretty_print_json(content)
     elsif type.include? 'xml'
       Albino.colorize(content, :xml)
     elsif type.include? 'html'
       Albino.colorize(content, :html)
+    elsif type.include? 'headers'
+      pretty_print_headers(content)
     else
       content.inspect
     end
@@ -84,5 +87,17 @@ class Hurl < Sinatra::Base
     end
 
     Albino.colorize(ret, :js)
+  end
+
+  def pretty_print_headers(content)
+    lines = content.split("\n").map do |line|
+      if line =~ /^(.+?):(.+)$/
+        "<span class='nt'>#{$1}</span>:<span class='s'>#{$2}</span>"
+      else
+        "<span class='nf'>#{line}</span>"
+      end
+    end
+
+    "<div class='highlight'><pre>#{lines.join}</pre></div>"
   end
 end
