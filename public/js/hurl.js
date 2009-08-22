@@ -114,9 +114,8 @@ $(document).ready(function() {
   })
 
   // facebox
-  $('a[rel*=facebox]').facebox()
+  $('a[rel*=facebox]').facebox({ opacity: 0.4 })
   $(document).bind('reveal.facebox', function() {
-    //$('#facebox :text:first').focus()
     Hurl.labelHints('#facebox input[title]')
     $('#facebox .footer').remove()
   })
