@@ -64,6 +64,7 @@ textarea {
     padding: 5px;
     border: 1px solid #bbb;
     width: 750px;
+    margin: 2px 0;
 }
 select.form-alpha {
     width: 290px;
