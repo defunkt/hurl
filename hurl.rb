@@ -8,6 +8,6 @@ class Hurl < Sinatra::Base
   end
 
   get '/' do
-    "hi world! #{@redis}"
+    render :index
   end
 end
