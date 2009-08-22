@@ -42,7 +42,7 @@ class Hurl < Sinatra::Base
     url, method = params.values_at(:url, :method)
     curl = Curl::Easy.new(url)
 
-#     curl.follow_location = true
+    curl.follow_location = true if params[:follow_redirects]
 
     # ensure a method is set
     method = method.to_s.empty? ? 'GET' : method
