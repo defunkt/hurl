@@ -12,8 +12,15 @@ module Hurl
     #
 
     def add_hurl(hurl)
-      json = Yajl::Encoder.encode([ Time.now.to_i, hurl])
-      redis.lpush(key(id, :hurls), json)
+      # don't save the same hurl twice in a row
+      if hurl != latest_hurl[-1]
+        json = Yajl::Encoder.encode([ Time.now.to_i, hurl])
+        redis.lpush(key(id, :hurls), json)
+      end
+    end
+
+    def latest_hurl
+      redis.lindex(key(id, :hurls), 0) || []
     end
 
     def list_hurls
