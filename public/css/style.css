@@ -74,10 +74,10 @@ input[type=text].form-alpha {
 }
 input[type=text].form-beta,
 input[type=password].form-beta {
-    width: 439px;
+    width: 445px;
 }
 .form-beta {
-    margin-left: 12px;
+    margin-left: 6px !important;
 }
 /* buttons */
 button {
