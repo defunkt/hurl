@@ -63,7 +63,7 @@ textarea {
     line-height: normal;
     padding: 5px;
     border: 1px solid #bbb;
-    width: 890px;
+    width: 750px;
 }
 select.form-alpha {
     width: 290px;
@@ -72,7 +72,7 @@ input[type=text].form-alpha {
     width: 280px;
 }
 input[type=text].form-beta {
-    width: 579px;
+    width: 439px;
 }
 .form-beta {
     margin-left: 12px;
@@ -123,7 +123,7 @@ a:hover {
 }
 #inset {
     background-color: #fff;
-    width: 900px;
+    width: 760px;
     margin: 0 auto;
     padding: 20px 50px;
 }
