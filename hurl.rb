@@ -29,6 +29,8 @@ class Hurl < Sinatra::Base
     curl.on_debug do |type, data|
       # track request headers
       requests << data if type == Curl::CURLINFO_HEADER_OUT
+      puts "type: #{type}"
+      puts "data: #{data}"
     end
 
     curl.follow_location = true if params[:follow_redirects]
@@ -46,8 +48,15 @@ class Hurl < Sinatra::Base
     # arbitrary headers
     add_headers_from_arrays(curl, params["header-keys"], params["header-vals"])
 
+    fields = []
+    if method == 'POST'
+      params["param-keys"].each_with_index do |name, i|
+        fields << Curl::PostField.content(name, params["param-vals"][i])
+      end
+    end
+
     begin
-      curl.send "http_#{method.downcase}"
+      curl.send("http_#{method.downcase}", *fields)
       json :header  => pretty_print_headers(curl.header_str),
            :body    => pretty_print(curl.content_type, curl.body_str),
            :request => pretty_print_requests(requests)
