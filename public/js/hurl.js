@@ -39,17 +39,15 @@ $(document).ready(function() {
   $('#select-method').change()
 
   // add auth
-  $('#select-auth').change(function() {
-    $('#select-auth option:selected').each(function() {
-      var auth_type = $(this).attr('value')
-      if (auth_type == 'basic'){
-        $('#basic-auth-fields').show()
-      } else {
-        $('#basic-auth-fields').hide()
-      }
-    })
+  $('input[name=auth]').change(function() {
+    if ($(this).attr('value') == 'basic') {
+      $('#basic-auth-fields').show()
+      $('#basic-auth-fields .form-alpha').focus()
+    } else {
+      $('#basic-auth-fields').hide()
+    }
   })
-  $('#select-auth').change()
+  $('input[name=auth]').change()
 
   // add post param
   $('#add-param').click(function() {

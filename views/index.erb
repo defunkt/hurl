@@ -44,10 +44,14 @@
           </div>
         </p>
         <p>
-          <select id="select-auth" name="auth" class="form-alpha">
-            <option value="none">no auth</option>
-            <option value="basic">HTTP basic</option>
-          </select>
+          <label>
+            <input type="radio" name="auth" value="none" checked="checked"/>
+            no auth
+          </label>
+          <label>
+            <input type="radio" name="auth" value="basic"/>
+            HTTP basic
+          </label>
           <div id="basic-auth-fields" style="display:none;">
             <input type="text" name="basic_username" class="form-alpha" title="username"/>
             <input type="password" name="basic_password" class="form-beta" title="password"/>
