@@ -42,6 +42,17 @@ var Hurl = {
 }
 
 $(document).ready(function() {
+  // add auth
+  $('#select-auth').change(function() {
+    $('#select-auth option:selected').each(function() {
+      var auth_type = $(this).attr('id')
+      if (auth_type == 'basic'){
+        $('#basic-auth-fields').show()
+      } else {
+        $('#basic-auth-fields').hide()
+      }
+    })
+  })
 
   // add header
   $('#add-header').click(function() {
@@ -74,6 +85,7 @@ $(document).ready(function() {
     return false
   })
 
+  // toggle request/response display
   $('.toggle-reqres-link').click(function(){
     $('.toggle-reqres').toggle()
     $('#code-request').toggle()
