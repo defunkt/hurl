@@ -69,10 +69,12 @@ textarea {
 select.form-alpha {
   width: 290px;
 }
-input[type=text].form-alpha,
+input[type=text].form-alpha {
+  width: 280px;    
+}
 .facebox input[type=text],
 .facebox input[type=password] {
-  width: 280px;
+  width: 380px;
 }
 input[type=text].form-beta,
 input[type=password].form-beta {
