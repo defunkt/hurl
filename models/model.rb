@@ -11,6 +11,23 @@ module Hurl
       new(attributes).save
     end
 
+    def self.indices
+      @indices ||= []
+    end
+
+    def self.index(field)
+      indices << field
+
+      sing = (class << self; self end)
+      sing.send(:define_method, "find_by_#{field}") do |value|
+        from_json redis.get(key(field, value))
+      end
+    end
+
+    def self.inherited(subclass)
+      subclass.index :id
+    end
+
     def self.key(*parts)
       "#{name}:#{parts.join(':')}"
     end
@@ -45,8 +62,9 @@ module Hurl
     def save
       if valid?
         @saved = true
-        redis.set(key(:email, email), to_json)
-        redis.set(key(:id, id), to_json)
+        self.class.indices.each do |index|
+          redis.set(key(index, send(index)), to_json)
+        end
       end
       self
     end

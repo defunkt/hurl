@@ -3,6 +3,9 @@ module Hurl
     attr_accessor :email, :password, :crypted_password
     SALT = '==asdaga3hg8hwg98w4h9hg8ohsrg8hsklghsdgl=='
 
+    # find_by_email
+    index :email
+
     #
     # class methods
     #
@@ -17,14 +20,6 @@ module Hurl
 
     def self.crypted_password(password)
       Digest::SHA1.hexdigest("--#{password}-#{SALT}--")
-    end
-
-    def self.find_by_email(email)
-      from_json redis.get(key(:email, email))
-    end
-
-    def self.find_by_id(id)
-      from_json redis.get(key(:id, id))
     end
 
 
