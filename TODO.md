@@ -2,10 +2,6 @@ TODO
 ====
 
 * fix bug with non-focused fields submitting
-* flash display success for sign in/sign up
-* sign up
-* sign in
-* log out
 * page of archived hurls
 * paginate archived hurls on form
 * view full request/response (GET /request or GET /response with params)
