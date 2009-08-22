@@ -51,20 +51,30 @@ $(document).ready(function() {
   })
   $('#select-auth').change()
 
+  // add post param
+  $('#add-param').click(function() {
+    var newField = $('#param-fields').clone()
+    newField.toggle().attr('id', '')
+    Hurl.labelHints( newField.find('input[title]') )
+    registerRemoveHandlers( newField, '.param-delete' )
+    $(this).parent().append( newField )
+    return false
+  })
+
   // add header
   $('#add-header').click(function() {
     var newField = $('#header-fields').clone()
     newField.toggle().attr('id', '')
     Hurl.autocompleteHeaders( newField.find('.form-alpha') )
     Hurl.labelHints( newField.find('input[title]') )
-    registerRemoveHeaderHandlers( newField )
+    registerRemoveHandlers( newField, '.header-delete' )
     $(this).parent().append( newField )
     return false
   })
 
-  // remove header
-  function registerRemoveHeaderHandlers(el) {
-    $(el).find('.header-delete').click(function() {
+  // remove header / param
+  function registerRemoveHandlers(el, klass) {
+    $(el).find(klass).click(function() {
       $(this).parents('p:first').remove()
       return false
     })
