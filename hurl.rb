@@ -41,6 +41,12 @@ module Hurl
     post '/signup/' do
       email, password = params.values_at(:email, :password)
       user = User.create(:email => email, :password => password)
+
+      if user.valid?
+        "sweet!"
+      else
+        user.errors.to_s
+      end
     end
 
     post '/' do
