@@ -70,7 +70,8 @@ class Hurl < Sinatra::Base
     keys, values = Array(keys), Array(values)
 
     keys.each_with_index do |key, i|
-      next if values[i].to_s.empty?
+      # ignore default name / value keypair
+      next if values[i].to_s.empty? || key == "name"
       curl.headers[key] = values[i]
     end
   end
