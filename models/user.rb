@@ -43,6 +43,10 @@ module Hurl
       @errors = {}
     end
 
+    def to_s
+      email
+    end
+
     def errors
       @errors
     end
