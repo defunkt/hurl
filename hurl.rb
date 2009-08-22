@@ -36,13 +36,15 @@ class Hurl < Sinatra::Base
     url, method, body = params.values_at(:url, :method, :body)
     curl = Curl::Easy.new(url)
 
-    if method
-      curl.send "http_#{method.downcase}"
-    else
-      curl.http_get
-    end
+    # ensure a method is set
+    method = method.to_s.empty? ? 'GET' : method
 
-    pretty_print(curl.content_type, curl.body_str)
+    begin
+      curl.send "http_#{method.downcase}"
+      pretty_print(curl.content_type, curl.body_str)
+    rescue => e
+      "error: #{e}"
+    end
   end
 
   def pretty_print(type, content)
