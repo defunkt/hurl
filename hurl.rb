@@ -1,13 +1,25 @@
 require 'sinatra/base'
-require 'redis'
+
+begin
+  require 'redis'
+rescue LoadError
+  nil
+end
 
 class Hurl < Sinatra::Base
+  dir = File.dirname(File.expand_path(__FILE__))
+
+  set :views, "#{dir}/views"
+  set :static, true
+
   def initialize(*args)
     super
-    @redis = Redis.new(:host => '127.0.0.1', :port => 6379)
+    if defined? Redis
+      @redis = Redis.new(:host => '127.0.0.1', :port => 6379)
+    end
   end
 
   get '/' do
-    render :index
+    erb :index
   end
 end
