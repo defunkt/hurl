@@ -5,7 +5,7 @@ var Hurl = {
     $(el).each(function() {
       var self = $(this), title = self.attr('title')
 
-		  if (self.val() === '') {
+		  if (self.val() === '' || self.val() === title) {
 			  self.val(title).css('color', '#E9EAEA')
 		  }
 
