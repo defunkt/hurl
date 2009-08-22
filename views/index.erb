@@ -6,22 +6,33 @@
   </p>
   <p>
     <select id="select-method" name="method" class="form-alpha">
-      <option value="GET">GET</option>
-      <option value="POST">POST</option>
-      <option value="PUT">PUT</option>
-      <option value="DELETE">DELETE</option>
+      <option value="GET" <% if @hurl['method']=='GET' %>selected="selected"<% end %>>GET</option>
+      <option value="POST" <% if @hurl['method']=='POST' %>selected="selected"<% end %>>POST</option>
+      <option value="PUT" <% if @hurl['method']=='PUT' %>selected="selected"<% end %>>PUT</option>
+      <option value="DELETE" <% if @hurl['method']=='DELETE' %>selected="selected"<% end %>>DELETE</option>
     </select>
     <span class="form-beta">
-      <input type="checkbox" id="follow_redirects" name="follow_redirects" />
+      <input type="checkbox" id="follow_redirects" name="follow_redirects" 
+        <% if @hurl['follow_redirects']=='on' %>checked="checked"<% end %> />
       follow redirects
     </span>
     <div id="post-params" style="display: none;">
       <a id="add-param" href="#"><span class="link-icon">+</span> add param</a>
-      <p id="param-fields" style="display:none;">
-        <a href="#" class="param-delete"><img src="/img/delete.png" title="remove"/></a>
-        <input type="text" name="param-keys[]" class="form-alpha"/>
-        <input type="text" name="param-vals[]" class="form-beta" />
-      </p>
+      <% if @hurl['param-keys'] %>
+        <p id="param-fields">
+          <% @hurl['param-keys'].each_with_index do |name, i| %>
+            <a href="#" class="param-delete"><img src="/img/delete.png" title="remove"/></a>
+            <input type="text" name="param-keys[]" class="form-alpha" value="<%= name %>"/>
+            <input type="text" name="param-vals[]" class="form-beta" value="<%= @hurl['param-vals'][i] %>"/>
+          <% end %>
+        </p>
+      <% else %>
+        <p id="param-fields" style="display:none;">
+          <a href="#" class="param-delete"><img src="/img/delete.png" title="remove"/></a>
+          <input type="text" name="param-keys[]" class="form-alpha"/>
+          <input type="text" name="param-vals[]" class="form-beta" />
+        </p>
+      <% end %>
     </div>
   </p>
   <p id="auth-selection">
