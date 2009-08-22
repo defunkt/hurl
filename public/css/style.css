@@ -125,6 +125,7 @@ h1#logo {
     -webkit-border-radius: 5px;
 }
 .code-text {
+    padding: 2px;
     min-height: 60px;
     max-height: 400px;
     overflow-y: auto;
