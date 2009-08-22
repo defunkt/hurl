@@ -110,10 +110,12 @@ h1#logo {
     font: 2em "Helvetica Neue", Arial, sans-serif;
     color: #826373;
 }
+#hurl-form {
+  margin: 20px 0;
+}
 .code-wrap {
     background-color: #e9eaea;
     padding: 8px 16px;
-    margin: 8px 0;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
 }
