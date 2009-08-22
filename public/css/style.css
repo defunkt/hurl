@@ -150,6 +150,11 @@ a:hover {
 #content {
   margin: 0 50px;
 }
+#header {
+  padding: 0 50px;
+  border-bottom: 10px solid #826373;
+  margin-bottom: 30px;
+}
 h1#logo {
   font: 2em "Helvetica Neue", Arial, sans-serif;
   color: #826373;
@@ -160,9 +165,6 @@ h1#logo a:hover {
 #nav {
   float: right;
   margin-top: 14px;
-}
-#page {
-  margin-top: 30px;
 }
 #footer {
   margin-top: 40px;
