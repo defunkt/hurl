@@ -129,4 +129,5 @@ h1#logo {
     max-height: 400px;
     overflow-y: auto;
     font-family:'Bitstream Vera Sans Mono','Courier',monospace;
+    font-size: 14px;
 }
