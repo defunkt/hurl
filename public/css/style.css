@@ -103,6 +103,13 @@ button:hover {
 button:active {
     opacity: 1;
 }
+#send-wrap {
+    height: 40px;
+}
+#send-wrap img {
+    padding: 0.8em 10px;
+    line-height: 1.4em;
+}
 #spinner {
     padding-right: 9px 1px;
     display: none;

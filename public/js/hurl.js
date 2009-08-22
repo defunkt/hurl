@@ -64,6 +64,7 @@ $(document).ready(function() {
         $('#response').html("Weird response. Sorry.")
       }
 
+      $('#request-and-response').show()
       $('#send-wrap').children().toggle()
     })
 
