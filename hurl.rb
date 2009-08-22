@@ -24,7 +24,12 @@ class Hurl < Sinatra::Base
   post '/' do
     url, method = params.values_at(:url, :method)
     curl = Curl::Easy.new(url)
-    curl.verbose = true
+
+    requests = []
+    curl.on_debug do |type, data|
+      # track request headers
+      requests << data if type == Curl::CURLINFO_HEADER_OUT
+    end
 
     curl.follow_location = true if params[:follow_redirects]
 
@@ -35,7 +40,7 @@ class Hurl < Sinatra::Base
       curl.send "http_#{method.downcase}"
       json :header  => pretty_print_headers(curl.header_str),
            :body    => pretty_print(curl.content_type, curl.body_str),
-           :request => pretty_print_request(curl, method)
+           :request => pretty_print_requests(requests)
     rescue => e
       json :error => "error: #{e}"
     end
@@ -76,17 +81,11 @@ class Hurl < Sinatra::Base
     "<div class='highlight'><pre>#{lines.join}</pre></div>"
   end
 
-  def pretty_print_request(curl, method = "GET")
-    pretty_print_headers build_request(curl, method)
-  end
-
-  def build_request(curl, method = "GET")
-    url = URI.parse(curl.url)
-    lines = []
-    lines << "#{method} #{url.path} HTTP/1.1"
-    lines << "Host: #{url.host}"
-    lines << "Accept: */*"
-    lines.join("\r\n")
+  # accepts an array of request headers and formats them
+  def pretty_print_requests(requests = [])
+    requests.map do |request|
+      pretty_print_headers request
+    end.join
   end
 
 
