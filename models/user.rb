@@ -52,6 +52,7 @@ module Hurl
 
     def to_hash
       return {
+        'id'               => id,
         'email'            => email,
         'crypted_password' => crypted_password
       }
