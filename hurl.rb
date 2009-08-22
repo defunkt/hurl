@@ -41,22 +41,6 @@ class Hurl < Sinatra::Base
 
 
   #
-  # sinatra helper methods
-  #
-
-  # render a json response
-  def json(hash = {})
-    headers['Content-Type'] = 'application/json'
-    Yajl::Encoder.encode(hash)
-  end
-
-  # colorize :js => '{ "blah": true }'
-  def colorize(hash = {})
-    Albino.colorize(hash.values.first, hash.keys.first)
-  end
-
-
-  #
   # pretty printing
   #
 
@@ -75,15 +59,7 @@ class Hurl < Sinatra::Base
   end
 
   def pretty_print_json(content)
-    ret = ''
-    cmd = "python -msimplejson.tool"
-    Open3.popen3(cmd) do |stdin, stdout, stderr|
-      stdin.puts content
-      stdin.close
-      ret = stdout.read.strip
-    end
-
-    colorize :js => ret
+    colorize :js => shell("python -msimplejson.tool", :stdin => content)
   end
 
   def pretty_print_headers(content)
@@ -96,5 +72,34 @@ class Hurl < Sinatra::Base
     end
 
     "<div class='highlight'><pre>#{lines.join}</pre></div>"
+  end
+
+
+  #
+  # sinatra helper methods
+  #
+
+  # render a json response
+  def json(hash = {})
+    headers['Content-Type'] = 'application/json'
+    Yajl::Encoder.encode(hash)
+  end
+
+  # colorize :js => '{ "blah": true }'
+  def colorize(hash = {})
+    Albino.colorize(hash.values.first, hash.keys.first)
+  end
+
+  # shell "cat", :stdin => "file.rb"
+  def shell(cmd, options = {})
+    ret = ''
+    Open3.popen3(cmd) do |stdin, stdout, stderr|
+      if options[:stdin]
+        stdin.puts options[:stdin].to_s
+        stdin.close
+      end
+      ret = stdout.read.strip
+    end
+    ret
   end
 end
