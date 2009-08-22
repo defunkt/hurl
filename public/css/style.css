@@ -127,17 +127,20 @@ a {
   text-decoration: none;
   color: #826373;
 }
-a:hover   
+a:hover {
+  text-decoration: underline;
+}
 .clearwrap {
   overflow: hidden;
 }
 #inset {
   background-color: #fff;
-  width: 760px;
+  width: 860px;
   margin: 0 auto;
-  padding: 20px 50px;
+  padding: 20px 0;
 }
 #content {
+  margin: 0 50px;
 }
 h1#logo {
   font: 2em "Helvetica Neue", Arial, sans-serif;
@@ -149,6 +152,15 @@ h1#logo a:hover {
 #nav {
   float: right;
   margin-top: 14px;
+}
+#footer {
+  margin-top: 40px;
+  background-color: #826373;
+  padding: 4px 50px;
+  text-align: right;
+}
+#footer a {
+  color: #fff;
 }
 #hurl-form {
   margin: 20px 0;
