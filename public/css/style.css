@@ -203,6 +203,10 @@ h1#logo a:hover {
 .link-icon {
   font-weight: bold;
 }
+.error-msg {
+  padding: 6px 6px 6px 32px;
+  background: #ef95a1 url(/img/message-warn.png) 6px 50% no-repeat;
+}
 #full-size-link {
   float: right;
 }
