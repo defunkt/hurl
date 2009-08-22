@@ -1,5 +1,12 @@
 $(document).ready(function() {
-  $('#hurl-form').ajaxForm(function(body) {
-    $('#response').html(body)
+  $('#hurl-form').submit(function() {
+    $('#send-wrap').children().toggle()
+    
+    $(this).ajaxSubmit(function(body) {
+      $('#response').html(body)
+      $('#send-wrap').children().toggle()
+    })
+
+    return false
   })
 })

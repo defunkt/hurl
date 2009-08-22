@@ -36,22 +36,26 @@ class Hurl < Sinatra::Base
     url, method, body = params.values_at(:url, :method, :body)
     curl = Curl::Easy.new(url)
 
-    if method
-      curl.send "http_#{method.downcase}"
-    else
-      curl.http_get
-    end
+    # ensure a method is set
+    method = method.to_s.empty? ? 'GET' : method
 
-    pretty_print(curl.content_type, curl.body_str)
+    begin
+      curl.send "http_#{method.downcase}"
+      pretty_print(curl.content_type, curl.body_str)
+    rescue => e
+      "error: #{e}"
+    end
   end
 
   def pretty_print(type, content)
     if type.include? 'json'
       pretty_print_json(content)
     elsif type.include? 'xml'
-      pretty_print_xml(content)
+      Albino.colorize(content, :xml)
+    elsif type.include? 'html'
+      Albino.colorize(content, :html)
     else
-      content
+      content.inspect
     end
   end
 
@@ -65,9 +69,5 @@ class Hurl < Sinatra::Base
     end
 
     Albino.colorize(ret, :js)
-  end
-
-  def pretty_print_xml(content)
-    Albino.colorize(content, :xml)
   end
 end
