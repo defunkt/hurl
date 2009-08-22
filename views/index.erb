@@ -57,19 +57,21 @@
           <img src="/img/ajax-loader.gif" id="spinner" />
         </p>
       </form>
-      <p>
-        <span class="toggle-reqres" style="display: none;">request : <a class="toggle-reqres-link" href="#">response</a></span>
-        <span class="toggle-reqres"><a class="toggle-reqres-link" href="#">request</a> : response</span>
-      </p>
-      <div id="code-request" class="code-wrap" style="display: none;">
-        <div id="request" class="code-text">
+      <div id="request-and-response" style="display:none;">
+        <p>
+          <span class="toggle-reqres" style="display: none;">request : <a class="toggle-reqres-link" href="#">response</a></span>
+          <span class="toggle-reqres"><a class="toggle-reqres-link" href="#">request</a> : response</span>
+        </p>
+        <div id="code-request" class="code-wrap" style="display: none;">
+          <div id="request" class="code-text">
+          </div>
+        </div>
+        <div id="code-response" class="code-wrap">
+          <div id="response" class="code-text">
+          </div>
         </div>
       </div>
-      <div id="code-response" class="code-wrap">
-       <div id="response" class="code-text">
-        </div>
-      </div>
-    </div>
+    </div>      
   </div>
 </body>
 </html>
