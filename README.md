@@ -3,6 +3,8 @@ Hurl
 
 It rocks.
 
+http://hurl.r09.railsrumble.com/
+
 Deployment
 ----------
 
