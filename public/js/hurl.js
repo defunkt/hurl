@@ -113,10 +113,21 @@ $(document).ready(function() {
     return false
   })
 
+  // sign in
+  function registerSigninFormHandler() {
+    $('#facebox form').submit(function() {
+      $(this).ajaxSubmit(function(body) {
+        $('.error-msg').html(body).show()
+      })
+      return false
+    })
+  }
+
   // facebox
   $('a[rel*=facebox]').facebox({ opacity: 0.4 })
   $(document).bind('reveal.facebox', function() {
     Hurl.labelHints('#facebox input[title]')
+    registerSigninFormHandler()
     $('#facebox .footer').remove()
   })
 

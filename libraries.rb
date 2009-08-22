@@ -23,3 +23,5 @@ end
 
 $LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor/redis-rb/lib'
 require 'redis'
+
+require 'models/user'
