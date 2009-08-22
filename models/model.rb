@@ -1,5 +1,8 @@
 module Hurl
   class Model
+    undef_method :id
+    attr_accessor :id
+
     #
     # class methods
     #
@@ -9,7 +12,7 @@ module Hurl
     end
 
     def self.key(*parts)
-      "hurl:#{name}:#{parts.join(':')}"
+      "#{name}:#{parts.join(':')}"
     end
 
     def key(*parts)
@@ -30,7 +33,7 @@ module Hurl
     #
     def initialize(attributes = {})
       attributes.each do |key, value|
-        instance_variable_set "@#{key}", value
+        send "#{key}=", value
       end
       @errors = {}
     end
@@ -42,9 +45,18 @@ module Hurl
     def save
       if valid?
         @saved = true
-        redis.set(key(email), to_json)
+        redis.set(key(:email, email), to_json)
+        redis.set(key(:id, id), to_json)
       end
       self
+    end
+
+    def id
+      @id ||= generate_id
+    end
+
+    def generate_id
+      redis.incr key(:id)
     end
 
     def saved?
