@@ -1,4 +1,13 @@
 $(document).ready(function() {
+  // add header
+  $('#add-header').click(function() {
+    var newField = $('#header-fields').clone()
+    newField.toggle().attr('id', '')
+    $(this).after(newField)
+    return false
+  })
+
+  // hurl it!
   $('#hurl-form').submit(function() {
     $('#send-wrap').children().toggle()
 

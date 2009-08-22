@@ -5,8 +5,11 @@
     <title>Hurl</title>
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/pygment_trac.css">
+    <link rel="stylesheet" type="text/css" href="/css/jquery.autocomplete.css">
+
     <script src="/js/jquery.min.js" type="text/javascript"></script>
     <script src="/js/jquery.form.js" type="text/javascript"></script>
+    <script src="/js/jquery.autocomplete.js" type="text/javascript"></script>    
     <script src="/js/json2.js" type="text/javascript"></script>    
     <script src="/js/hurl.js" type="text/javascript"></script>    
 </head>
@@ -37,8 +40,8 @@
           </select>
         </p>
         <p>
-          <a href="#">+ add header</a>
-          <div id="header-fields">
+          <a id="add-header" href="#">+ add header</a>
+          <div id="header-fields" style="display:none;">
             <input type="text" name="header-key-1" class="form-alpha" />
             <input type="text" name="header-val-1" class="form-beta" />
           </div>
