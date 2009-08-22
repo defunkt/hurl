@@ -1,6 +1,6 @@
 require 'sinatra/base'
 
-$LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor/redis-rb'
+$LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor/redis-rb/lib'
 require 'redis'
 
 class Hurl < Sinatra::Base
