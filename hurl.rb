@@ -29,8 +29,6 @@ class Hurl < Sinatra::Base
     curl.on_debug do |type, data|
       # track request headers
       requests << data if type == Curl::CURLINFO_HEADER_OUT
-      puts "type: #{type}"
-      puts "data: #{data}"
     end
 
     curl.follow_location = true if params[:follow_redirects]
@@ -79,8 +77,7 @@ class Hurl < Sinatra::Base
     keys, values = Array(keys), Array(values)
 
     keys.each_with_index do |key, i|
-      # ignore default name / value keypair
-      next if values[i].to_s.empty? || key == "name"
+      next if values[i].to_s.empty?
       curl.headers[key] = values[i]
     end
   end
