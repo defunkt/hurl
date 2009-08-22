@@ -31,6 +31,13 @@ module Hurl
     #
 
     get '/' do
+      @hurl = {}
+      erb :index
+    end
+
+    get '/hurl/:id' do
+      saved = redis.get(params[:id])
+      @hurl = Yajl::Parser.parse(saved)
       erb :index
     end
 
