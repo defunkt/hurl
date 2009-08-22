@@ -19,22 +19,29 @@
           <input type="text" name="url" value="http://baconfile.com/leah.xml" />
         </p>
         <p>
-          <select name="method">
+          <select name="method" class="form-alpha">
             <option id="GET">GET</option>
             <option id="POST">POST</option>
             <option id="PUT">PUT</option>
             <option id="DELETE">DELETE</option>
           </select>
-          <span class="more-options">
+          <span class="form-beta">
             <input type="checkbox" id="follow_redirects" name="follow_redirects" />
             <label for="follow_redirects">follow redirects</label>
           </span>
         </p>
         <p>
-          <select name="auth">
-            <option id="none">No auth</option>
-            <option id="basic">HTTP Basic</option>
+          <select name="auth" class="form-alpha">
+            <option id="none">no auth</option>
+            <option id="basic">HTTP basic</option>
           </select>
+        </p>
+        <p>
+          <a href="#">+ add header</a>
+          <div id="header-fields">
+            <input type="text" name="header-key-1" class="form-alpha" />
+            <input type="text" name="header-val-1" class="form-beta" />
+          </div>
         </p>
         <p id="send-wrap" class="clearwrap">
           <button type="submit" class="bigbutton">Send</button>

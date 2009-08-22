@@ -65,11 +65,17 @@ textarea {
     border: 1px solid #bbb;
     width: 890px;
 }
-select {
-    width: 168px;
+select.form-alpha {
+    width: 290px;
 }
-.more-options {
-  margin-left: 20px;
+input[type=text].form-alpha {
+    width: 280px;
+}
+input[type=text].form-beta {
+    width: 579px;
+}
+.form-beta {
+    margin-left: 12px;
 }
 /* buttons */
 button {
@@ -106,6 +112,14 @@ p {
 }
 .clearwrap {
     overflow: hidden;
+}
+a {
+  text-decoration: none;
+  color: #826373;
+}
+a:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 #inset {
     background-color: #fff;
