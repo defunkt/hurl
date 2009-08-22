@@ -1,10 +1,10 @@
 TODO
 ====
 
+* fix bug with non-focused fields submitting
 * sign up
 * sign in
 * log out
-* save hurl when "Send" button is clicked
 * page of archived hurls
 * paginate archived hurls on form
 * view full request/response (GET /request or GET /response with params)
