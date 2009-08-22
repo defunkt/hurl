@@ -117,6 +117,7 @@ $(document).ready(function() {
   $('a[rel*=facebox]').facebox()
   $(document).bind('reveal.facebox', function() {
     //$('#facebox :text:first').focus()
+    Hurl.labelHints('#facebox input[title]')
     $('#facebox .footer').remove()
   })
 
