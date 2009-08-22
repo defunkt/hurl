@@ -45,7 +45,7 @@ module Hurl
       if user.valid?
         "sweet!"
       else
-        user.errors.to_s
+        json :error => user.errors.to_s
       end
     end
 
@@ -71,14 +71,14 @@ module Hurl
       add_headers_from_arrays(curl, params["header-keys"], params["header-vals"])
 
       # arbitrary params
-      fields = fields_from_arrays(method, params["param-keys"], params["param-vals"])
+      fields = make_fields(method, params["param-keys"], params["param-vals"])
 
       begin
         curl.send("http_#{method.downcase}", *fields)
         json :header  => pretty_print_headers(curl.header_str),
-        :body    => pretty_print(curl.content_type, curl.body_str),
-        :request => pretty_print_requests(requests, fields),
-        :hurl_id => save_hurl(params)
+             :body    => pretty_print(curl.content_type, curl.body_str),
+             :request => pretty_print_requests(requests, fields),
+             :hurl_id => save_hurl(params)
       rescue => e
         json :error => "error: #{e}"
       end
@@ -109,15 +109,15 @@ module Hurl
     end
 
     # post params from non-empty keys and values
-    def fields_from_arrays(method, keys, values)
+    def make_fields(method, keys, values)
+      return [] unless method == 'POST'
+
       fields = []
-      if method == 'POST'
-        keys, values = Array(keys), Array(values)
-        keys.each_with_index do |name, i|
-            value = values[i]
-            next if name.to_s.empty? || value.to_s.empty?
-            fields << Curl::PostField.content(name, value)
-          end
+      keys, values = Array(keys), Array(values)
+      keys.each_with_index do |name, i|
+        value = values[i]
+        next if name.to_s.empty? || value.to_s.empty?
+        fields << Curl::PostField.content(name, value)
       end
       fields
     end
