@@ -16,6 +16,8 @@ module Hurl
     set :public, "#{dir}/public"
     set :static, true
 
+    enable :sessions
+
     def initialize(*args)
       super
       Hurl.redis = Redis.new(:host => '127.0.0.1', :port => 6379)
@@ -29,6 +31,18 @@ module Hurl
     #
     # routes
     #
+
+    before do
+      if load_session
+        @user = User.find_by_email(@session['email'])
+      end
+    end
+
+    helpers do
+      def logged_in?
+        !!@user
+      end
+    end
 
     get '/' do
       @hurl = {}
@@ -45,11 +59,17 @@ module Hurl
       erb :about
     end
 
+    get '/signout/' do
+      clear_session
+      redirect '/'
+    end
+
     post '/signup/' do
       email, password = params.values_at(:email, :password)
       user = User.create(:email => email, :password => password)
 
       if user.valid?
+        create_session(:email => email)
         json :success => true
       else
         json :error => user.errors.to_s
@@ -208,6 +228,44 @@ module Hurl
         ret = stdout.read.strip
       end
       ret
+    end
+
+    # simple cookie wrapper
+    def set_cookie(key, value)
+      response.set_cookie(key, :value => value, :expires => Time.now + 31536000)
+    end
+
+
+    #
+    # poor man's session handling
+    #
+
+    def load_session
+      if session_id = session['sid']
+        @session = find_session(session_id)
+      end
+    end
+
+    def find_session(id)
+      Yajl::Parser.parse(redis.get(id)) rescue nil
+    end
+
+    def create_session(object)
+      json = Yajl::Encoder.encode(object)
+      id = generate_session_id
+      redis.set(id, json)
+      session['sid'] = id
+    end
+
+    def clear_session
+      if session_id = session['sid']
+        redis.del(session_id)
+        session.delete('sid')
+      end
+    end
+
+    def generate_session_id
+      Digest::SHA1.hexdigest(Time.now.to_s + rand(10_000).to_s)
     end
   end
 end
