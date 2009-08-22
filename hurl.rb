@@ -62,7 +62,7 @@ module Hurl
       curl.follow_location = true if params[:follow_redirects]
 
       # ensure a method is set
-      method = method.to_s.empty? ? 'GET' : method
+      method = (method.to_s.empty? ? 'GET' : method).upcaes
 
       # update auth
       add_auth(auth, curl, params)
