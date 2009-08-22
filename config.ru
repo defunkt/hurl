@@ -2,4 +2,4 @@ require 'rubygems'
 require 'hurl'
 
 # rack sucks
-run Hurl.new
+run Hurl::App.new
