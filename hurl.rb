@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'redis'
 
 class Hurl < Sinatra::Base
   def initialize(*args)
