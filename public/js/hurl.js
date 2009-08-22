@@ -19,4 +19,10 @@ $(document).ready(function() {
 
     return false
   })
+  $('.toggle-reqres-link').click(function(){
+    $('.toggle-reqres').toggle()
+    $('#code-request').toggle()
+    $('#code-response').toggle()
+    return false
+  })
 })
