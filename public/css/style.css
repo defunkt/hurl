@@ -91,6 +91,10 @@ button:hover {
 button:active {
     opacity: 1;
 }
+#spinner {
+    padding: 9px 1px;
+    display: none;
+}
 /* general */
 body {
     font: 1em "Helvetica Neue", Arial, sans-serif;
