@@ -45,10 +45,12 @@ blockquote, q {
 }
 /* forms */
 label {
-    display: block;
     font-size: 16px;
 }
-select, input, textarea {
+select,
+input[type=text],
+input[type=password],
+textarea {
     -x-system-font:none;
     color:#333;
     font-family: "Helvetica Neue", Arial, sans-serif;
@@ -60,11 +62,14 @@ select, input, textarea {
     font-weight: normal;
     line-height: normal;
     padding: 5px;
-    width: 168px;
     border: 1px solid #bbb;
-}
-input, textarea {
     width: 800px;
+}
+select {
+    width: 168px;
+}
+.more-options {
+  margin-left: 20px;
 }
 /* buttons */
 button {
@@ -123,4 +128,6 @@ h1#logo {
     min-height: 60px;
     max-height: 400px;
     overflow-y: auto;
+    font-size: 0.8em;
+    font-family:'Bitstream Vera Sans Mono','Courier',monospace;
 }
