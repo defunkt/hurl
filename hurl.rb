@@ -1,6 +1,14 @@
 require 'libraries'
 
 module Hurl
+  def self.redis
+    @redis
+  end
+
+  def self.redis=(redis)
+    @redis = redis
+  end
+
   class App < Sinatra::Base
     dir = File.dirname(File.expand_path(__FILE__))
 
@@ -10,7 +18,11 @@ module Hurl
 
     def initialize(*args)
       super
-      @redis = Redis.new(:host => '127.0.0.1', :port => 6379)
+      Hurl.redis = Redis.new(:host => '127.0.0.1', :port => 6379)
+    end
+
+    def redis
+      Hurl.redis
     end
 
 
@@ -24,6 +36,11 @@ module Hurl
 
     get '/about/' do
       erb :about
+    end
+
+    post '/signup/' do
+      email, password = params.values_at(:email, :password)
+      user = User.create(:email => email, :password => password)
     end
 
     post '/' do
