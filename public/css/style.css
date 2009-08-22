@@ -1,0 +1,123 @@
+/* reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ul, li,
+form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: normal;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+:focus {
+	outline: 0;
+}
+body {
+	line-height: 1;
+	color: black;
+	background: white;
+}
+ul {
+	list-style: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+/* forms */
+/*input {
+    font: 1em Georgia,serif;
+    padding: 0.365em 4px;
+}
+input[type=text],
+input[type=password],
+textarea {
+    border: 1px solid #dfe1e0;
+    border-color: #ccc #ccc #dfe1e0 #dfe1e0;
+}*/
+label {
+    display: block;
+    color: #666;
+    font-size: 16px;
+}
+select, input, textarea {
+    -x-system-font:none;
+    color:#333;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    font-size-adjust:none;
+    font-stretch: normal;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: normal;
+    padding: 5px;
+    width: 168px;
+    border: 1px solid #bbb;
+}
+/* buttons */
+button {
+    font: 1em "Helvetica Neue", Arial, sans-serif;
+    padding: 0.365em 10px;
+    line-height: 1.4em;
+    font-weight: bold;
+    cursor: pointer;
+    background: #e9eaea url(/img/buttonbg.png) repeat-x;
+    border: 1px solid #ccc;
+    text-shadow: 1px 1px 0 #fff;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+}
+button:hover {
+    opacity: 0.8;
+}
+button:active {
+    opacity: 1;
+}
+/* general */
+body {
+    font: 1em "Helvetica Neue", Arial, sans-serif;
+    background: #000 url(/img/background.jpg) repeat;
+    color: #333;
+}
+#inset {
+    background-color: #fff;
+    width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+#content {
+    width: 800px;
+    margin: 0 50px;
+}
+h1#logo {
+    font: 1.5em "Helvetica Neue", Arial, sans-serif;
+}
+.code-text {
+    width: 800px;
+    background-color: #999;
+    padding: 4px;
+    margin: 8px 0;
+    min-height: 200px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}

@@ -10,6 +10,7 @@ class Hurl < Sinatra::Base
   dir = File.dirname(File.expand_path(__FILE__))
 
   set :views, "#{dir}/views"
+  set :public, "#{dir}/public"
   set :static, true
 
   def initialize(*args)

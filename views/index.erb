@@ -1,1 +1,36 @@
-hi world!
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>Hurl</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+  <div id="inset">
+    <div id="content">
+      <h1 id="logo">hurl</h1>
+      <form>
+        <label>URL</label>
+        <input type="text"/>
+        <label>Method</label>
+        <select>
+          <option id="GET">GET</option>
+          <option id="POST">POST</option>
+          <option id="PUT">PUT</option>
+          <option id="DELETE">DELETE</option>
+        </select>
+        <label>Body</label>
+        <textarea></textarea>
+        <label>Headers</label>
+        <button type="submit" class="bigbutton">Send</button>
+      </form>
+      <label>Request</label>
+      <div id="request" class="code-text">
+      </div>
+      <label>Response</label>
+      <div id="response" class="code-text">
+      </div>
+    </div>
+  </div>
+</body>
+</html>
