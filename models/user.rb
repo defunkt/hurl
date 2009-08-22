@@ -1,15 +1,11 @@
 module Hurl
-  class User
+  class User < Model
     attr_accessor :email, :password
     SALT = '==asdaga3hg8hwg98w4h9hg8ohsrg8hsklghsdgl=='
 
     #
     # class methods
     #
-
-    def self.create(attributes = {})
-      new(attributes).save
-    end
 
     def self.authenticate(email, password)
       return unless user = find_by_email(email)
@@ -27,33 +23,10 @@ module Hurl
       from_json redis.get(key(email))
     end
 
-    def self.key(*parts)
-      "hurl:user:#{parts.join(':')}"
-    end
-
-    def key(*parts)
-      self.class.key(*parts)
-    end
-
-    def self.redis
-      Hurl.redis
-    end
-
-    def redis
-      Hurl.redis
-    end
-
 
     #
     # instance methods
     #
-
-    def initialize(attributes = {})
-      attributes.each do |key, value|
-        instance_variable_set "@#{key}", value
-      end
-      @errors = {}
-    end
 
     def password=(password)
       @password = self.class.crypted_password(password)
@@ -61,30 +34,6 @@ module Hurl
 
     def to_s
       email
-    end
-
-    def errors
-      @errors
-    end
-
-    def save
-      if valid?
-        @saved = true
-        redis.set(key(email), to_json)
-      end
-      self
-    end
-
-    def saved?
-      @saved
-    end
-
-    def saved=(saved)
-      @saved = saved
-    end
-
-    def valid?
-      saved? || validate
     end
 
     def validate
@@ -101,30 +50,11 @@ module Hurl
       errors.empty?
     end
 
-
-    #
-    # serialization
-    #
-
-    # used to initialize an instance which has
-    # already been persisted
-    def self.from_hash(hash)
-      new(hash.merge(:saved => true))
-    end
-
-    def self.from_json(json)
-      from_hash Yajl::Parser.parse(json) rescue nil
-    end
-
     def to_hash
       return {
         'email'    => email,
         'password' => password
       }
-    end
-
-    def to_json
-      Yajl::Encoder.encode(to_hash)
     end
   end
 end
