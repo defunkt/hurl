@@ -1,14 +1,26 @@
 module Hurl
   class User
     attr_accessor :email, :password
+    SALT = '==asdaga3hg8hwg98w4h9hg8ohsrg8hsklghsdgl=='
 
     #
     # class methods
     #
 
     def self.create(attributes = {})
-      email, password = attributes.values_at(:email, :password)
-      new(:email => email, :password => password).save
+      new(attributes).save
+    end
+
+    def self.authenticate(email, password)
+      return unless user = find_by_email(email)
+
+      if user.password == crypted_password(password)
+        user
+      end
+    end
+
+    def self.crypted_password(password)
+      Digest::SHA1.hexdigest("--#{password}-#{SALT}--")
     end
 
     def self.find_by_email(email)
@@ -38,9 +50,13 @@ module Hurl
 
     def initialize(attributes = {})
       attributes.each do |key, value|
-        send "#{key}=", value
+        instance_variable_set "@#{key}", value
       end
       @errors = {}
+    end
+
+    def password=(password)
+      @password = self.class.crypted_password(password)
     end
 
     def to_s
