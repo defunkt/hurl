@@ -138,12 +138,9 @@ h1#logo {
 h1#logo a:hover {
   text-decoration: none;
 }
-#nav, #sign-in-text {
+#nav {
   float: right;
   margin-top: 14px;
-}
-#nav a {
-  margin: 0 6px;
 }
 #hurl-form {
   margin: 20px 0;
