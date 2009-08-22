@@ -22,8 +22,8 @@
         <p id="param-fields">
           <% @hurl['param-keys'].each_with_index do |name, i| %>
             <a href="#" class="param-delete"><img src="/img/delete.png" title="remove"/></a>
-            <input type="text" name="param-keys[]" class="form-alpha" value="<%= name %>"/>
-            <input type="text" name="param-vals[]" class="form-beta" value="<%= @hurl['param-vals'][i] %>"/>
+            <input type="text" name="param-keys[]" class="form-alpha" value="<%= name %>" />
+            <input type="text" name="param-vals[]" class="form-beta" value="<%= @hurl['param-vals'][i] %>" />
           <% end %>
         </p>
       <% else %>
