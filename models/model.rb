@@ -1,5 +1,8 @@
 module Hurl
   class Model
+    undef_method :id
+    attr_accessor :id
+
     #
     # class methods
     #
@@ -8,8 +11,25 @@ module Hurl
       new(attributes).save
     end
 
+    def self.indices
+      @indices ||= []
+    end
+
+    def self.index(field)
+      indices << field
+
+      sing = (class << self; self end)
+      sing.send(:define_method, "find_by_#{field}") do |value|
+        from_json redis.get(key(field, value))
+      end
+    end
+
+    def self.inherited(subclass)
+      subclass.index :id
+    end
+
     def self.key(*parts)
-      "hurl:#{name}:#{parts.join(':')}"
+      "#{name}:#{parts.join(':')}"
     end
 
     def key(*parts)
@@ -30,7 +50,7 @@ module Hurl
     #
     def initialize(attributes = {})
       attributes.each do |key, value|
-        instance_variable_set "@#{key}", value
+        send "#{key}=", value
       end
       @errors = {}
     end
@@ -42,9 +62,19 @@ module Hurl
     def save
       if valid?
         @saved = true
-        redis.set(key(email), to_json)
+        self.class.indices.each do |index|
+          redis.set(key(index, send(index)), to_json)
+        end
       end
       self
+    end
+
+    def id
+      @id ||= generate_id
+    end
+
+    def generate_id
+      redis.incr key(:id)
     end
 
     def saved?

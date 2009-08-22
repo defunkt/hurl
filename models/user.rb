@@ -1,7 +1,10 @@
 module Hurl
   class User < Model
-    attr_accessor :email, :password
+    attr_accessor :email, :password, :crypted_password
     SALT = '==asdaga3hg8hwg98w4h9hg8ohsrg8hsklghsdgl=='
+
+    # find_by_email
+    index :email
 
     #
     # class methods
@@ -10,7 +13,7 @@ module Hurl
     def self.authenticate(email, password)
       return unless user = find_by_email(email)
 
-      if user.password == crypted_password(password)
+      if user.crypted_password == crypted_password(password)
         user
       end
     end
@@ -19,17 +22,14 @@ module Hurl
       Digest::SHA1.hexdigest("--#{password}-#{SALT}--")
     end
 
-    def self.find_by_email(email)
-      from_json redis.get(key(email))
-    end
-
 
     #
     # instance methods
     #
 
     def password=(password)
-      @password = self.class.crypted_password(password)
+      @password = password
+      @crypted_password = self.class.crypted_password(password)
     end
 
     def to_s
@@ -52,8 +52,8 @@ module Hurl
 
     def to_hash
       return {
-        'email'    => email,
-        'password' => password
+        'email'            => email,
+        'crypted_password' => crypted_password
       }
     end
   end
