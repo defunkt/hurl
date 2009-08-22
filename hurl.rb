@@ -24,6 +24,7 @@ class Hurl < Sinatra::Base
   post '/' do
     url, method = params.values_at(:url, :method)
     curl = Curl::Easy.new(url)
+    curl.verbose = true
 
     curl.follow_location = true if params[:follow_redirects]
 
@@ -83,7 +84,9 @@ class Hurl < Sinatra::Base
     url = URI.parse(curl.url)
     lines = []
     lines << "#{method} #{url.path} HTTP/1.1"
-    lines.join("\n")
+    lines << "Host: #{url.host}"
+    lines << "Accept: */*"
+    lines.join("\r\n")
   end
 
 
