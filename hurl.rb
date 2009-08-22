@@ -1,3 +1,5 @@
+require 'open3'
+
 begin
   require 'sinatra/base'
 rescue LoadError
@@ -37,6 +39,25 @@ class Hurl < Sinatra::Base
     else
       curl.http_get
     end
-    curl.body_str
+    pretty_print curl.content_type, curl.body_str
+  end
+
+  def pretty_print(type, content)
+    if type.include? 'json'
+      pretty_print_json(content)
+    else
+      content
+    end
+  end
+
+  def pretty_print_json(content)
+    ret = ''
+    cmd = "python -msimplejson.tool"
+    Open3.popen3(cmd) do |stdin, stdout, stderr|
+      stdin.puts content
+      stdin.close
+      ret = stdout.read.strip
+    end
+    ret
   end
 end
