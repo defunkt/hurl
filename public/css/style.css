@@ -91,6 +91,10 @@ button:hover {
 button:active {
     opacity: 1;
 }
+#spinner {
+    padding: 9px 1px;
+    display: none;
+}
 /* general */
 body {
     font: 1em "Helvetica Neue", Arial, sans-serif;
@@ -125,8 +129,10 @@ h1#logo {
     -webkit-border-radius: 5px;
 }
 .code-text {
+    padding: 2px;
     min-height: 60px;
     max-height: 400px;
     overflow-y: auto;
     font-family:'Bitstream Vera Sans Mono','Courier',monospace;
+    font-size: 14px;
 }
