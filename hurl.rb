@@ -1,4 +1,14 @@
-require 'sinatra/base'
+begin
+  require 'sinatra/base'
+rescue LoadError
+  abort "** Please `gem install sinatra`"
+end
+
+begin
+  require 'curb'
+rescue LoadError
+  abort "** Please `gem install curb`"
+end
 
 $LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor/redis-rb/lib'
 require 'redis'
@@ -17,5 +27,9 @@ class Hurl < Sinatra::Base
 
   get '/' do
     erb :index
+  end
+
+  post '/' do
+    url, method, body = params.values_at(:url, :method, :body)
   end
 end
