@@ -29,7 +29,7 @@ module Hurl
     end
 
     def self.key(*parts)
-      "#{name}:#{parts.join(':')}"
+      "#{name}:v1:#{parts.join(':')}"
     end
 
     def key(*parts)
