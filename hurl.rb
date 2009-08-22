@@ -31,5 +31,12 @@ class Hurl < Sinatra::Base
 
   post '/' do
     url, method, body = params.values_at(:url, :method, :body)
+    curl = Curl::Easy.new(url)
+    if method
+      curl.send "http_#{method.downcase}"
+    else
+      curl.http_get
+    end
+    curl.body_str
   end
 end
