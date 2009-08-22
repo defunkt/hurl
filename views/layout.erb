@@ -20,8 +20,9 @@
   <div id="inset">
     <div id="header">
       <div id="nav">
-        <% if false %>
-          <a href="/archives/">view all</a> saved requests
+        <% if logged_in? %>
+          <a href="/archives/">view all</a> saved requests | 
+          <a href="/signout/">sign out</a>
         <% else %>
           <a href="#facebox-signin" rel="facebox">sign in</a> to save your requests
         <% end %>

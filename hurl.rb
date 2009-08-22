@@ -38,7 +38,7 @@ module Hurl
       end
     end
 
-    helper do
+    helpers do
       def logged_in?
         !!@user
       end
@@ -57,6 +57,11 @@ module Hurl
 
     get '/about/' do
       erb :about
+    end
+
+    get '/signout/' do
+      clear_session
+      redirect '/'
     end
 
     post '/signup/' do
@@ -250,6 +255,13 @@ module Hurl
       id = generate_session_id
       redis.set(id, json)
       session['sid'] = id
+    end
+
+    def clear_session
+      if session_id = session['sid']
+        redis.del(session_id)
+        session.delete('sid')
+      end
     end
 
     def generate_session_id
