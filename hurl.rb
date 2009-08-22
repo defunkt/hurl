@@ -1,26 +1,4 @@
-require 'open3'
-require 'albino'
-
-begin
-  require 'sinatra/base'
-rescue LoadError
-  abort "** Please `gem install sinatra`"
-end
-
-begin
-  require 'yajl'
-rescue LoadError
-  abort "** Please `gem install yajl-ruby`"
-end
-
-begin
-  require 'curb'
-rescue LoadError
-  abort "** Please `gem install curb`"
-end
-
-$LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor/redis-rb/lib'
-require 'redis'
+require 'libraries'
 
 class Hurl < Sinatra::Base
   dir = File.dirname(File.expand_path(__FILE__))
@@ -33,6 +11,11 @@ class Hurl < Sinatra::Base
     super
     @redis = Redis.new(:host => '127.0.0.1', :port => 6379)
   end
+
+
+  #
+  # routes
+  #
 
   get '/' do
     erb :index
@@ -56,20 +39,36 @@ class Hurl < Sinatra::Base
     end
   end
 
+
+  #
+  # sinatra helper methods
+  #
+
   # render a json response
   def json(hash = {})
     headers['Content-Type'] = 'application/json'
     Yajl::Encoder.encode(hash)
   end
 
+  # colorize :js => '{ "blah": true }'
+  def colorize(hash = {})
+    Albino.colorize(hash.values.first, hash.keys.first)
+  end
+
+
+  #
+  # pretty printing
+  #
+
   def pretty_print(type, content)
     type = type.to_s
+
     if type.include? 'json'
       pretty_print_json(content)
     elsif type.include? 'xml'
-      Albino.colorize(content, :xml)
+      colorize :xml => content
     elsif type.include? 'html'
-      Albino.colorize(content, :html)
+      colorize :html => content
     else
       content.inspect
     end
@@ -84,7 +83,7 @@ class Hurl < Sinatra::Base
       ret = stdout.read.strip
     end
 
-    Albino.colorize(ret, :js)
+    colorize :js => ret
   end
 
   def pretty_print_headers(content)
