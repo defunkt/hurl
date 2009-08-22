@@ -201,6 +201,9 @@ h1#logo a:hover {
 .link-icon {
   font-weight: bold;
 }
+#full-size-link {
+  float: right;
+}
 .tab-current,
 .toggle-reqres-link {
   padding: 6px;
