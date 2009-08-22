@@ -101,7 +101,7 @@ module Hurl
       curl.follow_location = true if params[:follow_redirects]
 
       # ensure a method is set
-      method = (method.to_s.empty? ? 'GET' : method).upcaes
+      method = (method.to_s.empty? ? 'GET' : method).upcase
 
       # update auth
       add_auth(auth, curl, params)
@@ -131,7 +131,7 @@ module Hurl
     # update auth based on auth type
     def add_auth(auth, curl, params)
       if auth == 'basic'
-        username, password = params.values_at(:basic_username, :basic_password)
+        username, password = params.values_at(:username, :password)
         encoded = Base64.encode64("#{username}:#{password}").strip
         curl.headers['Authorization'] = "Basic #{encoded}"
       end
