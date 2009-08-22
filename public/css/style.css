@@ -158,6 +158,7 @@ a:hover {
 }
 h1#logo {
   font-size: 2em;
+  font-family:'georgia','bitstream vera serif',serif;
   color: #826373;
 }
 h1#logo a:hover {
