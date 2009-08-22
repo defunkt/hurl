@@ -176,6 +176,23 @@ h1#logo a:hover {
 #footer a {
   color: #fff;
 }
+#page-prev,
+#page-next {
+  font-weight: bold;
+  margin-top: 7px;
+}
+#page-prev {
+  float: left;
+  margin-left: -30px;
+}
+#page-next {
+  float: right;
+  margin-right: -30px;
+}
+#page-prev:hover,
+#page-next:hover {
+  text-decoration: none;
+}
 #hurl-form {
   margin: 20px 0;
 }
