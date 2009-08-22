@@ -198,6 +198,9 @@ h1#logo a:hover {
 #hurl-form {
   margin: 20px 0;
 }
+.link-icon {
+  font-weight: bold;
+}
 .tab-current,
 .toggle-reqres-link {
   padding: 6px;
