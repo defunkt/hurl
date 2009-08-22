@@ -79,12 +79,14 @@ input[type=password].form-beta {
 .form-beta {
   margin-left: 6px !important;
 }
-.header-delete {
+.header-delete,
+.param-delete {
     float:right;
     margin-right: -20px;
     padding-top: 7px;
 }
-.header-delete img {
+.header-delete img,
+.param-delete img {
     opacity: 0.5;
 }
 /* buttons */

@@ -25,6 +25,19 @@ var Hurl = {
 }
 
 $(document).ready(function() {
+  // select method
+  $('#select-method').change(function() {
+    $('#select-method option:selected').each(function() {
+      var method = $(this).attr('value')
+      if (method == 'POST'){
+        $('#post-params').show()
+      } else {
+        $('#post-params').hide()
+      }
+    })
+  })
+  $('#select-method').change()
+
   // add auth
   $('#select-auth').change(function() {
     $('#select-auth option:selected').each(function() {
