@@ -8,8 +8,7 @@ $(document).ready(function() {
       if (data.error) {
         $('#response').html(data.error)
       } else if (data.header && data.body) {
-        $('#response-header').html(data.header)
-        $('#response').html(data.body)
+        $('#response').html('<pre>' + data.header + '</pre>' + data.body)
       } else {
         $('#response').html("Weird response. Sorry.")
       }
