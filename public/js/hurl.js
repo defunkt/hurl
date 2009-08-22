@@ -1,4 +1,28 @@
-var Hurl = {}
+var Hurl = {
+  // apply label hints to inputs based on their
+  // title attribute
+  labelHints: function(el) {
+    $(el).each(function() {
+      var self = $(this), title = self.attr('title')
+
+		  if (self.val() === '') {
+			  self.val(title).css('color', '#E9EAEA')
+		  }
+
+		  self.focus(function() {
+			  if (self.val() === title) {
+				  self.val('').addClass('focused').css('color', '#333')
+			  }
+		  })
+
+		  self.blur(function() {
+			  if (self.val() === '') {
+				  self.val(title).removeClass('focused').css('color', '#E9EAEA')
+			  }
+		  })
+    })
+  }
+}
 
 $(document).ready(function() {
   // add auth
@@ -19,6 +43,7 @@ $(document).ready(function() {
     var newField = $('#header-fields').clone()
     newField.toggle().attr('id', '')
     Hurl.autocompleteHeaders( newField.find('.form-alpha') )
+    Hurl.labelHints( newField.find('input[title]') )
     $(this).parent().append( newField )
     return false
   })
@@ -54,19 +79,5 @@ $(document).ready(function() {
   })
 
   // in-field labels
-	$('input[title]').each(function() {
-		if($(this).val() === '') {
-			$(this).val($(this).attr('title')).css('color', '#E9EAEA')
-		}
-		$(this).focus(function() {
-			if($(this).val() === $(this).attr('title')) {
-				$(this).val('').addClass('focused').css('color', '#333')
-			}
-		})
-		$(this).blur(function() {
-			if($(this).val() === '') {
-				$(this).val($(this).attr('title')).removeClass('focused').css('color', '#E9EAEA')
-			}
-		})
-	})
+	Hurl.labelHints('input[title]')
 })
