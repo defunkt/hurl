@@ -1,26 +1,4 @@
-require 'open3'
-require 'albino'
-
-begin
-  require 'sinatra/base'
-rescue LoadError
-  abort "** Please `gem install sinatra`"
-end
-
-begin
-  require 'yajl'
-rescue LoadError
-  abort "** Please `gem install yajl-ruby`"
-end
-
-begin
-  require 'curb'
-rescue LoadError
-  abort "** Please `gem install curb`"
-end
-
-$LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor/redis-rb/lib'
-require 'redis'
+require 'libraries'
 
 class Hurl < Sinatra::Base
   dir = File.dirname(File.expand_path(__FILE__))
@@ -34,6 +12,11 @@ class Hurl < Sinatra::Base
     @redis = Redis.new(:host => '127.0.0.1', :port => 6379)
   end
 
+
+  #
+  # routes
+  #
+
   get '/' do
     erb :index
   end
@@ -42,6 +25,12 @@ class Hurl < Sinatra::Base
     url, method = params.values_at(:url, :method)
     curl = Curl::Easy.new(url)
 
+    requests = []
+    curl.on_debug do |type, data|
+      # track request headers
+      requests << data if type == Curl::CURLINFO_HEADER_OUT
+    end
+
     curl.follow_location = true if params[:follow_redirects]
 
     # ensure a method is set
@@ -49,42 +38,35 @@ class Hurl < Sinatra::Base
 
     begin
       curl.send "http_#{method.downcase}"
-      json :header => pretty_print_headers(curl.header_str),
-           :body   => pretty_print(curl.content_type, curl.body_str)
+      json :header  => pretty_print_headers(curl.header_str),
+           :body    => pretty_print(curl.content_type, curl.body_str),
+           :request => pretty_print_requests(requests)
     rescue => e
       json :error => "error: #{e}"
     end
   end
 
-  # render a json response
-  def json(hash = {})
-    headers['Content-Type'] = 'application/json'
-    Yajl::Encoder.encode(hash)
-  end
+
+  #
+  # pretty printing
+  #
 
   def pretty_print(type, content)
     type = type.to_s
+
     if type.include? 'json'
       pretty_print_json(content)
     elsif type.include? 'xml'
-      Albino.colorize(content, :xml)
+      colorize :xml => content
     elsif type.include? 'html'
-      Albino.colorize(content, :html)
+      colorize :html => content
     else
       content.inspect
     end
   end
 
   def pretty_print_json(content)
-    ret = ''
-    cmd = "python -msimplejson.tool"
-    Open3.popen3(cmd) do |stdin, stdout, stderr|
-      stdin.puts content
-      stdin.close
-      ret = stdout.read.strip
-    end
-
-    Albino.colorize(ret, :js)
+    colorize :js => shell("python -msimplejson.tool", :stdin => content)
   end
 
   def pretty_print_headers(content)
@@ -97,5 +79,41 @@ class Hurl < Sinatra::Base
     end
 
     "<div class='highlight'><pre>#{lines.join}</pre></div>"
+  end
+
+  # accepts an array of request headers and formats them
+  def pretty_print_requests(requests = [])
+    requests.map do |request|
+      pretty_print_headers request
+    end.join
+  end
+
+
+  #
+  # sinatra helper methods
+  #
+
+  # render a json response
+  def json(hash = {})
+    headers['Content-Type'] = 'application/json'
+    Yajl::Encoder.encode(hash)
+  end
+
+  # colorize :js => '{ "blah": true }'
+  def colorize(hash = {})
+    Albino.colorize(hash.values.first, hash.keys.first)
+  end
+
+  # shell "cat", :stdin => "file.rb"
+  def shell(cmd, options = {})
+    ret = ''
+    Open3.popen3(cmd) do |stdin, stdout, stderr|
+      if options[:stdin]
+        stdin.puts options[:stdin].to_s
+        stdin.close
+      end
+      ret = stdout.read.strip
+    end
+    ret
   end
 end
