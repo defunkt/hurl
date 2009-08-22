@@ -30,6 +30,14 @@
       <h1 id="logo"><a href="/">hurl</a></h1>
     </div>
     <div id="content">
+      <p class="flash-error" style="display: none;">
+        <a href="#" class="flash-close"><img src="/img/delete.png" title="remove"/></a>
+        <span class="flash-error-msg"></span>
+      </p>
+      <p class="flash-notice" style="display: none;">
+        <a href="#" class="flash-close"><img src="/img/delete.png" title="remove"/></a>
+        <span class="flash-notice-msg"></span>
+      </p>
       <%= yield %>
     </div>
     <div id="footer"><a href="/about/">what the heck is this?</a></div>

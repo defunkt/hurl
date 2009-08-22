@@ -85,13 +85,18 @@ input[type=password].form-beta {
 }
 .header-delete,
 .param-delete {
-    float:right;
-    margin-right: -20px;
-    padding-top: 7px;
+  float: right;
+  margin-right: -20px;
+  padding-top: 7px;
+}
+.flash-close {
+  float: right;
+  margin-right: -26px;
 }
 .header-delete img,
-.param-delete img {
-    opacity: 0.5;
+.param-delete img,
+.flash-close img {
+  opacity: 0.5;
 }
 /* buttons */
 button {
@@ -203,9 +208,15 @@ h1#logo a:hover {
 .link-icon {
   font-weight: bold;
 }
+.flash-error,
 .error-msg {
   padding: 6px 6px 6px 32px;
   background: #ef95a1 url(/img/message-warn.png) 6px 50% no-repeat;
+}
+.flash-notice {
+  padding: 6px 6px 6px 32px;
+  /*background-color: #c2dbef;*/
+  background: #c2dbef url(/img/message-info.png) 6px 50% no-repeat;
 }
 #full-size-link {
   float: right;
