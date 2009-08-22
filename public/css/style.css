@@ -63,7 +63,7 @@ textarea {
     line-height: normal;
     padding: 5px;
     border: 1px solid #bbb;
-    width: 800px;
+    width: 890px;
 }
 select {
     width: 168px;
@@ -128,6 +128,5 @@ h1#logo {
     min-height: 60px;
     max-height: 400px;
     overflow-y: auto;
-    font-size: 0.8em;
     font-family:'Bitstream Vera Sans Mono','Courier',monospace;
 }
