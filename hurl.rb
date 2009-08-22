@@ -43,6 +43,9 @@ class Hurl < Sinatra::Base
       curl.headers['Authorization'] = "Basic #{encoded}"
     end
 
+    # arbitrary headers
+    add_headers_from_arrays(curl, params["header-keys"], params["header-vals"])
+
     begin
       curl.send "http_#{method.downcase}"
       json :header  => pretty_print_headers(curl.header_str),
@@ -50,6 +53,25 @@ class Hurl < Sinatra::Base
            :request => pretty_print_requests(requests)
     rescue => e
       json :error => "error: #{e}"
+    end
+  end
+
+
+  #
+  # http helpers
+  #
+
+  # accepts two arrays: keys and values
+  # the elements in keys must map to the
+  # elements in values
+  #
+  # empty values means the key is ignored
+  def add_headers_from_arrays(curl, keys, values)
+    keys, values = Array(keys), Array(values)
+
+    keys.each_with_index do |key, i|
+      next if values[i].to_s.empty?
+      curl.headers[key] = values[i]
     end
   end
 
