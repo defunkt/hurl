@@ -8,6 +8,12 @@ rescue LoadError
 end
 
 begin
+  require 'yajl'
+rescue LoadError
+  abort "** Please `gem install yajl-ruby`"
+end
+
+begin
   require 'curb'
 rescue LoadError
   abort "** Please `gem install curb`"
@@ -41,10 +47,17 @@ class Hurl < Sinatra::Base
 
     begin
       curl.send "http_#{method.downcase}"
-      pretty_print(curl.content_type, curl.body_str)
+      json :header => curl.header_str,
+           :body   => pretty_print(curl.content_type, curl.body_str)
     rescue => e
-      "error: #{e}"
+      json :error => "error: #{e}"
     end
+  end
+
+  # render a json response
+  def json(hash = {})
+    headers['Content-Type'] = 'application/json'
+    Yajl::Encoder.encode(hash)
   end
 
   def pretty_print(type, content)
