@@ -42,14 +42,14 @@ class Hurl < Sinatra::Base
     url, method = params.values_at(:url, :method)
     curl = Curl::Easy.new(url)
 
-#     curl.follow_location = true
+    curl.follow_location = true if params[:follow_redirects]
 
     # ensure a method is set
     method = method.to_s.empty? ? 'GET' : method
 
     begin
       curl.send "http_#{method.downcase}"
-      json :header => curl.header_str,
+      json :header => pretty_print_headers(curl.header_str),
            :body   => pretty_print(curl.content_type, curl.body_str)
     rescue => e
       json :error => "error: #{e}"
@@ -63,6 +63,7 @@ class Hurl < Sinatra::Base
   end
 
   def pretty_print(type, content)
+    type = type.to_s
     if type.include? 'json'
       pretty_print_json(content)
     elsif type.include? 'xml'
@@ -84,5 +85,17 @@ class Hurl < Sinatra::Base
     end
 
     Albino.colorize(ret, :js)
+  end
+
+  def pretty_print_headers(content)
+    lines = content.split("\n").map do |line|
+      if line =~ /^(.+?):(.+)$/
+        "<span class='nt'>#{$1}</span>:<span class='s'>#{$2}</span>"
+      else
+        "<span class='nf'>#{line}</span>"
+      end
+    end
+
+    "<div class='highlight'><pre>#{lines.join}</pre></div>"
   end
 end
