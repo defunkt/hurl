@@ -22,9 +22,17 @@
           <option id="PUT">PUT</option>
           <option id="DELETE">DELETE</option>
         </select>
+        <div style="display:none;">
         <label>Body</label>
         <textarea name="body"></textarea>
-        <button type="submit" class="bigbutton">Send</button>
+        </div>
+        <label>Auth</label>
+        <select name="method">
+          <option id="none">None</option>
+          <option id="basic">HTTP Basic</option>
+          <option id="oauth">OAuth</option>
+        </select>
+        <p class="clearwrap"><button type="submit" class="bigbutton">Send</button></p>
       </form>
       <label>Request</label>
       <div id="request" class="code-text">

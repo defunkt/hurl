@@ -103,6 +103,9 @@ body {
     background: #000 url(/img/background.jpg) repeat;
     color: #333;
 }
+.clearwrap {
+    overflow: hidden;
+}
 #inset {
     background-color: #fff;
     width: 900px;
