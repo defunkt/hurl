@@ -39,7 +39,7 @@ class Hurl < Sinatra::Base
     # basic auth
     if auth == 'basic'
       username, password = params.values_at(:basic_username, :basic_password)
-      encoded = Base64.encode64("#{username}:#{password}")
+      encoded = Base64.encode64("#{username}:#{password}").strip
       curl.headers['Authorization'] = "Basic #{encoded}"
     end
 
