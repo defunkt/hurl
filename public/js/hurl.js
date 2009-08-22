@@ -12,6 +12,7 @@ $(document).ready(function() {
       }
     })
   })
+  $('#select-auth').change()
 
   // add header
   $('#add-header').click(function() {
