@@ -91,6 +91,15 @@ module Hurl
       @hurl ? erb(:index) : not_found
     end
 
+    delete '/hurls/:id' do
+      redirect('/') and return unless @user
+
+      if @hurl = find_hurl_or_view(params[:id])
+        @user.remove_hurl(@hurl['id'])
+      end
+      request.xhr? ? "ok" : redirect('/')
+    end
+
     get '/hurls/:id/:view_id' do
       @hurl = find_hurl_or_view(params[:id])
       @view = find_hurl_or_view(params[:view_id])
