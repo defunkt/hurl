@@ -36,9 +36,9 @@
         <a href="#" class="flash-close"><img src="/img/delete.png" title="remove"/></a>
         <span id="flash-error-msg"></span>
       </p>
-      <p class="flash-notice" style="display: none;">
+      <p class="flash-notice" <% if not session['flash'] %>style="display: none;"<% end %>>
         <a href="#" class="flash-close"><img src="/img/delete.png" title="remove"/></a>
-        <span id="flash-notice-msg"></span>
+        <span id="flash-notice-msg"><%= session['flash'] %></span>
       </p>
       <%= yield %>
     </div>

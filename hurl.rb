@@ -123,6 +123,7 @@ module Hurl
 
       if user.valid?
         create_session(:email => email)
+        session['flash'] = 'welcome to hurl!'
         json :success => true
       else
         json :error => user.errors.to_s
