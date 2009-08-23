@@ -62,7 +62,7 @@ module Hurl
         return unless logged_in?
 
         if @hurl.empty? && @user.any_hurls?
-          @user.latest_hurl['id']
+          @user.latest_hurl_id
         elsif @hurl.any?
           hurls = @user.hurls
           hurls.each_with_index do |hurl, i|

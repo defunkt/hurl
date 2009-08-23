@@ -28,6 +28,10 @@ module Hurl
       hurls(0, 1).first
     end
 
+    def latest_hurl_id
+      any_hurls? and latest_hurl['id']
+    end
+
     def hurls(start = 0, limit = 100)
       @hurls ||= hurls!(start, limit)
     end
