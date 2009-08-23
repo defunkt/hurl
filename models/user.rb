@@ -28,6 +28,10 @@ module Hurl
       hurls(0, 1).first
     end
 
+    def second_to_last_hurl_id
+      any_hurls? and hurls(0, 2).size == 2 and hurls(0, 2)[1]['id']
+    end
+
     def latest_hurl_id
       any_hurls? and latest_hurl['id']
     end
