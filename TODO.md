@@ -1,8 +1,7 @@
 TODO
 ====
 
-
-* better about page
+* kill slow requests and return message
 * screencast
 
 
