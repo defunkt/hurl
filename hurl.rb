@@ -36,6 +36,7 @@ module Hurl
       if load_session
         @user = User.find_by_email(@session['email'])
       end
+      @flash = session.delete('flash')
     end
 
     helpers do
