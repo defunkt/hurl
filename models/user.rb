@@ -17,10 +17,12 @@ module Hurl
     end
 
     def unsorted_hurls
-      redis.members key(id, :hurls)
+      redis.smembers key(id, :hurls)
     end
 
     def hurls(limit = 100)
+      return [] if unsorted_hurls.empty?
+
       hurls = redis.sort key(id, :hurls),
         :by    => "#{key(id, :hurls)}:*",
         :order => 'DESC',
