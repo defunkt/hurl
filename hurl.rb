@@ -159,30 +159,18 @@ module Hurl
       begin
         curl.send("http_#{method.downcase}", *fields)
 
-        header    = pretty_print_headers(curl.header_str)
-        body      = pretty_print(curl.content_type, curl.body_str)
-        requests  = pretty_print_requests(sent_headers, fields)
-        hurl_id   = save_hurl(params)
-        prev_hurl = @user ? @user.second_to_last_hurl_id : nil
-        view_id   = save_view(header, body, requests)
+        header  = pretty_print_headers(curl.header_str)
+        body    = pretty_print(curl.content_type,     curl.body_str)
+        request = pretty_print_requests(sent_headers, fields)
 
-        if request.xhr?
-          json :header    => header,
-               :body      => body,
-               :request   => requests,
-               :hurl_id   => hurl_id,
-               :prev_hurl => prev_hurl,
-               :view_id   => view_id
-        else
-          redirect "/hurls/#{hurl_id}"
-        end
+        json :header    => header,
+             :body      => body,
+             :request   => request,
+             :hurl_id   => save_hurl(params),
+             :prev_hurl => @user ? @user.second_to_last_hurl_id : nil,
+             :view_id   => save_view(header, body, request)
       rescue => e
-        if request.xhr?
-          json :error => e.to_s
-        else
-          session['error'] = e.to_s
-          redirect('/')
-        end
+        json :error => e.to_s
       end
     end
 
