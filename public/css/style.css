@@ -141,7 +141,7 @@ p {
 }
 a {
   text-decoration: none;
-  color: #826373;
+  color: #26B3CF;
 }
 a:hover {
   text-decoration: underline;
@@ -161,13 +161,13 @@ a:hover {
 }
 #header {
   padding: 0 50px;
-  border-bottom: 10px solid #826373;
+  border-bottom: 5px solid #26B3CF;
   margin-bottom: 30px;
 }
 h1#logo {
   font-size: 2em;
   font-family:'georgia','bitstream vera serif',serif;
-  color: #826373;
+  color: #26B3CF;
 }
 h1#logo a:hover {
   text-decoration: none;
@@ -186,7 +186,7 @@ a.nav-item {
 }
 #footer {
   margin-top: 40px;
-  background-color: #826373;
+  background-color: #26B3CF;
   padding: 4px 50px;
   text-align: right;
 }
@@ -236,7 +236,7 @@ a.nav-item {
 }
 .tab-current,
 .toggle-reqres-link:hover {
-  background-color: #826373;
+  background-color: #26B3CF;
   color: #fff;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
