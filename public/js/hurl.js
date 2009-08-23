@@ -46,6 +46,53 @@ var Hurl = {
       data.push( keepers[key] )
 
     return true
+  },
+
+  pony: function() {
+    if (!this.ponyLoaded) return this.loadPony()
+    if (this.ponying) return
+    this.ponying = true
+
+    var width = 668
+
+    var pony = $("<div />").css({
+      width:       width,
+      height:      422,
+      background: 'url(/img/pony.png) top center',
+      position:   'fixed',
+      bottom:     0,
+      right:      0-width,
+      "z-index":  1000,
+      cursor:     'pointer'
+    }).appendTo($("body"))
+
+    pony.show().animate({
+      right: 0
+    }, 1500, function() {
+      setTimeout(function() {
+        pony.css('background', 'url(/img/pony-hurl.png) top center')
+        setTimeout(function() {
+          pony.animate({
+            right: 0-width
+          }, 1500, function() {
+            Hurl.ponying = false
+          })
+        }, 500)
+      }, 1000)
+    })
+  },
+
+  loadPony: function() {
+    $(new Image()).load(function() {
+      Hurl.loadOtherPony()
+    }).attr('src', '/img/pony.png');
+  },
+
+  loadOtherPony: function() {
+    $(new Image()).load(function() {
+      Hurl.ponyLoaded = true
+      Hurl.pony()
+    }).attr('src', '/img/pony-hurl.png');
   }
 }
 
@@ -57,6 +104,7 @@ $.fn.hurlAjaxSubmit = function(callback) {
 }
 
 $(document).ready(function() {
+  Hurl.pony()
   // select method
   $('#select-method').change(function() {
     $('#select-method option:selected').each(function() {
