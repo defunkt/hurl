@@ -114,6 +114,9 @@ $(document).ready(function() {
     })
   }
 
+  registerRemoveHandlers( document, '.header-delete' )
+  registerRemoveHandlers( document, '.param-delete' )
+
   // hurl it!
   $('#hurl-form').submit(function() {
     $('#send-wrap').children().toggle()
