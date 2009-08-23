@@ -56,6 +56,8 @@ module Hurl
     end
 
     get '/hurls/' do
+      redirect('/') and return unless @user
+      @hurls = @user.hurls
       erb :hurls
     end
 
