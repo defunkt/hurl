@@ -12,9 +12,11 @@
       <option value="DELETE" <% if @hurl['method']=='DELETE' %>selected="selected"<% end %>>DELETE</option>
     </select>
     <span class="form-beta">
+      <label>
       <input type="checkbox" id="follow_redirects" name="follow_redirects" 
         <% if @hurl['follow_redirects']=='on' %>checked="checked"<% end %> />
-      follow redirects
+        follow redirects
+      </label>
     </span>
     <div id="post-params" style="display: none;">
       <a id="add-param" href="#"><span class="link-icon">+</span> add param</a>
