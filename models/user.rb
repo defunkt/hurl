@@ -12,19 +12,31 @@ module Hurl
     #
 
     def add_hurl(hurl)
-      # don't save the same hurl twice in a row
-      if hurl != latest_hurl[-1]
-        json = Yajl::Encoder.encode([ Time.now.to_i, hurl])
-        redis.lpush(key(id, :hurls), json)
+      redis.sadd(key(id, :hurls), hurl)
+      redis.set(key(id, :hurls, hurl), Time.now.to_i)
+    end
+
+    def unsorted_hurls
+      redis.members key(id, :hurls)
+    end
+
+    def hurls(limit = 100)
+      hurls = redis.sort key(id, :hurls),
+        :by    => "#{key(id, :hurls)}:*",
+        :order => 'DESC',
+        :get   => "*",
+        :limit => [0, 100]
+
+      # convert hurls to ruby objects
+      hurls.map! { |hurl| Yajl::Parser.parse(hurl) }
+
+      # find and set the corresponding timestamps for
+      # each hurl (scoped to this user)
+      keys = hurls.map { |h| key(id, :hurls, h['id']) }
+      redis.mget(keys).each_with_index do |date, i|
+        hurls[i]['date'] = Time.at(date.to_i)
       end
-    end
-
-    def latest_hurl
-      redis.lindex(key(id, :hurls), 0) || []
-    end
-
-    def list_hurls(start = 0, stop = 100)
-      redis.lrange(key(id, :hurls), start, stop)
+      hurls
     end
 
 

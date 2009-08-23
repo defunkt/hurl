@@ -1,21 +1,11 @@
 <h2>Your hurls</h2>
 <table id="archive">
-  <tr>
-    <td><a href="#">http://baconfile.com/leah.json</a></td>
-    <td>GET</td>
-    <td>no auth</td>
-    <td class="date">3 days ago</td>
-  </tr>
-  <tr>
-    <td><a href="#">http://twitter.com/status.json</a></td>
-    <td>POST</td>
-    <td>HTTP basic</td>
-    <td class="date">3 days ago</td>
-  </tr>
-  <tr>
-    <td><a href="#">http://baconfile.com/leah.json</a></td>
-    <td>GET</td>
-    <td>no auth</td>
-    <td class="date">3 days ago</td>
-  </tr>
+  <% for hurl in @hurls %>
+    <tr>
+      <td><a href="/hurls/<%= hurl['id'] %>"><%= hurl['url'] %></a></td>
+      <td><%= hurl['method'] %></td>
+      <td><%= hurl['auth'] == "none" ? "no auth" : "HTTP basic" %></td>
+      <td class="date relatize"><%= hurl['date'] %></td>
+    </tr>
+  <% end %>
 </table>
