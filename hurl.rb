@@ -338,6 +338,7 @@ module Hurl
         if options[:stdin]
           stdin.puts options[:stdin].to_s
           stdin.close
+          puts stderr.read.strip
         end
         ret = stdout.read.strip
       end
