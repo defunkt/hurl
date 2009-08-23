@@ -163,11 +163,12 @@ module Hurl
         body = pretty_print(curl.content_type, curl.body_str)
         request = pretty_print_requests(requests, fields)
 
-        json :header  => header,
-             :body    => body,
-             :request => request,
-             :hurl_id => save_hurl(params),
-             :view_id => save_view(header, body, request)
+        json :header    => header,
+             :body      => body,
+             :request   => request,
+             :prev_hurl => @user.latest_hurl_id,
+             :hurl_id   => save_hurl(params),
+             :view_id   => save_view(header, body, request)
       rescue => e
         json :error => "#{e}"
       end

@@ -2,12 +2,16 @@
   <p>
     <% if prev = prev_hurl %>
       <a href="/hurls/<%= prev %>" id="page-prev" title="previous">&lang;</a>
+    <% else %>
+      <a href="#" style="display:none; "id="page-prev" title="previous">&lang;</a>
     <% end %>
     
     <% if nxt = next_hurl %>
       <a href="/hurls/<%= nxt %>" id="page-next" title="next">&rang;</a>
     <% elsif @user && @hurl.any? %>
-      <a href="/" id="page-next" title="next">&rang;</a>    
+      <a href="/" id="page-next" title="next">&rang;</a>
+    <% else %>
+      <a href="/" style="display:none;" id="page-next" title="next">&rang;</a>
     <% end %>
     
     <input type="text" name="url" title="URL" value="<%= @hurl['url'] %>"/>

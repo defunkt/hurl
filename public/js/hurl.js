@@ -125,6 +125,11 @@ $(document).ready(function() {
         $('#flash-error-msg').html(data.error)
         $('.flash-error').show()
       } else if (data.header && data.body && data.request) {
+        if (data.prev_hurl) {
+          $('#page-prev').attr('href', data.prev_hurl).show()
+          $('#page-next').attr('href', '/').show()
+        }
+
         $('.permalink').attr('href', '/hurls/' + data.hurl_id)
         $('.full-size-link').attr('href', '/views/' + data.view_id)
         $('#request').html(data.request)
@@ -180,7 +185,7 @@ $(document).ready(function() {
       return false
     })
   }
-  
+
   // flash close
   $('.flash-close').click(function (){
     $(this).parent().fadeOut()
