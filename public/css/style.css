@@ -75,7 +75,7 @@ button:active {
 }
 #send-wrap {
   height: 40px;
-  margin-top: 10px;
+  margin-top: 16px;
 }
 #send-wrap img {
   padding: 0.8em 10px;
@@ -167,6 +167,10 @@ a.nav-item {
 }
 #hurl-form {
   margin: 20px 0;
+}
+#auth-selection,
+#header-selection {
+  margin-top: 10px;
 }
 .link-icon {
   font-weight: bold;
