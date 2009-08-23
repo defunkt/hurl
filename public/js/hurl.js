@@ -149,6 +149,13 @@ $(document).ready(function() {
     return false
   })
 
+  // delete hurl
+  $('.hurl-delete').click(function() {
+    $(this).parents('tr:first').remove()
+    $.ajax({type: 'DELETE', url: $(this).attr('href')})
+    return false
+  })
+
   // toggle request/response display
   $('.toggle-reqres-link').click(function(){
     $('.toggle-reqres').toggle()

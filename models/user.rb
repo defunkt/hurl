@@ -16,6 +16,11 @@ module Hurl
       redis.set(key(id, :hurls, hurl), Time.now.to_i)
     end
 
+    def remove_hurl(hurl)
+      redis.srem(key(id, :hurls), hurl)
+      redis.del(key(id, :hurls, hurl))
+    end
+
     def unsorted_hurls
       redis.smembers key(id, :hurls)
     end
