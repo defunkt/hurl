@@ -59,8 +59,8 @@ module Hurl
       erb :hurls
     end
 
-    get '/saved/' do
-      erb :saved
+    get '/about/' do
+      erb :about
     end
 
     get '/signout/' do
