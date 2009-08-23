@@ -108,32 +108,23 @@ a:hover {
   background-color: #fff;
   width: 860px;
   margin: 0 auto;
-  padding: 30px 0 40px 0;
+  padding-bottom: 40px;
 }
 #content {
   margin: 0 50px;
 }
 #header {
-  padding: 0 50px;
+  padding: 20px 50px 5px 50px;
   border-bottom: 5px solid #26B3CF;
   margin-bottom: 30px;
 }
-h1#logo {
-  font-size: 2em;
-  font-family:'georgia','bitstream vera serif',serif;
-  color: #26B3CF;
-}
-h1#logo a:hover {
-  text-decoration: none;
-}
 h2 {
-  font-family:'georgia','bitstream vera serif',serif;
   font-size: 1.5em;
   margin-bottom: 20px;
 }
 #nav {
   float: right;
-  margin-top: 14px;
+  margin-top: 34px;
 }
 a.nav-item {
   margin-right: 12px;

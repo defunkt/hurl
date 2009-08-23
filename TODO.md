@@ -3,7 +3,6 @@ TODO
 
 * delete hurl
 * prepopulated API examples
-* nicer logo
 * about text on main page
 * better about page
 * screencast
