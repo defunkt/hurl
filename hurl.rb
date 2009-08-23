@@ -342,11 +342,6 @@ module Hurl
       ret
     end
 
-    # simple cookie wrapper
-    def set_cookie(key, value)
-      response.set_cookie(key, :value => value, :expires => Time.now + 31536000)
-    end
-
 
     #
     # poor man's session handling
