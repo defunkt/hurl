@@ -241,6 +241,17 @@ table td {
 td.date {
   color: #eee;
 }
+/* about */
+.blurb {
+  margin: 20px 0;
+}
+.blurb p {
+  margin: 10px 0;
+}
+#about-video {
+  text-align: center;
+  margin-bottom: 20px;
+}
 /* error */
 .unicorn {
   text-align: center;
