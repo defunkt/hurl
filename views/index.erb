@@ -86,14 +86,21 @@
     <img src="/img/ajax-loader.gif" id="spinner" />
   </p>
 </form>
-<div id="help-blurb">
-  <h4>Try it out:</h4>
-  <ul class="examples">
-    <li class="twitter"><a href="/hurls/59de6e57bda2a07505987a8fa40317a535e769e3">Twitter API (public timeline)</a></li>
-    <li class="vimeo"><a href="/hurls/166fd8382e263e74f83346b8b286e0d64c37051e">Vimeo API (video)</a></li>
-    <li class="github"><a href="/hurls/2a5b30714fcc5ebd9d0a460c49b14528a3092fbb">GitHub API (repository)</a></li>
-    <li class="baconfile"><a href="/hurls/eebb1e7782d0eefb5e4a82c6ee6a3779497a8d14">Baconfile API (public files)</a></li>
-  </ul>
+<div id="help-blurb" <% if logged_in? or not @hurl.empty? %>style="display: none;"<% end %>>
+  <div id="help-text">
+    <p>Hurl makes HTTP requests.</p>
+    <p>Enter a URL, set some headers, then view the response.</p>
+    <p>Perfect for APIs.</p>
+  </div>
+  <div id="try-it">
+    <h4>Try it out:</h4>
+    <ul class="examples">
+      <li class="twitter"><a href="/hurls/59de6e57bda2a07505987a8fa40317a535e769e3">Twitter API (public timeline)</a></li>
+      <li class="vimeo"><a href="/hurls/166fd8382e263e74f83346b8b286e0d64c37051e">Vimeo API (video)</a></li>
+      <li class="github"><a href="/hurls/2a5b30714fcc5ebd9d0a460c49b14528a3092fbb">GitHub API (repository)</a></li>
+      <li class="baconfile"><a href="/hurls/eebb1e7782d0eefb5e4a82c6ee6a3779497a8d14">Baconfile API (public files)</a></li>
+    </ul>
+  </div>
 </div>
 <div id="request-and-response" <% if not @view %>style="display:none;"<% end %>>
   <div class="utils">
