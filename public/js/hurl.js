@@ -125,7 +125,7 @@ $(document).ready(function() {
         $('#response').html(data.error)
       } else if (data.header && data.body && data.request) {
         $('#permalink').attr('href', '/hurls/' + data.hurl_id)
-        $('#full-size-link').attr('href', '/response/' + data.hurl_id)
+        $('#full-size-link').attr('href', '/views/' + data.view_id)
         $('#request').html(data.request)
         $('#response').html('<pre>' + data.header + '</pre>' + data.body)
       } else {

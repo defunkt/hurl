@@ -79,16 +79,22 @@ module Hurl
       erb :index
     end
 
+    get '/hurls/' do
+      redirect('/') and return unless @user
+      @hurls = @user.hurls
+      erb :hurls
+    end
+
     get '/hurls/:id' do
       saved = redis.get(params[:id])
       @hurl = Yajl::Parser.parse(saved) rescue nil
       @hurl ? erb(:index) : not_found
     end
 
-    get '/hurls/' do
-      redirect('/') and return unless @user
-      @hurls = @user.hurls
-      erb :hurls
+    get '/views/:id' do
+      saved = redis.get(params[:id])
+      @view = Yajl::Parser.parse(saved) rescue nil
+      @view ? erb(:view, :layout => false) : not_found
     end
 
     get '/about/' do
@@ -149,10 +155,16 @@ module Hurl
 
       begin
         curl.send("http_#{method.downcase}", *fields)
-        json :header  => pretty_print_headers(curl.header_str),
-             :body    => pretty_print(curl.content_type, curl.body_str),
-             :request => pretty_print_requests(requests, fields),
-             :hurl_id => save_hurl(params)
+
+        header = pretty_print_headers(curl.header_str)
+        body = pretty_print(curl.content_type, curl.body_str)
+        request = pretty_print_requests(requests, fields)
+
+        json :header  => header,
+             :body    => body,
+             :request => request,
+             :hurl_id => save_hurl(params),
+             :view_id => save_view(header, body, request)
       rescue => e
         json :error => "error: #{e}"
       end
@@ -207,6 +219,14 @@ module Hurl
         fields << Curl::PostField.content(name, value)
       end
       fields
+    end
+
+    def save_view(header, body, request)
+      hash = {'header' => header, 'body' => body, 'request' => request}
+      id = Digest::SHA1.hexdigest(hash.to_s)
+      json = Yajl::Encoder.encode(hash)
+      redis.set(id, json)
+      id
     end
 
     def save_hurl(params)
