@@ -155,4 +155,7 @@ $(document).ready(function() {
 
   // in-field labels
 	Hurl.labelHints('input[title]')
+
+  // relatize dates
+  $('.relatize').relatizeDate()
 })
