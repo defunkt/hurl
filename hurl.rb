@@ -280,8 +280,9 @@ module Hurl
     end
 
     def pretty_print_json(content)
-      puts "json: #{content.inspect}"
-      colorize :js => shell("python -msimplejson.tool", :stdin => content)
+      out = shell("python -msimplejson.tool", :stdin => content)
+      puts "got: #{out.inspect}"
+      colorize :js => out
     end
 
     def pretty_print_xml(content)
