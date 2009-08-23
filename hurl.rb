@@ -165,7 +165,7 @@ module Hurl
         curl.send("http_#{method.downcase}", *fields)
 
         header  = pretty_print_headers(curl.header_str)
-        body    = pretty_print(curl.content_type,     curl.body_str)
+        body    = pretty_print(curl.content_type, curl.body_str)
         request = pretty_print_requests(sent_headers, fields)
 
         json :header    => header,
@@ -262,7 +262,7 @@ module Hurl
       if type.include? 'json'
         pretty_print_json(content)
       elsif type.include? 'xml'
-        colorize :xml => content
+        pretty_print_xml(content)
       elsif type.include? 'html'
         colorize :html => content
       else
@@ -272,6 +272,15 @@ module Hurl
 
     def pretty_print_json(content)
       colorize :js => shell("python -msimplejson.tool", :stdin => content)
+    end
+
+    def pretty_print_xml(content)
+      temp = Tempfile.new(['xmlcontent', '.xml'])
+      temp.print content
+      temp.flush
+      colorize :xml => shell("xmllint --format #{temp.path}")
+    ensure
+      temp.close!
     end
 
     def pretty_print_headers(content)
