@@ -1,11 +1,11 @@
 <form id="hurl-form" method="post" action="/">
   <p>
-    <% if @prev_hurl %>
-      <a href="/hurls/<%= @prev_hurl %>" id="page-prev" title="previous">&lang;</a>
+    <% if prev = prev_hurl %>
+      <a href="/hurls/<%= prev %>" id="page-prev" title="previous">&lang;</a>
     <% end %>
     
-    <% if @next_hurl %>
-      <a href="/hurls/<%= @next_hurl %>" id="page-next" title="next">&rang;</a>
+    <% if nxt = next_hurl %>
+      <a href="/hurls/<%= nxt %>" id="page-next" title="next">&rang;</a>
     <% end %>
     
     <input type="text" name="url" title="URL" value="<%= @hurl['url'] %>"/>

@@ -42,12 +42,27 @@ module Hurl
       def logged_in?
         !!@user
       end
+
+      def next_hurl
+        return unless logged_in?
+
+        if @hurl
+          nil
+        end
+      end
+
+      def prev_hurl
+        return unless logged_in?
+
+        if @hurl
+          nil
+        elsif @user.any_hurls?
+          @user.latest_hurl['id']
+        end
+      end
     end
 
     get '/' do
-      if @user && @user.any_hurls?
-        @prev_hurl = @user.latest_hurl['id']
-      end
       @hurl = {}
       erb :index
     end
