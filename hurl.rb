@@ -81,18 +81,18 @@ module Hurl
       erb :index
     end
 
-    get '/hurls/' do
+    get '/hurls/?' do
       redirect('/') and return unless logged_in?
       @hurls = @user.hurls
       erb :hurls
     end
 
-    get '/hurls/:id' do
+    get '/hurls/:id/?' do
       @hurl = find_hurl_or_view(params[:id])
       @hurl ? erb(:index) : not_found
     end
 
-    delete '/hurls/:id' do
+    delete '/hurls/:id/?' do
       redirect('/') and return unless logged_in?
 
       if @hurl = find_hurl_or_view(params[:id])
@@ -101,29 +101,29 @@ module Hurl
       request.xhr? ? "ok" : redirect('/')
     end
 
-    get '/hurls/:id/:view_id' do
+    get '/hurls/:id/:view_id/?' do
       @hurl = find_hurl_or_view(params[:id])
       @view = find_hurl_or_view(params[:view_id])
       @view_id = params[:view_id]
       @hurl && @view ? erb(:index) : not_found
     end
 
-    get '/views/:id' do
+    get '/views/:id/?' do
       @view = find_hurl_or_view(params[:id])
       @view ? erb(:view, :layout => false) : not_found
     end
 
-    get '/about/' do
+    get '/about/?' do
       erb :about
     end
 
-    get '/logout/' do
+    get '/logout/?' do
       clear_session
       session['flash'] = 'see you later!'
       redirect '/'
     end
 
-    post '/login/' do
+    post '/login/?' do
       email, password = params.values_at(:email, :password)
 
       if User.authenticate(email, password)
@@ -134,7 +134,7 @@ module Hurl
       end
     end
 
-    post '/signup/' do
+    post '/signup/?' do
       email, password = params.values_at(:email, :password)
       user = User.create(:email => email, :password => password)
 
