@@ -280,9 +280,7 @@ module Hurl
     end
 
     def pretty_print_json(content)
-      out = shell("/usr/bin/python -msimplejson.tool", :stdin => content)
-      puts "got: #{out.inspect}"
-      colorize :js => out
+      colorize :js => shell("python -msimplejson.tool", :stdin => content)
     end
 
     def pretty_print_xml(content)
@@ -338,7 +336,6 @@ module Hurl
         if options[:stdin]
           stdin.puts options[:stdin].to_s
           stdin.close
-          puts stderr.read.strip
         end
         ret = stdout.read.strip
       end
