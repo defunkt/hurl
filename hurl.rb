@@ -87,13 +87,13 @@ module Hurl
     end
 
     get '/hurls/:id' do
-      saved = redis.get("hurls:#{params[:id]}")
+      saved = redis.get(params[:id])
       @hurl = Yajl::Parser.parse(saved) rescue nil
       @hurl ? erb(:index) : not_found
     end
 
     get '/views/:id' do
-      saved = redis.get("views:#{params[:id]}")
+      saved = redis.get(params[:id])
       @view = Yajl::Parser.parse(saved) rescue nil
       @view ? erb(:view, :layout => false) : not_found
     end
@@ -136,10 +136,10 @@ module Hurl
       url, method, auth = params.values_at(:url, :method, :auth)
       curl = Curl::Easy.new(url)
 
-      requests = []
+      sent_headers = []
       curl.on_debug do |type, data|
         # track request headers
-        requests << data if type == Curl::CURLINFO_HEADER_OUT
+        sent_headers << data if type == Curl::CURLINFO_HEADER_OUT
       end
 
       curl.follow_location = true if params[:follow_redirects]
@@ -160,11 +160,11 @@ module Hurl
         curl.send("http_#{method.downcase}", *fields)
 
         header    = pretty_print_headers(curl.header_str)
-        body      = pretty_print(curl.content_type,    curl.body_str)
-        requests  = pretty_print_requests(requests, fields)
+        body      = pretty_print(curl.content_type, curl.body_str)
+        requests  = pretty_print_requests(sent_headers, fields)
         hurl_id   = save_hurl(params)
         prev_hurl = @user ? @user.second_to_last_hurl_id : nil
-        view_id   = save_view(header, body, request)
+        view_id   = save_view(header, body, requests)
 
         if request.xhr?
           json :header    => header,
@@ -241,14 +241,14 @@ module Hurl
       hash = { 'header' => header, 'body' => body, 'request' => request }
       id = Digest::SHA1.hexdigest(hash.to_s)
       json = Yajl::Encoder.encode(hash)
-      redis.set("views:#{id}", json)
+      redis.set(id, json)
       id
     end
 
     def save_hurl(params)
       id = Digest::SHA1.hexdigest(params.to_s)
       json = Yajl::Encoder.encode(params.merge(:id => id))
-      redis.set("hurls:#{id}", json)
+      redis.set(id, json)
       @user.add_hurl(id) if @user
       id
     end
