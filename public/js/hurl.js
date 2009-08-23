@@ -188,7 +188,7 @@ $(document).ready(function() {
           $('.error-msg').html(data.error).show()
         } else if (data.success) {
           $(document).trigger('close.facebox')
-          window.location = '/'
+          window.location = location.pathname
         }
       })
       return false
