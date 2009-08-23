@@ -1,3 +1,26 @@
+/* general */
+body {
+  font: 1em "lucida Grande",arial,sans-serif;
+  background: #fff url(/img/rainbow.png) repeat;
+  color: #333;
+}
+p {
+  margin: 6px 0;
+}
+a {
+  text-decoration: none;
+  color: #26B3CF;
+}
+a:hover {
+  text-decoration: underline;
+}
+h2 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+.clearwrap {
+  overflow: hidden;
+}
 /* forms */
 label {
   font-size: 16px;
@@ -38,19 +61,6 @@ input[type=password].form-beta {
 .form-beta {
   margin-left: 6px !important;
 }
-.header-delete,
-.param-delete {
-  float: right;
-  margin-right: -20px;
-  padding-top: 7px;
-}
-.flash-close {
-  float: right;
-  margin-right: -26px;
-}
-img.delete {
-  opacity: 0.5;
-}
 /* buttons */
 button {
   font: 1em "Helvetica Neue", Arial, sans-serif;
@@ -83,25 +93,21 @@ button:active {
   padding-right: 9px 1px;
   display: none;
 }
-/* general */
-body {
-  font: 1em "lucida Grande",arial,sans-serif;
-  background: #fff url(/img/rainbow.png) repeat;
-  color: #333;
+/* close buttons */
+img.delete {
+  opacity: 0.5;
 }
-p {
-  margin: 6px 0;
+.header-delete,
+.param-delete {
+  float: right;
+  margin-right: -20px;
+  padding-top: 7px;
 }
-a {
-  text-decoration: none;
-  color: #26B3CF;
+.flash-close {
+  float: right;
+  margin-right: -26px;
 }
-a:hover {
-  text-decoration: underline;
-}
-.clearwrap {
-  overflow: hidden;
-}
+/* layout */
 #inset {
   background-color: #fff;
   width: 860px;
@@ -115,10 +121,6 @@ a:hover {
   padding: 20px 50px 5px 50px;
   border-bottom: 5px solid #26B3CF;
   margin-bottom: 30px;
-}
-h2 {
-  font-size: 1.5em;
-  margin-bottom: 20px;
 }
 #nav {
   float: right;
@@ -136,6 +138,7 @@ a.nav-item {
 #footer a {
   color: #fff;
 }
+/* homepage */
 #page-prev,
 #page-next {
   font-weight: bold;
@@ -167,6 +170,7 @@ a.nav-item {
 .link-icon {
   font-weight: bold;
 }
+/* flash */
 .flash-error,
 .error-msg {
   padding: 6px 6px 6px 36px;
@@ -176,6 +180,7 @@ a.nav-item {
   padding: 6px 6px 6px 36px;
   background: #86EF9E url(/img/message-info.png) 6px 50% no-repeat;
 }
+/* request/response area */
 .tab-current,
 .toggle-reqres-link {
   padding: 6px;
@@ -211,6 +216,7 @@ table td {
 td.date {
   color: #eee;
 }
+/* error */
 .unicorn {
   text-align: center;
 }
