@@ -20,8 +20,16 @@ module Hurl
       redis.smembers key(id, :hurls)
     end
 
+    def any_hurls?
+      redis.scard(key(id, :hurls)).to_i > 0
+    end
+
+    def latest_hurl
+      hurls(1).first
+    end
+
     def hurls(limit = 100)
-      return [] if unsorted_hurls.empty?
+      return [] unless any_hurls?
 
       hurls = redis.sort key(id, :hurls),
         :by    => "#{key(id, :hurls)}:*",
