@@ -117,7 +117,7 @@ $(document).ready(function() {
   // hurl it!
   $('#hurl-form').submit(function() {
     $('#send-wrap').children().toggle()
-    $('.flash-error, .flash-notice').hide()
+    $('.flash-error, .flash-notice').fadeOut()
 
     if (/hurls/.test(location.pathname))
       return true
