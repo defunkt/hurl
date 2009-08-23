@@ -202,7 +202,7 @@ a.nav-item {
 }
 .code-wrap {
   margin-top: 14px;
-  background-color: #e9eaea;
+  background-color: #eee;
   padding: 8px 16px;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -220,7 +220,7 @@ table td {
   padding-bottom: 6px;
 }
 td.date {
-  color: #e9eaea;
+  color: #eee;
 }
 .unicorn {
   text-align: center;
