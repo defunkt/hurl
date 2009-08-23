@@ -66,15 +66,11 @@ var Hurl = {
       cursor:     'pointer'
     }).appendTo($("body"))
 
-    pony.show().animate({
-      right: 0
-    }, 1500, function() {
+    pony.show().animate({right: 0}, 1500, function() {
       setTimeout(function() {
         pony.css('background', 'url(/img/pony-hurl.png) top center')
         setTimeout(function() {
-          pony.animate({
-            right: 0-width
-          }, 1500, function() {
+          pony.animate({right: 0-width}, 1500, function() {
             Hurl.ponying = false
           })
         }, 500)
@@ -104,7 +100,6 @@ $.fn.hurlAjaxSubmit = function(callback) {
 }
 
 $(document).ready(function() {
-  Hurl.pony()
   // select method
   $('#select-method').change(function() {
     $('#select-method option:selected').each(function() {
@@ -170,6 +165,9 @@ $(document).ready(function() {
     $('#send-wrap').children().toggle()
     $('.flash-error, .flash-notice').fadeOut()
     $('#request-and-response').hide()
+
+    if ( /railsrumble/.test($('input[name=url]').val()) )
+        Hurl.pony()
 
     $(this).hurlAjaxSubmit(function(res) {
       var data = JSON.parse(res)
