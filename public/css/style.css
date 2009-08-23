@@ -133,7 +133,7 @@ button:active {
 /* general */
 body {
   font: 1em "lucida Grande",arial,sans-serif;
-  background: #251a1e url(/img/background.jpg) repeat;
+  background: #fff url(/img/rainbow.png) repeat;
   color: #333;
 }
 p {
