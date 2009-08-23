@@ -7,7 +7,9 @@ var Hurl = {
 
 		  if (self.val() === '' || self.val() === title) {
 			  self.val(title).css('color', '#E9EAEA')
-		  }
+		  } else {
+				self.addClass('focused')
+      }
 
 		  self.focus(function() {
 			  if (self.val() === title) {
@@ -119,7 +121,7 @@ $(document).ready(function() {
       if (data.error) {
         $('#response').html(data.error)
       } else if (data.header && data.body && data.request) {
-        $('#permalink').html(data.hurl_id)
+        $('#permalink').attr('href', '/hurls/' + data.hurl_id)
         $('#request').html(data.request)
         $('#response').html('<pre>' + data.header + '</pre>' + data.body)
       } else {
