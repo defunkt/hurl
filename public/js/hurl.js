@@ -117,6 +117,7 @@ $(document).ready(function() {
   // hurl it!
   $('#hurl-form').submit(function() {
     $('#send-wrap').children().toggle()
+    $('.flash-error, .flash-notice').fadeOut()
 
     $(this).hurlAjaxSubmit(function(res) {
       var data = JSON.parse(res)
@@ -124,13 +125,18 @@ $(document).ready(function() {
       if (data.error) {
         $('#flash-error-msg').html(data.error)
         $('.flash-error').show()
+      } else if (/hurls/.test(location.pathname) && data.hurl_id && data.view_id) {
+        window.location = '/hurls/' + data.hurl_id + '/' + data.view_id
       } else if (data.header && data.body && data.request) {
+        if (data.prev_hurl) {
+          $('#page-prev').attr('href', '/hurls/' + data.prev_hurl).show()
+          $('#page-next').attr('href', '/').show()
+        }
         $('.permalink').attr('href', '/hurls/' + data.hurl_id)
         $('.full-size-link').attr('href', '/views/' + data.view_id)
         $('#request').html(data.request)
         $('#response').html('<pre>' + data.header + '</pre>' + data.body)
         $('#request-and-response').show()
-        $('.flash-error').hide()
       } else {
         $('#flash-error-msg').html("Weird response. Sorry.")
         $('.flash-error').show()
@@ -180,7 +186,7 @@ $(document).ready(function() {
       return false
     })
   }
-  
+
   // flash close
   $('.flash-close').click(function (){
     $(this).parent().fadeOut()

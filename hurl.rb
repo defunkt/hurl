@@ -62,7 +62,7 @@ module Hurl
         return unless logged_in?
 
         if @hurl.empty? && @user.any_hurls?
-          @user.latest_hurl['id']
+          @user.latest_hurl_id
         elsif @hurl.any?
           hurls = @user.hurls
           hurls.each_with_index do |hurl, i|
@@ -87,14 +87,19 @@ module Hurl
     end
 
     get '/hurls/:id' do
-      saved = redis.get(params[:id])
-      @hurl = Yajl::Parser.parse(saved) rescue nil
+      @hurl = find_hurl_or_view(params[:id])
       @hurl ? erb(:index) : not_found
     end
 
+    get '/hurls/:id/:view_id' do
+      @hurl = find_hurl_or_view(params[:id])
+      @view = find_hurl_or_view(params[:view_id])
+      @view_id = params[:view_id]
+      @hurl && @view ? erb(:index) : not_found
+    end
+
     get '/views/:id' do
-      saved = redis.get(params[:id])
-      @view = Yajl::Parser.parse(saved) rescue nil
+      @view = find_hurl_or_view(params[:id])
       @view ? erb(:view, :layout => false) : not_found
     end
 
@@ -136,10 +141,10 @@ module Hurl
       url, method, auth = params.values_at(:url, :method, :auth)
       curl = Curl::Easy.new(url)
 
-      requests = []
+      sent_headers = []
       curl.on_debug do |type, data|
         # track request headers
-        requests << data if type == Curl::CURLINFO_HEADER_OUT
+        sent_headers << data if type == Curl::CURLINFO_HEADER_OUT
       end
 
       curl.follow_location = true if params[:follow_redirects]
@@ -159,17 +164,18 @@ module Hurl
       begin
         curl.send("http_#{method.downcase}", *fields)
 
-        header = pretty_print_headers(curl.header_str)
-        body = pretty_print(curl.content_type, curl.body_str)
-        request = pretty_print_requests(requests, fields)
+        header  = pretty_print_headers(curl.header_str)
+        body    = pretty_print(curl.content_type,     curl.body_str)
+        request = pretty_print_requests(sent_headers, fields)
 
-        json :header  => header,
-             :body    => body,
-             :request => request,
-             :hurl_id => save_hurl(params),
-             :view_id => save_view(header, body, request)
+        json :header    => header,
+             :body      => body,
+             :request   => request,
+             :hurl_id   => save_hurl(params),
+             :prev_hurl => @user ? @user.second_to_last_hurl_id : nil,
+             :view_id   => save_view(header, body, request)
       rescue => e
-        json :error => "#{e}"
+        json :error => e.to_s
       end
     end
 
@@ -225,7 +231,7 @@ module Hurl
     end
 
     def save_view(header, body, request)
-      hash = {'header' => header, 'body' => body, 'request' => request}
+      hash = { 'header' => header, 'body' => body, 'request' => request }
       id = Digest::SHA1.hexdigest(hash.to_s)
       json = Yajl::Encoder.encode(hash)
       redis.set(id, json)
@@ -238,6 +244,11 @@ module Hurl
       redis.set(id, json)
       @user.add_hurl(id) if @user
       id
+    end
+
+    def find_hurl_or_view(id)
+      saved = redis.get(id)
+      Yajl::Parser.parse(saved) rescue nil
     end
 
 

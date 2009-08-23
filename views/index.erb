@@ -2,12 +2,16 @@
   <p>
     <% if prev = prev_hurl %>
       <a href="/hurls/<%= prev %>" id="page-prev" title="previous">&lang;</a>
+    <% else %>
+      <a href="#" style="display:none; "id="page-prev" title="previous">&lang;</a>
     <% end %>
     
     <% if nxt = next_hurl %>
       <a href="/hurls/<%= nxt %>" id="page-next" title="next">&rang;</a>
     <% elsif @user && @hurl.any? %>
-      <a href="/" id="page-next" title="next">&rang;</a>    
+      <a href="/" id="page-next" title="next">&rang;</a>
+    <% else %>
+      <a href="/" style="display:none;" id="page-next" title="next">&rang;</a>
     <% end %>
     
     <input type="text" name="url" title="URL" value="<%= @hurl['url'] %>"/>
@@ -82,10 +86,10 @@
     <img src="/img/ajax-loader.gif" id="spinner" />
   </p>
 </form>
-<div id="request-and-response" style="display:none;">
+<div id="request-and-response" <% if not @view %>style="display:none;"<% end %>>
   <div class="utils">
-    <a href="#" class="full-size-link nav-item" target="_blank">view full size</a>
-    <a href="#" class="permalink nav-item">permalink</a>
+    <a href="<%= @view_id ? "/views/#{@view_id}" : "#" %>" class="full-size-link nav-item" target="_blank">view full size</a>
+    <a href="<%= @view_id ? "/hurls/#{@hurl['id']}/#{@view_id}" : "#" %>" class="permalink nav-item">permalink</a>
   </div>
   <p>
     <span class="toggle-reqres" style="display: none;">
@@ -97,10 +101,14 @@
   </p>
   <div id="code-request" class="code-wrap" style="display: none;">
     <div id="request" class="code-text">
+      <%= @view['request'] if @view %>      
     </div>
   </div>
   <div id="code-response" class="code-wrap">
     <div id="response" class="code-text">
+      <% if @view %>
+        <pre><%= @view['header'] %></pre><%= @view['body'] %>
+      <% end %>
     </div>
   </div>
   <div class="utils">
