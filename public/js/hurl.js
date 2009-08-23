@@ -5,6 +5,9 @@ var Hurl = {
     $(el).each(function() {
       var self = $(this), title = self.attr('title')
 
+      // indicate inputs using defaults
+      self.addClass('defaulted')
+
 		  if (self.val() === '' || self.val() === title) {
 			  self.val(title).css('color', '#E9EAEA')
 		  } else {
@@ -31,7 +34,7 @@ var Hurl = {
     // remove empty arrays and any default titular data
     for (key in data) {
       if (value = data[key].value) {
-        if ($('input[name=' + data[key].name +']:not(.focused)').val() != value) {
+        if ($('input[name=' + data[key].name +'].defaulted:not(.focused)').val() != value) {
           keepers.push(data[key])
         }
       }
