@@ -122,17 +122,19 @@ $(document).ready(function() {
       var data = JSON.parse(res)
 
       if (data.error) {
-        $('#response').html(data.error)
+        $('#flash-error-msg').html(data.error)
+        $('.flash-error').show()
       } else if (data.header && data.body && data.request) {
         $('#permalink').attr('href', '/hurls/' + data.hurl_id)
         $('#full-size-link').attr('href', '/views/' + data.view_id)
         $('#request').html(data.request)
         $('#response').html('<pre>' + data.header + '</pre>' + data.body)
+        $('#request-and-response').show()
       } else {
-        $('#response').html("Weird response. Sorry.")
+        $('#flash-error-msg').html("Weird response. Sorry.")
+        $('.flash-error').show()
       }
 
-      $('#request-and-response').show()
       $('#send-wrap').children().toggle()
     })
 
@@ -177,6 +179,12 @@ $(document).ready(function() {
       return false
     })
   }
+  
+  // flash close
+  $('.flash-close').click(function (){
+    $(this).parent().fadeOut()
+    return false
+  })
 
   // facebox
   $('a[rel*=facebox]').facebox({ opacity: 0.4 })

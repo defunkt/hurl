@@ -166,7 +166,7 @@ module Hurl
              :hurl_id => save_hurl(params),
              :view_id => save_view(header, body, request)
       rescue => e
-        json :error => "error: #{e}"
+        json :error => "#{e}"
       end
     end
 
