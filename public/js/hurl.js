@@ -21,7 +21,34 @@ var Hurl = {
 			  }
 		  })
     })
+  },
+
+  removeEmptyData: function(data) {
+    var keepers = [], value
+
+    // remove empty arrays and any default titular data
+    for (key in data) {
+      if (value = data[key].value) {
+        if ($('input[name=' + data[key].name +']:not(.focused)').val() != value) {
+          keepers.push(data[key])
+        }
+      }
+    }
+
+    data.splice(0, data.length)
+
+    for (key in keepers)
+      data.push( keepers[key] )
+
+    return true
   }
+}
+
+$.fn.hurlAjaxSubmit = function(callback) {
+  return $(this).ajaxSubmit({
+    beforeSubmit: Hurl.removeEmptyData,
+    success: callback
+  })
 }
 
 $(document).ready(function() {
@@ -86,7 +113,7 @@ $(document).ready(function() {
   $('#hurl-form').submit(function() {
     $('#send-wrap').children().toggle()
 
-    $(this).ajaxSubmit(function(res) {
+    $(this).hurlAjaxSubmit(function(res) {
       var data = JSON.parse(res)
 
       if (data.error) {
@@ -131,7 +158,7 @@ $(document).ready(function() {
     })
 
     $('#facebox form').submit(function() {
-      $(this).ajaxSubmit(function(res) {
+      $(this).hurlAjaxSubmit(function(res) {
         var data = JSON.parse(res)
 
         if (data.error) {

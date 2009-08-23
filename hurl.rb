@@ -112,11 +112,9 @@ module Hurl
       add_auth(auth, curl, params)
 
       # arbitrary headers
-      clean_arrays(params["header-keys"], params["header-vals"])
       add_headers_from_arrays(curl, params["header-keys"], params["header-vals"])
 
       # arbitrary params
-      clean_arrays(params["param-keys"], params["param-vals"])
       fields = make_fields(method, params["param-keys"], params["param-vals"])
 
       begin
@@ -144,18 +142,6 @@ module Hurl
     #
     # http helpers
     #
-
-    # if key or value is empty, remove the pair
-    def clean_arrays(keys, values)
-      return unless keys.is_a?(Array) && values.is_a?(Array)
-
-      keys.each_with_index do |key, i|
-        if keys[i].to_s.empty? or values[i].to_s.empty?
-          keys.delete_at(i)
-          values.delete_at(i)
-        end
-      end
-    end
 
     # update auth based on auth type
     def add_auth(auth, curl, params)
