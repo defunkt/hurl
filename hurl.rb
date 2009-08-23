@@ -49,14 +49,18 @@ module Hurl
       erb :index
     end
 
-    get '/hurl/:id' do
+    get '/hurls/:id' do
       saved = redis.get(params[:id])
       @hurl = Yajl::Parser.parse(saved)
       erb :index
     end
 
-    get '/about/' do
-      erb :about
+    get '/hurls/' do
+      erb :hurls
+    end
+
+    get '/saved/' do
+      erb :saved
     end
 
     get '/signout/' do
