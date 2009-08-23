@@ -180,7 +180,7 @@ module Hurl
 
     def save_hurl(params)
       id = Digest::SHA1.hexdigest(params.to_s)
-      json = Yajl::Encoder.encode(params)
+      json = Yajl::Encoder.encode(params.merge(:id => id))
       redis.set(id, json)
       @user.add_hurl(id) if @user
       id
