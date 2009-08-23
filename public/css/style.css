@@ -180,11 +180,11 @@ a.nav-item {
 }
 .flash-error,
 .error-msg {
-  padding: 6px 6px 6px 32px;
+  padding: 6px 6px 6px 36px;
   background: #ef95a1 url(/img/message-warn.png) 6px 50% no-repeat;
 }
 .flash-notice {
-  padding: 6px 6px 6px 32px;
+  padding: 6px 6px 6px 36px;
   background: #c2dbef url(/img/message-info.png) 6px 50% no-repeat;
 }
 .tab-current,
