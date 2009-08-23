@@ -25,17 +25,17 @@ module Hurl
     end
 
     def latest_hurl
-      hurls(1).first
+      hurls(0, 1).first
     end
 
-    def hurls(limit = 100)
+    def hurls(start = 0, limit = 100)
       return [] unless any_hurls?
 
       hurls = redis.sort key(id, :hurls),
         :by    => "#{key(id, :hurls)}:*",
         :order => 'DESC',
         :get   => "*",
-        :limit => [0, 100]
+        :limit => [start, limit]
 
       # convert hurls to ruby objects
       hurls.map! { |hurl| Yajl::Parser.parse(hurl) }
