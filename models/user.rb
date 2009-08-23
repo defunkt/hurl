@@ -23,8 +23,8 @@ module Hurl
       redis.lindex(key(id, :hurls), 0) || []
     end
 
-    def list_hurls
-      redis.lrange(key(id, :hurls), 0, 100)
+    def list_hurls(start = 0, stop = 100)
+      redis.lrange(key(id, :hurls), start, stop)
     end
 
 
