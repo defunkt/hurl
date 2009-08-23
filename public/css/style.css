@@ -226,9 +226,6 @@ a.nav-item {
   /*background-color: #c2dbef;*/
   background: #c2dbef url(/img/message-info.png) 6px 50% no-repeat;
 }
-#full-size-link {
-  float: right;
-}
 .tab-current,
 .toggle-reqres-link {
   padding: 6px;
@@ -252,7 +249,6 @@ a.nav-item {
 .code-text {
   padding: 2px;
   min-height: 60px;
-  max-height: 400px;
   overflow-y: auto;
   font-family:'Bitstream Vera Sans Mono','Courier',monospace;
   font-size: 14px;
