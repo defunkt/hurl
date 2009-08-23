@@ -51,8 +51,8 @@ module Hurl
 
     get '/hurls/:id' do
       saved = redis.get(params[:id])
-      @hurl = Yajl::Parser.parse(saved)
-      erb :index
+      @hurl = Yajl::Parser.parse(saved) rescue nil
+      @hurl ? erb(:index) : not_found
     end
 
     get '/hurls/' do
@@ -128,9 +128,11 @@ module Hurl
       end
     end
 
+
     #
     # error handlers
     #
+
     not_found do
       erb :"404"
     end
@@ -138,6 +140,7 @@ module Hurl
     error do
       erb :"500"
     end
+
 
     #
     # http helpers
