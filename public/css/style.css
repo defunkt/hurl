@@ -172,6 +172,10 @@ a.nav-item {
 #header-selection {
   margin-top: 10px;
 }
+.utils {
+  float: right;
+  margin-top: 6px;
+}
 .link-icon {
   font-weight: bold;
 }
