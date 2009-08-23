@@ -119,21 +119,19 @@ $(document).ready(function() {
     $('#send-wrap').children().toggle()
     $('.flash-error, .flash-notice').fadeOut()
 
-    if (/hurls/.test(location.pathname))
-      return true
-
     $(this).hurlAjaxSubmit(function(res) {
       var data = JSON.parse(res)
 
       if (data.error) {
         $('#flash-error-msg').html(data.error)
         $('.flash-error').show()
+      } else if (/hurls/.test(location.pathname) && data.hurl_id) {
+        window.location = '/hurls/' + data.hurl_id
       } else if (data.header && data.body && data.request) {
         if (data.prev_hurl) {
           $('#page-prev').attr('href', '/hurls/' + data.prev_hurl).show()
           $('#page-next').attr('href', '/').show()
         }
-
         $('.permalink').attr('href', '/hurls/' + data.hurl_id)
         $('.full-size-link').attr('href', '/views/' + data.view_id)
         $('#request').html(data.request)
