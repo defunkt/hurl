@@ -126,7 +126,7 @@ $(document).ready(function() {
         $('.flash-error').show()
       } else if (data.header && data.body && data.request) {
         if (data.prev_hurl) {
-          $('#page-prev').attr('href', data.prev_hurl).show()
+          $('#page-prev').attr('href', '/hurls/' + data.prev_hurl).show()
           $('#page-next').attr('href', '/').show()
         }
 
