@@ -87,13 +87,13 @@ module Hurl
     end
 
     get '/hurls/:id' do
-      saved = redis.get(params[:id])
+      saved = redis.get("hurls:#{params[:id]}")
       @hurl = Yajl::Parser.parse(saved) rescue nil
       @hurl ? erb(:index) : not_found
     end
 
     get '/views/:id' do
-      saved = redis.get(params[:id])
+      saved = redis.get("views:#{params[:id]}")
       @view = Yajl::Parser.parse(saved) rescue nil
       @view ? erb(:view, :layout => false) : not_found
     end
@@ -238,17 +238,17 @@ module Hurl
     end
 
     def save_view(header, body, request)
-      hash = {'header' => header, 'body' => body, 'request' => request}
+      hash = { 'header' => header, 'body' => body, 'request' => request }
       id = Digest::SHA1.hexdigest(hash.to_s)
       json = Yajl::Encoder.encode(hash)
-      redis.set(id, json)
+      redis.set("views:#{id}", json)
       id
     end
 
     def save_hurl(params)
       id = Digest::SHA1.hexdigest(params.to_s)
       json = Yajl::Encoder.encode(params.merge(:id => id))
-      redis.set(id, json)
+      redis.set("hurls:#{id}", json)
       @user.add_hurl(id) if @user
       id
     end
