@@ -6,6 +6,8 @@
     
     <% if nxt = next_hurl %>
       <a href="/hurls/<%= nxt %>" id="page-next" title="next">&rang;</a>
+    <% elsif @user && @hurl.any? %>
+      <a href="/" id="page-next" title="next">&rang;</a>    
     <% end %>
     
     <input type="text" name="url" title="URL" value="<%= @hurl['url'] %>"/>
