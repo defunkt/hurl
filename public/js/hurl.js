@@ -149,8 +149,8 @@ $(document).ready(function() {
     return false
   })
 
-  // sign in
-  function registerSigninFormHandlers() {
+  // log in
+  function registerLoginFormHandlers() {
     $('#facebox .sign-up-submit').click(function() {
       var form = $('#facebox form'), action = form.attr('action')
       form.attr('action', '/signup/')
@@ -158,9 +158,9 @@ $(document).ready(function() {
       return false
     })
 
-    $('#facebox .sign-in-submit').click(function() {
+    $('#facebox .log-in-submit').click(function() {
       var form = $('#facebox form'), action = form.attr('action')
-      form.attr('action', '/signin/')
+      form.attr('action', '/login/')
       form.submit()
       return false
     })
@@ -190,7 +190,7 @@ $(document).ready(function() {
   $('a[rel*=facebox]').facebox({ opacity: 0.4 })
   $(document).bind('reveal.facebox', function() {
     Hurl.labelHints('#facebox input[title]')
-    registerSigninFormHandlers()
+    registerLoginFormHandlers()
     $('#facebox .footer').remove()
   })
 

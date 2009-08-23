@@ -101,12 +101,12 @@ module Hurl
       erb :about
     end
 
-    get '/signout/' do
+    get '/logout/' do
       clear_session
       redirect '/'
     end
 
-    post '/signin/' do
+    post '/login/' do
       email, password = params.values_at(:email, :password)
 
       if User.authenticate(email, password)
