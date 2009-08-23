@@ -104,6 +104,7 @@ module Hurl
 
     get '/logout/' do
       clear_session
+      session['flash'] = 'see you later!'
       redirect '/'
     end
 
