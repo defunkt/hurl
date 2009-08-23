@@ -45,6 +45,9 @@ module Hurl
     end
 
     get '/' do
+      if @user && @user.any_hurls?
+        @prev_hurl = @user.latest_hurl['id']
+      end
       @hurl = {}
       erb :index
     end
