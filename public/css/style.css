@@ -180,6 +180,23 @@ a.nav-item {
   padding: 6px 6px 6px 36px;
   background: #86EF9E url(/img/message-info.png) 6px 50% no-repeat;
 }
+/* help text */
+ul.examples li {
+  padding-left: 24px;
+  margin: 3px 0;
+}
+ul.examples li.twitter {
+  background: #fff url(http://twitter.com/favicon.ico) 0 40% no-repeat;
+}
+ul.examples li.vimeo {
+  background: #fff url(http://vimeo.com/favicon.ico) 0 40% no-repeat;
+}
+ul.examples li.github {
+  background: #fff url(http://github.com/favicon.ico) 0 40% no-repeat;
+}
+ul.examples li.baconfile {
+  background: #fff url(http://baconfile.com/favicon.ico) 0 40% no-repeat;
+}
 /* request/response area */
 .tab-current,
 .toggle-reqres-link {
