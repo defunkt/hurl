@@ -23,12 +23,15 @@ var Hurl = {
     })
   },
 
-  removeEmptyArrays: function(data) {
-    var keepers = []
+  removeEmptyData: function(data) {
+    var keepers = [], value
 
+    // remove empty arrays and any default titular data
     for (key in data) {
-      if (data[key].value) {
-        keepers.push(data[key])
+      if (value = data[key].value) {
+        if ($('input[name=' + data[key].name +']:not(.focused)').val() != value) {
+          keepers.push(data[key])
+        }
       }
     }
 
@@ -43,7 +46,7 @@ var Hurl = {
 
 $.fn.hurlAjaxSubmit = function(callback) {
   return $(this).ajaxSubmit({
-    beforeSubmit: Hurl.removeEmptyArrays,
+    beforeSubmit: Hurl.removeEmptyData,
     success: callback
   })
 }
