@@ -140,7 +140,7 @@ a.nav-item {
   margin-right: 12px;
 }
 #footer {
-  margin-top: 40px;
+  margin-top: 60px;
   background-color: #26B3CF;
   padding: 4px 50px;
   text-align: right;
@@ -186,7 +186,6 @@ a.nav-item {
 }
 .flash-notice {
   padding: 6px 6px 6px 32px;
-  /*background-color: #c2dbef;*/
   background: #c2dbef url(/img/message-info.png) 6px 50% no-repeat;
 }
 .tab-current,
