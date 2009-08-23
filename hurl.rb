@@ -172,6 +172,8 @@ module Hurl
       fields = make_fields(method, params["param-keys"], params["param-vals"])
 
       begin
+        debug { puts "#{method} #{url}" }
+
         curl.send("http_#{method.downcase}", *fields)
 
         debug do
