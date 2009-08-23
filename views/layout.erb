@@ -23,9 +23,9 @@
       <div id="nav">
         <% if logged_in? %>
           <a href="/hurls/" class="nav-item">your hurls</a>
-          <a href="/signout/" class="nav-item">sign out</a>
+          <a href="/logout/" class="nav-item">log out</a>
         <% else %>
-          <a href="#facebox-signin" rel="facebox">sign in</a> to save your hurls
+          <a href="#facebox-log-in" rel="facebox">log in</a> to save your hurls
         <% end %>
       </div>
       <h1 id="logo"><a href="/">hurl</a></h1>
@@ -43,6 +43,6 @@
     </div>
     <div id="footer"><a href="/about/">what the heck is this?</a></div>
   </div>
-  <%= erb(:signin, :layout => false) %>
+  <%= erb(:login, :layout => false) %>
 </body>
 </html>
