@@ -130,6 +130,7 @@ $(document).ready(function() {
         $('#request').html(data.request)
         $('#response').html('<pre>' + data.header + '</pre>' + data.body)
         $('#request-and-response').show()
+        $('.flash-error').hide()
       } else {
         $('#flash-error-msg').html("Weird response. Sorry.")
         $('.flash-error').show()
