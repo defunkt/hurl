@@ -125,14 +125,14 @@ $(document).ready(function() {
       if (data.error) {
         $('#flash-error-msg').html(data.error)
         $('.flash-error').show()
-      } else if (/hurls/.test(location.pathname) && data.hurl_id && data.view_id) {
+      } else if (/hurl/.test(location.pathname) && data.hurl_id && data.view_id) {
         window.location = '/hurls/' + data.hurl_id + '/' + data.view_id
       } else if (data.header && data.body && data.request) {
         if (data.prev_hurl) {
           $('#page-prev').attr('href', '/hurls/' + data.prev_hurl).show()
           $('#page-next').attr('href', '/').show()
         }
-        $('.permalink').attr('href', '/hurls/' + data.hurl_id)
+        $('.permalink').attr('href', '/hurls/'+data.hurl_id+'/'+data.view_id)
         $('.full-size-link').attr('href', '/views/' + data.view_id)
         $('#request').html(data.request)
         $('#response').html('<pre>' + data.header + '</pre>' + data.body)
