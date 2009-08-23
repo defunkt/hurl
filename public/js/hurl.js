@@ -118,6 +118,9 @@ $(document).ready(function() {
   $('#hurl-form').submit(function() {
     $('#send-wrap').children().toggle()
 
+    if (/hurls/.test(location.pathname))
+      return true
+
     $(this).hurlAjaxSubmit(function(res) {
       var data = JSON.parse(res)
 
