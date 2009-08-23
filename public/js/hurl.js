@@ -118,6 +118,7 @@ $(document).ready(function() {
   $('#hurl-form').submit(function() {
     $('#send-wrap').children().toggle()
     $('.flash-error, .flash-notice').fadeOut()
+    $('#request-and-response').hide()
 
     $(this).hurlAjaxSubmit(function(res) {
       var data = JSON.parse(res)
