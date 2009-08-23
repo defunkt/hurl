@@ -81,7 +81,7 @@ module Hurl
     end
 
     get '/hurls/' do
-      redirect('/') and return unless @user
+      redirect('/') and return unless logged_in?
       @hurls = @user.hurls
       erb :hurls
     end
@@ -92,7 +92,7 @@ module Hurl
     end
 
     delete '/hurls/:id' do
-      redirect('/') and return unless @user
+      redirect('/') and return unless logged_in?
 
       if @hurl = find_hurl_or_view(params[:id])
         @user.remove_hurl(@hurl['id'])
