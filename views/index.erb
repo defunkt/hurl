@@ -31,14 +31,14 @@
       <% if @hurl['param-keys'] %>
         <p id="param-fields">
           <% @hurl['param-keys'].each_with_index do |name, i| %>
-            <a href="#" class="param-delete"><img src="/img/delete.png" title="remove"/></a>
+            <a href="#" class="param-delete"><img class="delete" src="/img/delete.png" title="remove"/></a>
             <input type="text" name="param-keys[]" class="form-alpha" value="<%= name %>" />
             <input type="text" name="param-vals[]" class="form-beta" value="<%= @hurl['param-vals'][i] %>" />
           <% end %>
         </p>
       <% else %>
         <p id="param-fields" style="display:none;">
-          <a href="#" class="param-delete"><img src="/img/delete.png" title="remove"/></a>
+          <a href="#" class="param-delete"><img class="delete" src="/img/delete.png" title="remove"/></a>
           <input type="text" name="param-keys[]" class="form-alpha"/>
           <input type="text" name="param-vals[]" class="form-beta" />
         </p>
@@ -65,14 +65,14 @@
   <% if @hurl['header-keys'] %>
     <p id="header-fields">
       <% @hurl['header-keys'].each_with_index do |name, i| %>
-        <a href="#" class="header-delete"><img src="/img/delete.png" title="remove"/></a>
+        <a href="#" class="header-delete"><img class="delete" src="/img/delete.png" title="remove"/></a>
         <input type="text" name="header-keys[]" class="form-alpha" value="<%= name %>" />
         <input type="text" name="header-vals[]" class="form-beta" value="<%= @hurl['header-vals'][i] %>" />
       <% end %>
     </p>
   <% else %>
     <p id="header-fields" style="display:none;">
-      <a href="#" class="header-delete"><img src="/img/delete.png" title="remove"/></a>
+      <a href="#" class="header-delete"><img class="delete" src="/img/delete.png" title="remove"/></a>
       <input type="text" name="header-keys[]" class="form-alpha"/>
       <input type="text" name="header-vals[]" class="form-beta"/>
     </p>

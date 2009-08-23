@@ -7,6 +7,7 @@
         <td><%= hurl['method'] %></td>
         <td><%= hurl['auth'] == "none" ? "no auth" : "HTTP basic" %></td>
         <td class="date relatize"><%= hurl['date'] %></td>
+        <td><a href="#" class="hurl-delete"><img src="/img/delete.png" class="delete" title="remove"/></a></td>
       </tr>
     <% end %>
   </table>

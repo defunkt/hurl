@@ -48,9 +48,7 @@ input[type=password].form-beta {
   float: right;
   margin-right: -26px;
 }
-.header-delete img,
-.param-delete img,
-.flash-close img {
+img.delete {
   opacity: 0.5;
 }
 /* buttons */
