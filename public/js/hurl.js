@@ -7,7 +7,9 @@ var Hurl = {
 
 		  if (self.val() === '' || self.val() === title) {
 			  self.val(title).css('color', '#E9EAEA')
-		  }
+		  } else {
+				self.addClass('focused')
+      }
 
 		  self.focus(function() {
 			  if (self.val() === title) {
