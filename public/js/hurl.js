@@ -166,9 +166,6 @@ $(document).ready(function() {
     $('.flash-error, .flash-notice').fadeOut()
     $('#request-and-response').hide()
 
-    if ( /railsrumble/.test($('input[name=url]').val()) )
-        Hurl.pony()
-
     $(this).hurlAjaxSubmit(function(res) {
       var data = JSON.parse(res)
 
@@ -178,6 +175,7 @@ $(document).ready(function() {
       } else if (/hurl/.test(location.pathname) && data.hurl_id && data.view_id) {
         window.location = '/hurls/' + data.hurl_id + '/' + data.view_id
       } else if (data.header && data.body && data.request) {
+        if ( /railsrumble/.test($('input[name=url]').val()) ) Hurl.pony()
         if (data.prev_hurl) {
           $('#page-prev').attr('href', '/hurls/' + data.prev_hurl).show()
           $('#page-next').attr('href', '/').show()
