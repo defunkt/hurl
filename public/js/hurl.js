@@ -21,7 +21,31 @@ var Hurl = {
 			  }
 		  })
     })
+  },
+
+  removeEmptyArrays: function(data) {
+    var keepers = []
+
+    for (key in data) {
+      if (data[key].value) {
+        keepers.push(data[key])
+      }
+    }
+
+    data.splice(0, data.length)
+
+    for (key in keepers)
+      data.push( keepers[key] )
+
+    return true
   }
+}
+
+$.fn.hurlAjaxSubmit = function(callback) {
+  return $(this).ajaxSubmit({
+    beforeSubmit: Hurl.removeEmptyArrays,
+    success: callback
+  })
 }
 
 $(document).ready(function() {
@@ -86,7 +110,7 @@ $(document).ready(function() {
   $('#hurl-form').submit(function() {
     $('#send-wrap').children().toggle()
 
-    $(this).ajaxSubmit(function(res) {
+    $(this).hurlAjaxSubmit(function(res) {
       var data = JSON.parse(res)
 
       if (data.error) {
@@ -131,7 +155,7 @@ $(document).ready(function() {
     })
 
     $('#facebox form').submit(function() {
-      $(this).ajaxSubmit(function(res) {
+      $(this).hurlAjaxSubmit(function(res) {
         var data = JSON.parse(res)
 
         if (data.error) {
