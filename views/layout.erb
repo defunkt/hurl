@@ -21,10 +21,10 @@
     <div id="header">
       <div id="nav">
         <% if logged_in? %>
-          <a href="/archives/">view hurls</a> or
-          <a href="/signout/">sign out</a>
+          <a href="/hurls/" class="nav-item">your hurls</a>
+          <a href="/signout/" class="nav-item">sign out</a>
         <% else %>
-          <a href="#facebox-signin" rel="facebox">sign in</a> to save your requests
+          <a href="#facebox-signin" rel="facebox">sign in</a> to save your hurls
         <% end %>
       </div>
       <h1 id="logo"><a href="/">hurl</a></h1>

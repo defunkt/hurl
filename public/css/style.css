@@ -181,6 +181,9 @@ h2 {
   float: right;
   margin-top: 14px;
 }
+a.nav-item {
+  margin-right: 12px;
+}
 #footer {
   margin-top: 40px;
   background-color: #826373;
