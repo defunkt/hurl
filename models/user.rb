@@ -29,6 +29,10 @@ module Hurl
     end
 
     def hurls(start = 0, limit = 100)
+      @hurls ||= hurls!(start, limit)
+    end
+
+    def hurls!(start = 0, limit = 100)
       return [] unless any_hurls?
 
       hurls = redis.sort key(id, :hurls),
