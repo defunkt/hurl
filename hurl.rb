@@ -21,6 +21,7 @@ module Hurl
     def initialize(*args)
       super
       Hurl.redis = Redis.new(:host => '127.0.0.1', :port => 6379)
+      @debug = true
     end
 
     def redis
@@ -171,7 +172,15 @@ module Hurl
       fields = make_fields(method, params["param-keys"], params["param-vals"])
 
       begin
+        debug { puts "#{method} #{url}" }
+
         curl.send("http_#{method.downcase}", *fields)
+
+        debug do
+          puts sent_headers.join("\n")
+          puts fields.join('&') if fields.any?
+          puts curl.header_str
+        end
 
         header  = pretty_print_headers(curl.header_str)
         body    = pretty_print(curl.content_type, curl.body_str)
@@ -342,9 +351,9 @@ module Hurl
       ret
     end
 
-    # simple cookie wrapper
-    def set_cookie(key, value)
-      response.set_cookie(key, :value => value, :expires => Time.now + 31536000)
+    # debug { puts "hi!" }
+    def debug
+      yield if @debug
     end
 
 
