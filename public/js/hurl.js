@@ -125,8 +125,8 @@ $(document).ready(function() {
       if (data.error) {
         $('#flash-error-msg').html(data.error)
         $('.flash-error').show()
-      } else if (/hurls/.test(location.pathname) && data.hurl_id) {
-        window.location = '/hurls/' + data.hurl_id
+      } else if (/hurls/.test(location.pathname) && data.hurl_id && data.view_id) {
+        window.location = '/hurls/' + data.hurl_id + '/' + data.view_id
       } else if (data.header && data.body && data.request) {
         if (data.prev_hurl) {
           $('#page-prev').attr('href', '/hurls/' + data.prev_hurl).show()
