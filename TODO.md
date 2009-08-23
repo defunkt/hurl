@@ -1,9 +1,7 @@
 TODO
 ====
 
-* delete hurl
-* prepopulated API examples
-* about text on main page
+
 * better about page
 * screencast
 
