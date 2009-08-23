@@ -7,7 +7,29 @@ module Hurl
     index :email
 
     #
-    # class methods
+    # each user has an associated list
+    # of hurls
+    #
+
+    def add_hurl(hurl)
+      # don't save the same hurl twice in a row
+      if hurl != latest_hurl[-1]
+        json = Yajl::Encoder.encode([ Time.now.to_i, hurl])
+        redis.lpush(key(id, :hurls), json)
+      end
+    end
+
+    def latest_hurl
+      redis.lindex(key(id, :hurls), 0) || []
+    end
+
+    def list_hurls(start = 0, stop = 100)
+      redis.lrange(key(id, :hurls), start, stop)
+    end
+
+
+    #
+    # authentication
     #
 
     def self.authenticate(email, password)
@@ -22,15 +44,15 @@ module Hurl
       Digest::SHA1.hexdigest("--#{password}-#{SALT}--")
     end
 
-
-    #
-    # instance methods
-    #
-
     def password=(password)
       @password = password
       @crypted_password = self.class.crypted_password(password)
     end
+
+
+    #
+    # instance methods
+    #
 
     def to_s
       email
@@ -52,6 +74,7 @@ module Hurl
 
     def to_hash
       return {
+        'id'               => id,
         'email'            => email,
         'crypted_password' => crypted_password
       }
