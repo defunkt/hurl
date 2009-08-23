@@ -14,7 +14,7 @@
             }
           })
         } else if ( more == "date" ) {
-          next.val( GetRFC822Date(new Date) )
+          next.focus().val( GetRFC822Date(new Date) )
         } else if ( more ) {
           next.autocompleteArray( more, { delay: 40 } )
         }
