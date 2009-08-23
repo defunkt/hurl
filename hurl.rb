@@ -167,7 +167,7 @@ module Hurl
              :body      => body,
              :request   => request,
              :hurl_id   => save_hurl(params),
-             :prev_hurl => @user.second_to_last_hurl_id,
+             :prev_hurl => @user ? @user.second_to_last_hurl_id : nil,
              :view_id   => save_view(header, body, request)
       rescue => e
         json :error => "#{e}"
