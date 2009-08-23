@@ -86,10 +86,10 @@
     <img src="/img/ajax-loader.gif" id="spinner" />
   </p>
 </form>
-<div id="request-and-response" style="display:none;">
+<div id="request-and-response" <% if not @view %>style="display:none;"<% end %>>
   <div class="utils">
-    <a href="#" class="full-size-link nav-item" target="_blank">view full size</a>
-    <a href="#" class="permalink nav-item">permalink</a>
+    <a href="<%= @view_id ? "/views/#{@view_id}" : "#" %>" class="full-size-link nav-item" target="_blank">view full size</a>
+    <a href="<%= @view_id ? "/hurls/#{@hurl['id']}/#{@view_id}" : "#" %>" class="permalink nav-item">permalink</a>
   </div>
   <p>
     <span class="toggle-reqres" style="display: none;">
@@ -101,10 +101,14 @@
   </p>
   <div id="code-request" class="code-wrap" style="display: none;">
     <div id="request" class="code-text">
+      <%= @view['request'] if @view %>      
     </div>
   </div>
   <div id="code-response" class="code-wrap">
     <div id="response" class="code-text">
+      <% if @view %>
+        <pre><%= @view['header'] %></pre><%= @view['body'] %>
+      <% end %>
     </div>
   </div>
   <div class="utils">

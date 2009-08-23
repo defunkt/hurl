@@ -87,14 +87,19 @@ module Hurl
     end
 
     get '/hurls/:id' do
-      saved = redis.get(params[:id])
-      @hurl = Yajl::Parser.parse(saved) rescue nil
+      @hurl = find_hurl_or_view(params[:id])
       @hurl ? erb(:index) : not_found
     end
 
+    get '/hurls/:id/:view_id' do
+      @hurl = find_hurl_or_view(params[:id])
+      @view = find_hurl_or_view(params[:view_id])
+      @view_id = params[:view_id]
+      @hurl && @view ? erb(:index) : not_found
+    end
+
     get '/views/:id' do
-      saved = redis.get(params[:id])
-      @view = Yajl::Parser.parse(saved) rescue nil
+      @view = find_hurl_or_view(params[:id])
       @view ? erb(:view, :layout => false) : not_found
     end
 
@@ -239,6 +244,11 @@ module Hurl
       redis.set(id, json)
       @user.add_hurl(id) if @user
       id
+    end
+
+    def find_hurl_or_view(id)
+      saved = redis.get(id)
+      Yajl::Parser.parse(saved) rescue nil
     end
 
 
