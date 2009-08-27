@@ -277,7 +277,7 @@ module Hurl
     def pretty_print(type, content)
       type = type.to_s
 
-      if type.include? 'json'
+      if type =~ /json|javascript/
         pretty_print_json(content)
       elsif type.include? 'xml'
         pretty_print_xml(content)
