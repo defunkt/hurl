@@ -148,6 +148,8 @@ module Hurl
     end
 
     post '/' do
+      return json(:error => "rate limit'd :(") if rate_limited?
+
       url, method, auth = params.values_at(:url, :method, :auth)
       curl = Curl::Easy.new(url)
 
@@ -267,6 +269,21 @@ module Hurl
     def find_hurl_or_view(id)
       saved = redis.get(id)
       Yajl::Parser.parse(saved) rescue nil
+    end
+
+    # has this person made too many requests?
+    def rate_limited?
+      tries = redis.get(key="tries:#{@env['REMOTE_ADDR']}").to_i
+      puts "tries: #{tries}"
+
+      if tries > 10
+        true
+      else
+        # give the key a new value and tell it to expire in 30 seconds
+        redis.set(key, tries+1)
+        redis.expire(key, 30)
+        false
+      end
     end
 
 
