@@ -148,7 +148,7 @@ module Hurl
     end
 
     post '/' do
-      return json(:error => "rate limit'd :(") if rate_limited?
+      return json(:error => "Calm down and try my margarita!") if rate_limited?
 
       url, method, auth = params.values_at(:url, :method, :auth)
       curl = Curl::Easy.new(url)
