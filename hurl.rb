@@ -274,7 +274,6 @@ module Hurl
     # has this person made too many requests?
     def rate_limited?
       tries = redis.get(key="tries:#{@env['REMOTE_ADDR']}").to_i
-      puts "tries: #{tries}"
 
       if tries > 10
         true
