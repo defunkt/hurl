@@ -3,16 +3,7 @@ Hurl
 
 It rocks.
 
-http://hurl.r09.railsrumble.com/
-
-Deployment
-----------
-
-$ git commit -a -m "my changes"
-$ rake deploy
-
-As long as you have push access to the repository, `rake deploy`
-will work dandy.
+http://hurl.it/
   
 Dependencies
 ------------
@@ -26,3 +17,19 @@ Dependencies
 * Sinatra ( `gem install sinatra` )
 * Curb ( `gem install curb` )
 * Redis ( `rake -f vendor/redis-rb/tasks/redis.tasks.rb redis:install` )
+
+Run Locally
+-----------
+
+$ shotgun config.ru
+
+Visit http://localhost:9393/ in your browser.
+
+Deployment
+----------
+
+$ git commit -a -m "my changes"
+$ rake deploy
+
+As long as you have push access to the repository, `rake deploy`
+will work dandy.
