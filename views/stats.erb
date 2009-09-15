@@ -1,7 +1,7 @@
 <h1>Stats</h1>
 
 <ul>
-  <li>Keys:  <%= stats[:keys] %></li>
-  <li>Hurls: <%= stats[:hurls] %></li>  
-  <li>Users: <%= stats[:users] %></li>
+  <% stats.each do |stat, value|  %>
+    <li><%= stat %>:  <%= value %></li>
+  <% end %>
 </ul>
