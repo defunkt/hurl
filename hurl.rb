@@ -126,7 +126,7 @@ module Hurl
 
       url, method, auth = params.values_at(:url, :method, :auth)
 
-      return json(:error => "That's... wait.. what?") if invalid_url?(url)
+      return json(:error => "That's... wait.. what?!") if invalid_url?(url)
 
       curl = Curl::Easy.new(url)
 
