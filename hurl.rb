@@ -252,14 +252,14 @@ module Hurl
 
     def save_view(header, body, request)
       hash = { 'header' => header, 'body' => body, 'request' => request }
-      id = Digest::SHA1.hexdigest(hash.to_s)
+      id = sha(hash.to_s)
       json = Yajl::Encoder.encode(hash)
       redis.set(id, json)
       id
     end
 
     def save_hurl(params)
-      id = Digest::SHA1.hexdigest(params.to_s)
+      id = sha(params.to_s)
       json = Yajl::Encoder.encode(params.merge(:id => id))
       redis.set(id, json)
       @user.add_hurl(id) if @user
@@ -372,6 +372,11 @@ module Hurl
       yield if @debug
     end
 
+    # sha(hash) => '01578ad840f1a7eba2bd202351119e635fde8e2a'
+    def sha(thing)
+      Digest::SHA1.hexdigest(thing)
+    end
+
 
     #
     # poor man's session handling
@@ -402,7 +407,7 @@ module Hurl
     end
 
     def generate_session_id
-      Digest::SHA1.hexdigest(Time.now.to_s + rand(10_000).to_s)
+      sha(Time.now.to_s + rand(10_000).to_s)
     end
   end
 end
