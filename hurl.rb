@@ -265,6 +265,8 @@ module Hurl
       Hurl.redis.incr("Hurl:stats:#{name}")
     end
 
+    # returns a hash of stats. symbol key, integer value
+    # { :stat_name => stat_value.to_i }
     def stats
       stats = {
         :keys => Hurl.redis.keys('*').size
