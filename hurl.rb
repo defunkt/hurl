@@ -86,6 +86,10 @@ module Hurl
       erb :about
     end
 
+    get '/stats/?' do
+      erb :stats
+    end
+
     get '/logout/?' do
       clear_session
       session['flash'] = 'see you later!'

@@ -28,3 +28,5 @@ require 'redis'
 
 require 'models/model'
 require 'models/user'
+
+require 'helpers'
