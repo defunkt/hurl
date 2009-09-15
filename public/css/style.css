@@ -252,6 +252,14 @@ td.date {
   text-align: center;
   margin-bottom: 20px;
 }
+/* stats */
+#stats h2 {
+  color: #26B3CF;
+  margin-bottom: 6px;
+}
+#stats table {
+  margin-bottom: 15px;
+}
 /* error */
 .unicorn {
   text-align: center;
