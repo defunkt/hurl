@@ -22,6 +22,7 @@ module Hurl
       super
       Hurl.redis = Redis.new(:host => '127.0.0.1', :port => 6379)
       @debug = true
+      setup_default_hurls
     end
 
     def redis
@@ -338,6 +339,18 @@ module Hurl
       headers.join + fields.join('&')
     end
 
+    # creates the hurls shown on the front page if they're not in the db
+    def setup_default_hurls
+      default_hurls.each do |name, params|
+        save_hurl(params)
+      end
+    end
+
+    def default_hurls
+      return @default_hurls if @default_hurls
+      path = File.expand_path(File.dirname(__FILE__) + '/hurls.yaml')
+      @default_hurls = YAML.load_file(path)
+    end
 
     #
     # sinatra helper methods

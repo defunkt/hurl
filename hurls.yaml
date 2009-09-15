@@ -1,0 +1,19 @@
+Twitter API (public timeline): 
+  url: http://twitter.com/statuses/public_timeline.json
+  method: GET
+  auth: none
+
+Vimeo API (video):
+  url: http://vimeo.com/api/v2/video/6238577.xml
+  method: GET
+  auth: none
+
+GitHub API (repository):
+  url: http://github.com/api/v2/json/user/show/defunkt
+  method: GET
+  auth: none
+  
+Baconfile API (public files):
+  url: http://baconfile.com/public.atom
+  method: GET
+  auth: none
