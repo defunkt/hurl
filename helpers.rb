@@ -4,10 +4,6 @@ module Hurl
       !!@user
     end
 
-    def stats
-      {}
-    end
-
     def next_hurl
       return unless logged_in?
 

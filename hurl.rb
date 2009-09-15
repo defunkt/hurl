@@ -113,6 +113,7 @@ module Hurl
 
       if user.valid?
         create_session(:email => email)
+        stat :users
         session['flash'] = 'welcome to hurl!'
         json :success => true
       else
@@ -234,7 +235,8 @@ module Hurl
     def save_hurl(params)
       id = sha(params.to_s)
       json = Yajl::Encoder.encode(params.merge(:id => id))
-      redis.set(id, json)
+      was_set = redis.setnx(id, json)
+      stat :hurls if was_set
       @user.add_hurl(id) if @user
       id
     end
@@ -256,6 +258,23 @@ module Hurl
         redis.expire(key, 30)
         false
       end
+    end
+
+    # increment a single stat
+    def stat(name)
+      Hurl.redis.incr("Hurl:stats:#{name}")
+    end
+
+    def stats
+      stats = {
+        :keys => Hurl.redis.keys('*').size
+      }
+
+      Hurl.redis.keys("Hurl:stats:*").each do |key|
+        stats[key.sub('Hurl:stats:', '').to_sym] = Hurl.redis.get(key).to_i
+      end
+
+      stats
     end
 
 
