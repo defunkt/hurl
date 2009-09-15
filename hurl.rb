@@ -374,7 +374,7 @@ module Hurl
 
     # sha(hash) => '01578ad840f1a7eba2bd202351119e635fde8e2a'
     def sha(thing)
-      Digest::SHA1.hexdigest(thing)
+      Digest::SHA1.hexdigest(thing.to_s)
     end
 
 
