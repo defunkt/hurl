@@ -125,6 +125,9 @@ module Hurl
       return json(:error => "Calm down and try my margarita!") if rate_limited?
 
       url, method, auth = params.values_at(:url, :method, :auth)
+
+      return json(:error => "That's... wait.. what?") if invalid_url?(url)
+
       curl = Curl::Easy.new(url)
 
       sent_headers = []
@@ -190,6 +193,11 @@ module Hurl
     #
     # http helpers
     #
+
+    # is this a url hurl can handle. basically a spam check.
+    def invalid_url?(url)
+      url.include? 'hurl.it'
+    end
 
     # update auth based on auth type
     def add_auth(auth, curl, params)
