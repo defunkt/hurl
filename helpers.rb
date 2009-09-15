@@ -4,6 +4,11 @@ module Hurl
       !!@user
     end
 
+    # for sorting hashes with symbol keys
+    def sort_hash(hash)
+      hash.to_a.sort_by { |a, b| a.to_s }
+    end
+
     def next_hurl
       return unless logged_in?
 
