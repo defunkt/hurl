@@ -4,6 +4,25 @@ module Hurl
       !!@user
     end
 
+    # increment a single stat
+    def stat(name)
+      Hurl.redis.incr("Hurl:stats:#{name}")
+    end
+
+    # returns a hash of stats. symbol key, integer value
+    # { :stat_name => stat_value.to_i }
+    def stats
+      stats = {
+        :keys => Hurl.redis.keys('*').size
+      }
+
+      Hurl.redis.keys("Hurl:stats:*").each do |key|
+        stats[key.sub('Hurl:stats:', '').to_sym] = Hurl.redis.get(key).to_i
+      end
+
+      stats
+    end
+
     # for sorting hashes with symbol keys
     def sort_hash(hash)
       hash.to_a.sort_by { |a, b| a.to_s }
@@ -38,6 +57,5 @@ module Hurl
         nil
       end
     end
-
   end
 end
