@@ -33,3 +33,5 @@ require 'models/model'
 require 'models/user'
 
 require 'helpers'
+require 'views/layout'
+require 'views/stats'

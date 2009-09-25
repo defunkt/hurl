@@ -4,6 +4,12 @@ module Hurl
       !!@user
     end
 
+    def login_partial
+      instance = RTemplate.new
+      instance.template_file = 'views/login.rtemplate'
+      instance.to_html
+    end
+
     # increment a single stat
     def stat(name)
       Hurl.redis.incr("Hurl:stats:#{name}")

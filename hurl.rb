@@ -10,6 +10,8 @@ module Hurl
   end
 
   class App < Sinatra::Base
+    include RTemplate::Sinatra
+
     dir = File.dirname(File.expand_path(__FILE__))
 
     set :views,  "#{dir}/views"
@@ -83,11 +85,11 @@ module Hurl
     end
 
     get '/about/?' do
-      erb :about
+      rtemplate :about
     end
 
     get '/stats/?' do
-      erb :stats
+      rtemplate :stats
     end
 
     get '/logout/?' do

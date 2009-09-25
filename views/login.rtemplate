@@ -1,0 +1,18 @@
+<div id="facebox-log-in" style="display: none;">
+  <div class="facebox">
+    <p>Login or Sign up!</p>
+    <p class="error-msg" style="display:none;"></p>
+    <form action="/login/" method="POST">
+      <p>
+        <input type="text" name="email" title="email" />
+      </p>
+      <p>
+        <input type="password" name="password" title="password" />
+      </p>
+      <p>
+        <button type="submit" class="log-in-submit">Log in</button>
+        <button type="submit" class="sign-up-submit" style="float:right;">Sign up</button>      
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div id="stats">
+  <h2>Stats</h2>
+
+  <table>
+    {{#hurl_stats}}
+     <tr>
+        <td>{{stat}}</td>
+        <td>{{value}}</td>
+      </tr>
+    {{/hurl_stats}}
+  </table>
+
+  <h2>Redis</h2>
+
+  <table>
+    {{#redis_stats}}
+     <tr>
+        <td>{{stat}}</td>
+        <td>{{value}}</td>
+      </tr>
+    {{/redis_stats}}
+  </table>
+</div>
