@@ -235,14 +235,14 @@ module Hurl
     def save_view(header, body, request)
       hash = { 'header' => header, 'body' => body, 'request' => request }
       id = sha(hash.to_s)
-      json = Yajl::Encoder.encode(hash)
+      json = encode(hash)
       redis.set(id, json)
       id
     end
 
     def save_hurl(params)
       id = sha(params.to_s)
-      json = Yajl::Encoder.encode(params.merge(:id => id))
+      json = encode(params.merge(:id => id))
       was_set = redis.setnx(id, json)
       stat :hurls if was_set
       @user.add_hurl(id) if @user
@@ -250,8 +250,7 @@ module Hurl
     end
 
     def find_hurl_or_view(id)
-      saved = redis.get(id)
-      Yajl::Parser.parse(saved) rescue nil
+      decode redis.get(id)
     end
 
     # has this person made too many requests?
@@ -389,6 +388,22 @@ module Hurl
     # sha(hash) => '01578ad840f1a7eba2bd202351119e635fde8e2a'
     def sha(thing)
       Digest::SHA1.hexdigest(thing.to_s)
+    end
+
+    def encode(object)
+      self.class.encode object
+    end
+
+    def decode(object)
+      self.class.decode object
+    end
+
+    def self.encode(object)
+      Zlib::Deflate.deflate Yajl::Encoder.encode(object)
+    end
+
+    def self.decode(object)
+      Yajl::Parser.parse(Zlib::Inflate.inflate(object)) rescue nil
     end
 
 
