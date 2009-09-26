@@ -82,6 +82,16 @@ module Hurl
       @view ? erb(:view, :layout => false) : not_found
     end
 
+    get '/test.json' do
+      content_type 'application/json'
+      File.read('test/json')
+    end
+
+    get '/test.xml' do
+      content_type 'application/xml'
+      File.read('test/xml')
+    end
+
     get '/about/?' do
       erb :about
     end
