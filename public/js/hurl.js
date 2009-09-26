@@ -184,7 +184,7 @@ $(document).ready(function() {
         $('.full-size-link').attr('href', '/views/' + data.view_id)
         $('#request').html(data.request)
         $('#response').html('<pre>' + data.header + '</pre>' + data.body)
-        $('#help-blurb').hide()
+        $('.help-blurb').hide()
         $('#request-and-response').show()
       } else {
         $('#flash-error-msg').html("Weird response. Sorry.")
