@@ -4,6 +4,7 @@ require 'uri'
 require 'albino'
 require 'base64'
 require 'digest'
+require 'zlib'
 
 begin
   require 'sinatra/base'
