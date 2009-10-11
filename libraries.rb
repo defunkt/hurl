@@ -26,8 +26,7 @@ end
 $LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor/redis-rb/lib'
 require 'redis'
 
-$LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor/rtemplate/lib'
-require 'rtemplate/sinatra'
+require 'mustache/sinatra'
 
 require 'models/model'
 require 'models/user'
