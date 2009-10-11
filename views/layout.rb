@@ -1,5 +1,5 @@
 module Views
-  class Layout < RTemplate
+  class Layout < Mustache
     include Hurl::Helpers
 
     def anonymous?

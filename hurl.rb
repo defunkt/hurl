@@ -10,7 +10,7 @@ module Hurl
   end
 
   class App < Sinatra::Base
-    include RTemplate::Sinatra
+    register Mustache::Sinatra
 
     dir = File.dirname(File.expand_path(__FILE__))
 
@@ -85,11 +85,11 @@ module Hurl
     end
 
     get '/about/?' do
-      rtemplate :about
+      mustache :about
     end
 
     get '/stats/?' do
-      rtemplate :stats
+      mustache :stats
     end
 
     get '/logout/?' do

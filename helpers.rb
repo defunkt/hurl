@@ -5,8 +5,8 @@ module Hurl
     end
 
     def login_partial
-      instance = RTemplate.new
-      instance.template_file = 'views/login.rtemplate'
+      instance = Mustache.new
+      instance.template_file = 'template/login.mustache'
       instance.to_html
     end
 

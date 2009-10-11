@@ -5,28 +5,19 @@ require 'albino'
 require 'base64'
 require 'digest'
 
-begin
-  require 'sinatra/base'
+def rubygem(file, gem = nil)
+  require file
 rescue LoadError
-  abort "** Please `gem install sinatra`"
+  raise "** Please `gem install #{gem || file.split('/')[0]}`"
 end
 
-begin
-  require 'yajl'
-rescue LoadError
-  abort "** Please `gem install yajl-ruby`"
-end
-
-begin
-  require 'curb'
-rescue LoadError
-  abort "** Please `gem install curb`"
-end
+rubygem 'sinatra/base'
+rubygem 'yajl', 'yajl-ruby'
+rubygem 'curb'
+rubygem 'mustache/sinatra'
 
 $LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor/redis-rb/lib'
 require 'redis'
-
-require 'mustache/sinatra'
 
 require 'models/model'
 require 'models/user'

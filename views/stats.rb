@@ -1,5 +1,5 @@
 module Views
-  class Stats < RTemplate
+  class Stats < Mustache
     include Hurl::Helpers
 
     self.path = File.dirname(__FILE__) + '/../templates'
