@@ -14,9 +14,10 @@ module Hurl
 
     dir = File.dirname(File.expand_path(__FILE__))
 
-    set :views,  "#{dir}/views"
-    set :public, "#{dir}/public"
-    set :static, true
+    set :views,     "#{dir}/templates"
+    set :mustaches, "#{dir}/views"
+    set :public,    "#{dir}/public"
+    set :static,    true
 
     enable :sessions
 
@@ -49,7 +50,7 @@ module Hurl
 
     get '/' do
       @hurl = {}
-      erb :index
+      mustache :index
     end
 
     get '/hurls/?' do
