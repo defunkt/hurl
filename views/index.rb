@@ -48,5 +48,43 @@ module Views
     def method_is_DELETE?
       @hurl['method'] == 'DELETE'
     end
+
+    def hurl_param_keys
+      return if @hurl['param-keys'].nil?
+      arr = []
+      @hurl['param-keys'].each_with_index do |name, i|
+        arr << { :name => name, :value => @hurl['param-vals'][i] }
+      end
+      arr
+    end
+
+    def no_hurl_param_keys
+      hurl_param_keys.nil? || hurl_param_keys.empty?
+    end
+
+    def hurl_header_keys
+      return if @hurl['header-keys'].nil?
+      arr = []
+      @hurl['header-keys'].each_with_index do |name, i|
+        arr << { :name => name, :value => @hurl['header-vals'][i] }
+      end
+      arr
+    end
+
+    def no_hurl_header_keys
+      hurl_header_keys.nil? || hurl_header_keys.empty?
+    end
+
+    def hurl_basic_auth?
+      @hurl['auth'] == 'basic'
+    end
+
+    def hurl_username
+      @hurl['username']
+    end
+
+    def hurl_password
+      @hurl['password']
+    end
   end
 end

@@ -41,21 +41,21 @@
     </span>
     <div id="post-params" style="display: none;">
       <a id="add-param" href="#"><span class="link-icon">+</span> add param</a>
-      <% if @hurl['param-keys'] %>
-        <% @hurl['param-keys'].each_with_index do |name, i| %>
-          <p id="param-fields">
-            <a href="#" class="param-delete"><img class="delete" src="/img/delete.png" title="remove"/></a>
-            <input type="text" name="param-keys[]" class="form-alpha" value="<%= name %>" />
-            <input type="text" name="param-vals[]" class="form-beta" value="<%= @hurl['param-vals'][i] %>" />
-          </p>
-        <% end %>
-      <% else %>
+      {{# hurl_param_keys }}
+        <p id="param-fields">
+          <a href="#" class="param-delete"><img class="delete" src="/img/delete.png" title="remove"/></a>
+          <input type="text" name="param-keys[]" class="form-alpha" value="{{ name }}" />
+          <input type="text" name="param-vals[]" class="form-beta" value="{{ value }}" />
+        </p>
+      {{/ hurl_param_keys }}
+
+      {{# no_hurl_param_keys }}
         <p id="param-fields" style="display:none;">
           <a href="#" class="param-delete"><img class="delete" src="/img/delete.png" title="remove"/></a>
           <input type="text" name="param-keys[]" class="form-alpha"/>
           <input type="text" name="param-vals[]" class="form-beta" />
         </p>
-      <% end %>
+      {{/ no_hurl_param_keys }}
     </div>
   </p>
   <p id="auth-selection">
@@ -64,32 +64,38 @@
       no auth
     </label>
     <label>
-      <input type="radio" name="auth" value="basic" <% if @hurl['auth']=='basic'%>checked="checked"<% end %> />
+      <input type="radio" name="auth" value="basic"
+        {{# hurl_basic_auth? }}
+          checked="checked"
+        {{/ hurl_basic_auth? }}
+      />
       HTTP basic
     </label>
     <div id="basic-auth-fields" style="display:none;">
-      <input type="text" name="username" class="form-alpha" title="username" value="<%= @hurl['username']%>"/>
-      <input type="password" name="password" class="form-beta" title="password" value="<%= @hurl['password']%>"/>
+      <input type="text" name="username" class="form-alpha" title="username" value="{{ hurl_username }}"/>
+      <input type="password" name="password" class="form-beta" title="password" value="{{ hurl_password }}"/>
     </div>
   </p>
   <p id="header-selection">
     <a id="add-header" href="#"><span class="link-icon">+</span> add header</a>
   </p>
-  <% if @hurl['header-keys'] %>
-    <% @hurl['header-keys'].each_with_index do |name, i| %>
-      <p id="header-fields">
-        <a href="#" class="header-delete"><img class="delete" src="/img/delete.png" title="remove"/></a>
-        <input type="text" name="header-keys[]" class="form-alpha" value="<%= name %>" />
-        <input type="text" name="header-vals[]" class="form-beta" value="<%= @hurl['header-vals'][i] %>" />
-      </p>
-    <% end %>
-  <% else %>
+  
+  {{# hurl_header_keys }}
+  <p id="header-fields">
+    <a href="#" class="header-delete"><img class="delete" src="/img/delete.png" title="remove"/></a>
+    <input type="text" name="header-keys[]" class="form-alpha" value="{{ name }}" />
+    <input type="text" name="header-vals[]" class="form-beta" value="{{ value }}" />
+  </p>
+  {{/ hurl_header_keys }}      
+
+  {{# no_hurl_header_keys }}
     <p id="header-fields" style="display:none;">
       <a href="#" class="header-delete"><img class="delete" src="/img/delete.png" title="remove"/></a>
       <input type="text" name="header-keys[]" class="form-alpha"/>
       <input type="text" name="header-vals[]" class="form-beta"/>
     </p>
-  <% end %>
+  {{/ no_hurl_header_keys }}    
+
   <p id="send-wrap" class="clearwrap">
     <button type="submit" class="bigbutton">Send</button>
     <img src="/img/ajax-loader.gif" id="spinner" />
