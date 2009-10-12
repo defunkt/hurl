@@ -8,7 +8,7 @@ module Views
 
     def previous_hurl
       if prev = prev_hurl
-        { :hurl => prev.to_s }
+        [ :hurl => prev.to_s ]
       end
     end
 
@@ -18,7 +18,7 @@ module Views
 
     def next_hurl
       if nxt = super
-        { :hurl => nxt.to_s }
+        [ :hurl => nxt.to_s ]
       end
     end
 
