@@ -2,12 +2,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{redis}
-  s.version = "0.1"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ezra Zygmuntowicz", "Taylor Weibley", "Matthew Clark", "Brian McKinney", "Salvatore Sanfilippo", "Luca Guidi"]
   # s.autorequire = %q{redis-rb}
-  s.date = %q{2009-06-23}
+  s.date = %q{2009-09-21}
   s.description = %q{Ruby client library for redis key value storage server}
   s.email = %q{ez@engineyard.com}
   s.extra_rdoc_files = ["LICENSE"]

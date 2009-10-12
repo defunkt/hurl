@@ -1,4 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper'
+require 'redis/raketasks'
+require 'redis/namespace'
 require 'logger'
 
 class Foo
@@ -14,6 +16,12 @@ end
 
 describe "redis" do
   before(:all) do
+    result = RedisRunner.start_detached
+    raise("Could not start redis-server, aborting") unless result
+
+    # yea, this sucks, but it seems like sometimes we try to connect too quickly w/o it
+    sleep 1
+
     # use database 15 for testing so we dont accidentally step on you real data
     @r = Redis.new :db => 15
   end
@@ -23,11 +31,15 @@ describe "redis" do
   end
 
   after(:each) do
-    @r.keys('*').each {|k| @r.del k}
+    @r.flushdb
   end
 
   after(:all) do
-    @r.quit
+    begin
+      @r.quit
+    ensure
+      RedisRunner.stop
+    end
   end
 
   it "should be able connect without a timeout" do
@@ -475,6 +487,30 @@ describe "redis" do
     r.stub!(:connect_to)
     r.should_receive(:call_command).with(['auth', 'secret'])
     r.connect_to_server
+  end
+
+  it "should be able to use a namespace" do
+    r = Redis::Namespace.new(:ns, :redis => @r)
+    r.flushdb
+
+    r['foo'].should == nil
+    r['foo'] = 'chris'
+    r['foo'].should == 'chris'
+    @r['foo'] = 'bob'
+    @r['foo'].should == 'bob'
+
+    r.incr('counter', 2)
+    r['counter'].to_i.should == 2
+    @r['counter'].should == nil
+  end
+
+  it "should be able to use a namespace with mget" do
+    r = Redis::Namespace.new(:ns, :redis => @r)
+
+    r['foo'] = 1000
+    r['bar'] = 2000
+    r.mapped_mget('foo', 'bar').should == { 'foo' => '1000', 'bar' => '2000' }
+    r.mapped_mget('foo', 'baz', 'bar').should == { 'foo' => '1000', 'bar' => '2000' }
   end
 
 end

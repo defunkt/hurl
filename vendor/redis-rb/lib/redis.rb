@@ -107,9 +107,9 @@ class Redis
     @timeout = (options[:timeout] || 5).to_i
     @password = options[:password]
     @logger  =  options[:logger]
+    @mutex = Mutex.new if options[:thread_safe]
 
     @logger.info { self.to_s } if @logger
-    connect_to_server
   end
 
   def to_s
@@ -197,18 +197,30 @@ class Redis
         bulk = argv[-1].to_s
         argv[-1] = bulk.respond_to?(:bytesize) ? bulk.bytesize : bulk.size
       end
+
       command << "#{argv.join(' ')}\r\n"
       command << "#{bulk}\r\n" if bulk
     end
 
-    @sock.write(command)
+    results = maybe_lock { process_command(command, argvv) }
 
-    results = argvv.map do |argv|
+    pipeline ? results : results[0]
+  end
+
+  def process_command(command, argvv)
+    @sock.write(command)
+    argvv.map do |argv|
       processor = REPLY_PROCESSOR[argv[0]]
       processor ? processor.call(read_reply) : read_reply
     end
+  end
 
-    return pipeline ? results : results[0]
+  def maybe_lock(&block)
+    if @mutex
+      @mutex.synchronize &block
+    else
+      block.call
+    end
   end
 
   def select(*args)
@@ -250,10 +262,12 @@ class Redis
   # Similar to memcache.rb's #get_multi, returns a hash mapping
   # keys to values.
   def mapped_mget(*keys)
-    mget(*keys).inject({}) do |hash, value|
+    result = {}
+    mget(*keys).each do |value|
       key = keys.shift
-      value.nil? ? hash : hash.merge(key => value)
+      result.merge!(key => value) unless value.nil?
     end
+    result
   end
 
   # Ruby defines a now deprecated type method so we need to override it here

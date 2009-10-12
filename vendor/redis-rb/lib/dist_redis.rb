@@ -52,18 +52,6 @@ class DistRedis
     keyz
   end
 
-  def to_s
-    @ring.nodes.map do |red|
-      red.to_s
-    end
-  end
-
-  def inspect
-    @ring.nodes.map do |red|
-      red.inspect
-    end
-  end
-
   def save
     on_each_node :save
   end

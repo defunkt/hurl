@@ -10,9 +10,12 @@ Redis is a key value store with some interesting features:
 
 See [redis on code.google.com](http://code.google.com/p/redis/wiki/README) for more information.
 
+See the build on [RunCodeRun](http://runcoderun.com/defunkt/redis-rb)
+
 ## Dependencies
 
-1. rspec - 
+1. rspec -
+
 		sudo gem install rspec
 
 2. redis - 
@@ -31,4 +34,17 @@ Use the tasks mentioned above (in Dependencies) to get your machine setup.
 
 ## Examples
 
-Check the examples/ directory.  *Note* you need to have redis-server running first.
+Check the examples/ directory.  *Note* you need to have redis-server
+running first.
+
+## Differences from ezmobius/redis-rb
+
+* Connection is deferred until you use the library. a420731
+* You may initialize a `Redis::Namespace` class for scoping all keys
+  to a namespace
+
+I will continue to merge in changes from ezmobius/redis-rb.
+
+## Installation
+
+    gem install defunkt-redis
