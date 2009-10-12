@@ -14,8 +14,8 @@
     <script src="/js/jquery.min.js" type="text/javascript"></script>
     <script src="/js/jquery.form.js" type="text/javascript"></script>
     <script src="/js/jquery.autocomplete.js" type="text/javascript"></script>
-    <script src="/js/jquery.relatize_date.js" type="text/javascript"></script>    
-    <script src="/js/json2.js" type="text/javascript"></script>    
+    <script src="/js/jquery.relatize_date.js" type="text/javascript"></script>
+    <script src="/js/json2.js" type="text/javascript"></script>
     <script src="/js/hurl.js" type="text/javascript"></script>
     <script src="/js/hurl.headers.js" type="text/javascript"></script>
     <script src="/js/facebox.js"type="text/javascript"></script>
@@ -24,14 +24,14 @@
   <div id="inset">
     <div id="header">
       <div id="nav">
-        {{#logged_in?}}
+        {{# logged_in? }}
           <a href="/hurls/" class="nav-item">your hurls</a>
           <a href="/logout/" class="nav-item">log out</a>
-        {{/logged_in?}}
-        
-        {{#anonymous?}}        
+        {{/ logged_in? }}
+
+        {{# anonymous? }}
          <a href="#facebox-log-in" rel="facebox">log in</a> to save your hurls
-        {{/anonymous?}}    
+        {{/ anonymous? }}
      </div>
       <a href="/"><img src="/img/logo.png" title="hurl" /></a>
     </div>
@@ -40,11 +40,11 @@
         <a href="#" class="flash-close"><img class="delete" src="/img/delete.png" title="remove"/></a>
         <span id="flash-error-msg"></span>
       </p>
-      <p class="flash-notice" {{#no_flash}}style="display: none;"{{/no_flash}}>
+      <p class="flash-notice" {{# no_flash }}style="display: none;"{{/ no_flash }}>
         <a href="#" class="flash-close"><img class="delete" src="/img/delete.png" title="remove"/></a>
-        <span id="flash-notice-msg">{{flash}}</span>
+        <span id="flash-notice-msg">{{ flash }}</span>
       </p>
-      {{{yield}}}
+      {{{ yield }}}
     </div>
     <div id="footer">
       <a href="http://twitter.com/hurlit">twitter</a>
@@ -52,6 +52,6 @@
       <a href="/about/">about</a>
     </div>
   </div>
-  {{{login_partial}}}
+  {{{ login_partial }}}
 </body>
 </html>

@@ -3,6 +3,7 @@ module Views
     include Hurl::Helpers
 
     def hurl_url
+      ''
     end
 
     def previous_hurl
@@ -102,8 +103,8 @@ module Views
       end
     end
 
-    def show_request_and_response?
-      !!@view
+    def hide_request_and_response?
+      @view.nil?
     end
 
     def hurl_permalink

@@ -79,14 +79,14 @@
   <p id="header-selection">
     <a id="add-header" href="#"><span class="link-icon">+</span> add header</a>
   </p>
-  
+
   {{# hurl_header_keys }}
   <p id="header-fields">
     <a href="#" class="header-delete"><img class="delete" src="/img/delete.png" title="remove"/></a>
     <input type="text" name="header-keys[]" class="form-alpha" value="{{ name }}" />
     <input type="text" name="header-vals[]" class="form-beta" value="{{ value }}" />
   </p>
-  {{/ hurl_header_keys }}      
+  {{/ hurl_header_keys }}
 
   {{# no_hurl_header_keys }}
     <p id="header-fields" style="display:none;">
@@ -94,7 +94,7 @@
       <input type="text" name="header-keys[]" class="form-alpha"/>
       <input type="text" name="header-vals[]" class="form-beta"/>
     </p>
-  {{/ no_hurl_header_keys }}    
+  {{/ no_hurl_header_keys }}
 
   <p id="send-wrap" class="clearwrap">
     <button type="submit" class="bigbutton">Send</button>
@@ -114,11 +114,11 @@
     <ul class="examples">
       {{# default_hurls }}
         <li class="{{ class }}"><a href="/hurls/{{ sha }}">{{ name }}</a></li>
-      {{/ default_hurls }}        
+      {{/ default_hurls }}
     </ul>
   </div>
 </div>
-<div id="request-and-response" {{# show_request_and_response? }}style="display:none;"{{/ show_request_and_response? }}>
+<div id="request-and-response" {{# hide_request_and_response? }}style="display:none;"{{/ hide_request_and_response? }}>
   <div class="utils">
     <a href="{{ view_permalink }}" class="full-size-link nav-item" target="_blank">view full size</a>
     <a href="{{ hurl_permalink }}" class="permalink nav-item">permalink</a>
