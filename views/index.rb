@@ -3,7 +3,7 @@ module Views
     include Hurl::Helpers
 
     def hurl_url
-      ''
+      @hurl['url'] if @hurl
     end
 
     def previous_hurl
