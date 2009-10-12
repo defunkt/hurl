@@ -59,7 +59,7 @@ module Hurl
 
     get '/hurls/:id/?' do
       @hurl = find_hurl_or_view(params[:id])
-      @hurl ? erb(:index) : not_found
+      @hurl ? mustache(:index) : not_found
     end
 
     delete '/hurls/:id/?' do
@@ -75,12 +75,12 @@ module Hurl
       @hurl = find_hurl_or_view(params[:id])
       @view = find_hurl_or_view(params[:view_id])
       @view_id = params[:view_id]
-      @hurl && @view ? erb(:index) : not_found
+      @hurl && @view ? mustache(:index) : not_found
     end
 
     get '/views/:id/?' do
       @view = find_hurl_or_view(params[:id])
-      @view ? erb(:view, :layout => false) : not_found
+      @view ? mustache(:view, :layout => false) : not_found
     end
 
     get '/test.json' do
@@ -193,11 +193,11 @@ module Hurl
     #
 
     not_found do
-      erb :"404"
+      mustache :"404"
     end
 
     error do
-      erb :"500"
+      mustache :"500"
     end
 
 
