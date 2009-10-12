@@ -24,7 +24,7 @@ module Hurl
     def initialize(*args)
       super
       Hurl.redis = Redis.new(:host => '127.0.0.1', :port => 6379)
-      @debug = true
+      @debug = ENV['DEBUG']
       setup_default_hurls
     end
 
