@@ -121,7 +121,7 @@ module Views
 
     def view
       return unless @view
-      [ { :header => @view['header'], :body => @view['body'] } ]
+      [ :header => @view['header'], :body => @view['body'] ]
     end
   end
 end
