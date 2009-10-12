@@ -55,7 +55,7 @@ module Hurl
         :limit => [start, limit]
 
       # convert hurls to ruby objects
-      hurls.map! { |hurl| Yajl::Parser.parse(hurl) }
+      hurls.map! { |hurl| decode(hurl) }
 
       # find and set the corresponding timestamps for
       # each hurl (scoped to this user)

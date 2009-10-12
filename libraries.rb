@@ -4,6 +4,7 @@ require 'uri'
 require 'albino'
 require 'base64'
 require 'digest'
+require 'zlib'
 
 def rubygem(file, gem = nil)
   require file
