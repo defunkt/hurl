@@ -1,3 +1,4 @@
+# The default Hurls shown on the home page
 Twitter API (public timeline): 
   url: http://twitter.com/statuses/public_timeline.json
   method: GET
