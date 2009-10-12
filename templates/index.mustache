@@ -101,20 +101,20 @@
     <img src="/img/ajax-loader.gif" id="spinner" />
   </p>
 </form>
-<div class="help-blurb" <% if logged_in? or not @hurl.empty? %>style="display: none;"<% end %>>
+<div class="help-blurb" {{# help_blurb_hidden? }}style="display: none;"{{/ help_blurb_hidden? }}>
   <div id="help-text">
     <p>Hurl makes HTTP requests.</p>
     <p>Enter a URL, set some headers, view the response, then share it with others.</p>
     <p>Perfect for demoing and debugging APIs.</p>
   </div>
 </div>
-<div class="help-blurb" <% if not @hurl.empty? %>style="display: none;"<% end %>>
+<div class="help-blurb" {{# try_it_hidden? }}style="display: none;"{{/ try_it_hidden? }}>
  <div id="try-it">
     <h4>Try it out:</h4>
     <ul class="examples">
-      <% default_hurls.sort.each do |name, params| %>
-        <li class="<%= name.split(' ').first.downcase %>"><a href="/hurls/<%= sha(params) %>"><%= name %></a></li>
-     <% end %>
+      {{# default_hurls }}
+        <li class="{{ class }}"><a href="/hurls/{{ sha }}">{{ name }}</a></li>
+      {{/ default_hurls }}        
     </ul>
   </div>
 </div>

@@ -4,6 +4,24 @@ module Hurl
       !!@user
     end
 
+    # creates the hurls shown on the front page if they're not in the db
+    def setup_default_hurls
+      default_hurls.each do |name, params|
+        save_hurl(params)
+      end
+    end
+
+    def default_hurls
+      return @default_hurls if @default_hurls
+      path = File.expand_path(File.dirname(__FILE__) + '/hurls.yaml')
+      @default_hurls = YAML.load_file(path)
+    end
+
+    # sha(hash) => '01578ad840f1a7eba2bd202351119e635fde8e2a'
+    def sha(thing)
+      Digest::SHA1.hexdigest(thing.to_s)
+    end
+
     def login_partial
       instance = Mustache.new
       instance.template_file = Hurl::App.views + '/login.mustache'

@@ -86,5 +86,20 @@ module Views
     def hurl_password
       @hurl['password']
     end
+
+    def help_blurb_hidden?
+      logged_in? or not @hurl.empty?
+    end
+
+    def try_it_hidden?
+      not @hurl.empty?
+    end
+
+    def default_hurls
+      super.sort.map do |name, params|
+        dname = name.downcase
+        { :name => name, :sha => sha(params), :class => dname.split(' ')[0] }
+      end
+    end
   end
 end
