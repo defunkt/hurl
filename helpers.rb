@@ -24,7 +24,7 @@ module Hurl
 
     def login_partial
       instance = Mustache.new
-      instance.template_file = Hurl::App.views + '/login.mustache'
+      instance.template = File.read(Hurl::App.views + '/login.mustache')
       instance.to_html
     end
 
