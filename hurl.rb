@@ -9,6 +9,14 @@ module Hurl
     @redis = redis
   end
 
+  def self.encode(object)
+    Zlib::Deflate.deflate Yajl::Encoder.encode(object)
+  end
+
+  def self.decode(object)
+    Yajl::Parser.parse(Zlib::Inflate.inflate(object)) rescue nil
+  end
+
   class App < Sinatra::Base
     register Mustache::Sinatra
 

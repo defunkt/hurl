@@ -169,19 +169,11 @@ module Hurl
     end
 
     def encode(object)
-      self.class.encode object
+      Hurl.encode object
     end
 
     def decode(object)
-      self.class.decode object
-    end
-
-    def self.encode(object)
-      Zlib::Deflate.deflate Yajl::Encoder.encode(object)
-    end
-
-    def self.decode(object)
-      Yajl::Parser.parse(Zlib::Inflate.inflate(object)) rescue nil
+      Hurl.decode object
     end
 
 
