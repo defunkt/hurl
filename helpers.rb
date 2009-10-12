@@ -1,9 +1,5 @@
 module Hurl
   module Helpers
-    def logged_in?
-      !!@user
-    end
-
     #
     # http helpers
     #
@@ -167,6 +163,11 @@ module Hurl
       yield if @debug
     end
 
+    # sha(hash) => '01578ad840f1a7eba2bd202351119e635fde8e2a'
+    def sha(thing)
+      Digest::SHA1.hexdigest(thing.to_s)
+    end
+
     def encode(object)
       self.class.encode object
     end
@@ -229,9 +230,12 @@ module Hurl
       @default_hurls = YAML.load_file(path)
     end
 
-    # sha(hash) => '01578ad840f1a7eba2bd202351119e635fde8e2a'
-    def sha(thing)
-      Digest::SHA1.hexdigest(thing.to_s)
+    #
+    # view helpers
+    #
+
+    def logged_in?
+      !!@user
     end
 
     def login_partial
