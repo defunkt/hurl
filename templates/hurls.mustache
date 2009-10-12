@@ -1,0 +1,21 @@
+<h2>Your hurls</h2>
+{{# any_hurls? }}
+  <table id="archive">
+    {{# hurls }}
+     <tr>
+        <td><a href="/hurls/{{ id }}<%= hurl['id'] %>">{{ url }}</a></td>
+        <td>{{ method }}</td>
+        <td>{{ auth }}</td>
+        <td class="date relatize">{{ date }}</td>
+        <td><a href="/hurls/{{ id }}" class="hurl-delete"><img src="/img/delete.png" class="delete" title="remove"/></a></td>
+      </tr>
+     {{/ hurls }}
+  </table>
+{{/ any_hurls? }}
+
+{{# no_hurls }}
+ <div class="unicorn">
+    <img src="/img/unicorn.png" title="unicorn"/>
+    <p>We found some hurls, but none are yours.</p>
+  </div>
+{{/ no_hurls }}

@@ -54,7 +54,7 @@ module Hurl
     get '/hurls/?' do
       redirect('/') and return unless logged_in?
       @hurls = @user.hurls
-      erb :hurls
+      mustache :hurls
     end
 
     get '/hurls/:id/?' do
