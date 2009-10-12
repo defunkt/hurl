@@ -26,13 +26,12 @@ module Hurl
     set :mustaches, "#{dir}/views"
     set :public,    "#{dir}/public"
     set :static,    true
-    set :lock,      true
 
     enable :sessions
 
     def initialize(*args)
       super
-      Hurl.redis = Redis.new(:host => '127.0.0.1', :port => 6379)
+      Hurl.redis = Redis.new(:host => '127.0.0.1', :port => 6379, :thread_safe => true)
       @debug = ENV['DEBUG']
       setup_default_hurls
     end
