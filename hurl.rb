@@ -364,7 +364,6 @@ module Hurl
       yield if @debug
     end
 
-
     def encode(object)
       self.class.encode object
     end
