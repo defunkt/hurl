@@ -101,5 +101,26 @@ module Views
         { :name => name, :sha => sha(params), :class => dname.split(' ')[0] }
       end
     end
+
+    def show_request_and_response?
+      !!@view
+    end
+
+    def hurl_permalink
+      @view_id ? "/hurls/#{@hurl['id']}/#{@view_id}" : "#"
+    end
+
+    def view_permalink
+      @view_id ? "/views/#{@view_id}" : "#"
+    end
+
+    def view_request
+      @view['request'] if @view
+    end
+
+    def view
+      return unless @view
+      [ { :header => @view['header'], :body => @view['body'] } ]
+    end
   end
 end
