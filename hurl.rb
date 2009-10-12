@@ -44,9 +44,7 @@ module Hurl
       @flash = session.delete('flash')
     end
 
-    helpers do
-      include Hurl::Helpers
-    end
+    helpers Hurl::Helpers
 
     get '/' do
       @hurl = {}
