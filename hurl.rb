@@ -26,6 +26,7 @@ module Hurl
     set :mustaches, "#{dir}/views"
     set :public,    "#{dir}/public"
     set :static,    true
+    set :lock,      true
 
     enable :sessions
 
