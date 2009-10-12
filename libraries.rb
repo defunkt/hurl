@@ -1,7 +1,6 @@
 require 'tempfile'
 require 'open3'
 require 'uri'
-require 'albino'
 require 'base64'
 require 'digest'
 require 'zlib'
@@ -19,6 +18,9 @@ rubygem 'mustache/sinatra'
 
 $LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor/redis-rb/lib'
 require 'redis'
+
+$LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor'
+require 'albino'
 
 require 'models/model'
 require 'models/user'
