@@ -16,7 +16,7 @@ namespace :hurl do
   end
 
   def installed?(app)
-    not `which #{app}`.chomp.empty?
+    `which #{app}`; $?.success?
   end
 
   desc "Generate GitHub pages."
@@ -38,7 +38,7 @@ namespace :hurl do
   end
 
   task :check_dirty do
-    if !`git status`.include?('nothing to commit')
+    if `git status -a` && $?.success?
       abort "dirty index - not publishing!"
     end
   end
