@@ -51,7 +51,7 @@ module Hurl
       return [] unless any_hurls?
 
       hurls = redis.sort key,
-        :by    => "#{key(id, :hurls)}:*",
+        :by    => "#{key}:*",
         :order => 'DESC',
         :get   => "*",
         :limit => [start, limit]

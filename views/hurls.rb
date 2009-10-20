@@ -3,7 +3,7 @@ module Views
     include Hurl::Helpers
 
     def hurls
-      @hurls.map do |hurl|
+      @user.hurls.map do |hurl|
         hurl['auth'] = hurl['auth'] == 'none' ? 'no auth' : 'HTTP basic'
         hurl
       end
