@@ -64,19 +64,15 @@ Run Locally
 
     $ rake start
 
-If you have [shotgun](http://github.com/rtomayko/shotgun) installed:
+If you have [shotgun][4] installed: <http://localhost:9393>
 
-Visit <http://localhost:9393> in your browser.
-
-If not:
-
-Visit <http://localhost:9292> in your browser.
+If not: <http://localhost:9292>
 
 
 Issues
 ------
 
-Find a bug? Want a feature? Submit an [issue here](http://github.com/defunkt/hurl/issues). Patches welcome! 
+Find a bug? Want a feature? Submit an [issue here](http://github.com/defunkt/hurl/issues). Patches welcome!
 
 
 Authors
@@ -89,3 +85,4 @@ Authors
 [1]: http://r09.railsrumble.com/
 [2]: http://github.com/leah
 [3]: http://github.com/defunkt
+[4]: http://github.com/rtomayko/shotgun
