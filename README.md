@@ -73,6 +73,12 @@ Find a bug? Want a feature? Submit an [issue
 here](http://github.com/defunkt/hurl/issues). Patches welcome!
 
 
+Screenshot
+----------
+
+[![Hurl](http://img.skitch.com/20091020-xtiqtj4eajuxs43iu5h3be7upj.png)](http://hurl.it)
+
+
 Authors
 -------
 
