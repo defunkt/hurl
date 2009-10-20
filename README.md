@@ -2,7 +2,7 @@ Hurl
 ====
 
 Hurl was created for the Rails Rumble 2009 in 48 hours.
-Now Hurl is an open source project for your enjoyment. 
+Now Hurl is an open source project for your enjoyment.
 
 <http://hurl.it/>
 
@@ -48,7 +48,7 @@ And finally Redis.
     * Other
     $ rake -f vendor/redis-rb/tasks/redis.tasks.rb redis:install
 
-  
+
 Get Hurl
 --------
 
