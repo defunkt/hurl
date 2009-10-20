@@ -136,7 +136,7 @@ module Hurl
 
     # render a json response
     def json(hash = {})
-      headers['Content-Type'] = 'application/json'
+      content_type 'application/json'
       Yajl::Encoder.encode(hash)
     end
 
