@@ -116,6 +116,10 @@ module Views
       @view_id ? "/hurls/#{@hurl['id']}/#{@view_id}" : "#"
     end
 
+    def follows_redirects?
+      @hurl['follows_redirects']
+    end
+
 
     #
     # view related
