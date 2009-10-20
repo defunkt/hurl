@@ -2,10 +2,6 @@ module Views
   class Index < Mustache
     include Hurl::Helpers
 
-    def hurl_url
-      @hurl['url'] if @hurl
-    end
-
     def previous_hurl
       if prev = prev_hurl
         [ :hurl => prev.to_s ]
@@ -32,6 +28,34 @@ module Views
 
     def no_next_hurl_and_anonymous
       no_next_hurl && !logged_in?
+    end
+
+    def help_blurb_hidden?
+      logged_in? or not @hurl.empty?
+    end
+
+    def try_it_hidden?
+      not @hurl.empty?
+    end
+
+    def default_hurls
+      super.sort.map do |name, params|
+        dname = name.downcase
+        { :name => name, :sha => sha(params), :class => dname.split(' ')[0] }
+      end
+    end
+
+    def hide_request_and_response?
+      @view.nil?
+    end
+
+
+    #
+    # @hurl related
+    #
+
+    def hurl_url
+      @hurl['url'] if @hurl
     end
 
     def method_is_GET?
@@ -88,28 +112,14 @@ module Views
       @hurl['password']
     end
 
-    def help_blurb_hidden?
-      logged_in? or not @hurl.empty?
-    end
-
-    def try_it_hidden?
-      not @hurl.empty?
-    end
-
-    def default_hurls
-      super.sort.map do |name, params|
-        dname = name.downcase
-        { :name => name, :sha => sha(params), :class => dname.split(' ')[0] }
-      end
-    end
-
-    def hide_request_and_response?
-      @view.nil?
-    end
-
     def hurl_permalink
       @view_id ? "/hurls/#{@hurl['id']}/#{@view_id}" : "#"
     end
+
+
+    #
+    # view related
+    #
 
     def view_permalink
       @view_id ? "/views/#{@view_id}" : "#"
