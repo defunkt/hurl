@@ -61,6 +61,9 @@ body {
 p, h2 {
     margin: 20px 0;
 }
+p {
+    line-height: 20px;
+}
 a {
     color: #000;
     text-decoration: none;
