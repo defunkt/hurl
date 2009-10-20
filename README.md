@@ -69,6 +69,16 @@ Authors
 * [Leah Culver][2]
 * [Chris Wanstrath][3]
 
+
+Meta
+----
+
+* Code: `git clone git://github.com/defunkt/hurl.git`
+* Home: <http://github.com/defunkt/hurl>
+* Site: <http://hurl.it>
+* Bugs: <http://github.com/defunkt/hurl/issues>
+
+
 [1]: http://r09.railsrumble.com/
 [2]: http://github.com/leah
 [3]: http://github.com/defunkt
