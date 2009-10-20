@@ -2,8 +2,6 @@ module Views
   class View < Mustache
     include Hurl::Helpers
 
-    self.path = File.dirname(__FILE__) + '/../templates'
-
     def view_request
       @view['request']
     end

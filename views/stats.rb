@@ -2,8 +2,6 @@ module Views
   class Stats < Mustache
     include Hurl::Helpers
 
-    self.path = File.dirname(__FILE__) + '/../templates'
-
     def hurl_stats
       stat_value_hash stats
     end
