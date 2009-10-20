@@ -18,7 +18,7 @@ namespace :hurl do
   def installed?(app)
     not `which #{app}`.chomp.empty?
   end
-  
+
   desc "Generate GitHub pages."
   task :pages => :check_dirty do
     require "mustache"
@@ -30,12 +30,13 @@ namespace :hurl do
       f.puts view.render
     end
     system "git checkout gh-pages"
+    system "git pull origin gh-pages"
     system "mv new_index.html index.html"
     system "git commit -a -m 'auto update docs'"
     system "git push origin gh-pages"
     system "git checkout master"
   end
-   
+
   task :check_dirty do
     if !`git status`.include?('nothing to commit')
       abort "dirty index - not publishing!"
