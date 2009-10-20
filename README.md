@@ -1,7 +1,7 @@
 Hurl
 ====
 
-Hurl was created for the Rails Rumble 2009 in 48 hours by [Leah Culver][2] and [Chris Wanstrath][3].
+Hurl was created for the Rails Rumble 2009 in 48 hours.
 Now Hurl is an open source project for your enjoyment. 
 
 <http://hurl.it/>
