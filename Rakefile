@@ -8,7 +8,15 @@ end
 namespace :hurl do
   desc "Start Hurl for development"
   task :start do
-    system "shotgun config.ru"
+    if installed? :shotgun
+      system "shotgun config.ru"
+    else
+      system "rackup config.ru"
+    end
+  end
+
+  def installed?(app)
+    not `which #{app}`.chomp.empty?
   end
 end
 
