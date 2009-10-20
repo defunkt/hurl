@@ -52,6 +52,8 @@ And finally Redis.
 Get Hurl
 --------
 
+Browse the source on GitHub: <http://github.com/defunkt/hurl>
+
 Clone with Git:
 
     $ git clone git://github.com/defunkt/hurl
@@ -76,12 +78,6 @@ Issues
 
 Find a bug? Want a feature? Submit an [issue
 here](http://github.com/defunkt/hurl/issues). Patches welcome!
-
-
-Source
-------
-
-Grab the code on GitHub: <http://github.com/defunkt/hurl>
 
 
 Authors
