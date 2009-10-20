@@ -82,6 +82,9 @@ h1 a {
 h2 {
     font-size: 1.5em;
 }
+.ribbon {
+    float: right;
+}
 .description {
     font-size: 1.2em;
     margin-bottom: 30px;
