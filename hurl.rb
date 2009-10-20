@@ -2,7 +2,8 @@ require 'libraries'
 
 module Hurl
   def self.redis
-    @redis
+    return @redis if @redis
+    @redis = Redis.new(:host => '127.0.0.1', :port => 6379, :thread_safe => true)
   end
 
   def self.redis=(redis)
@@ -31,7 +32,6 @@ module Hurl
 
     def initialize(*args)
       super
-      Hurl.redis = Redis.new(:host => '127.0.0.1', :port => 6379, :thread_safe => true)
       @debug = ENV['DEBUG']
       setup_default_hurls
     end
