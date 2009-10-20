@@ -15,11 +15,13 @@ end
 rubygem 'sinatra/base'
 rubygem 'yajl' => 'yajl-ruby'
 rubygem 'curb'
-rubygem 'redis'
 rubygem 'mustache/sinatra'
 
 $LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor'
 require 'albino'
+
+$LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor/redis-rb/lib'
+require 'redis'
 
 require 'models/model'
 require 'models/user'
