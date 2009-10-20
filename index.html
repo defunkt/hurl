@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>hurl</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div id="inset">
+        <a href="http://github.com/defunkt/hurl">
+            <img class="ribbon" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" />
+        </a>
+        <div id="container">
+            <h1>
+                <a href="http://github.com/defunkt/hurl">hurl</a>
+                <span class="small">by <a href="http://github.com/defunkt">defunkt</a> and <a href="http://github.com/leah">leah</a></span>
+            </h1>
+
+            <div class="description">
+                Hurl makes HTTP requests.
+            </div>
+            
+            <h1>Hurl</h1>
+
+<p>Hurl was created for the Rails Rumble 2009 in 48 hours by <a href="http://github.com/leah">Leah Culver</a> and <a href="http://github.com/defunkt">Chris Wanstrath</a>.
+Now Hurl is an open source project for your enjoyment.</p>
+
+<p><a href="http://hurl.it/">http://hurl.it/</a></p>
+
+<h2>Installation</h2>
+
+<ul>
+<li>Ruby 1.8.6+</li>
+<li>Python 2.5+</li>
+</ul>
+
+
+<p>First install xmllint:</p>
+
+<pre><code>* Homebrew
+$ brew install xmllint
+
+* Gentoo
+$ emerge dev-libs/libxml2
+</code></pre>
+
+<p>Next install the Python eggs:</p>
+
+<pre><code>$ easy_install simplejson Pygments
+</code></pre>
+
+<p>Then the Rubygems:</p>
+
+<pre><code>$ gem install yajl-ruby sinatra curb mustache
+</code></pre>
+
+<p>If any of the gems can't be found (<em>cough</em> mustache <em>cough</em>) you need
+to setup Gemcutter:</p>
+
+<pre><code>$ gem install gemcutter
+$ gem tumble
+</code></pre>
+
+<p>Now try to install the gems again.</p>
+
+<p>And finally Redis.</p>
+
+<pre><code>* Homebrew
+$ brew install redis
+
+* Gentoo
+$ emerge redis
+
+* Other
+$ rake -f vendor/redis-rb/tasks/redis.tasks.rb redis:install
+</code></pre>
+
+<h2>Get Hurl</h2>
+
+<p>Clone with Git:</p>
+
+<pre><code>$ git clone git://github.com/defunkt/hurl
+</code></pre>
+
+<p>Or download in either <a href="http://github.com/defunkt/hurl/zipball/master">zip</a> or <a href="http://github.com/defunkt/hurl/tarball/master">tar</a> formats.</p>
+
+<h2>Run Locally</h2>
+
+<pre><code>$ rake start
+</code></pre>
+
+<p>If you have <a href="http://github.com/rtomayko/shotgun">shotgun</a> installed:</p>
+
+<p>Visit <a href="http://localhost:9393">http://localhost:9393</a> in your browser.</p>
+
+<p>If not:</p>
+
+<p>Visit <a href="http://localhost:9292">http://localhost:9292</a> in your browser.</p>
+
+<h2>Issues</h2>
+
+<p>Find a bug? Want a feature? Submit an <a href="http://github.com/defunkt/hurl/issues">issue here</a>. Patches welcome!</p>
+
+<h2>Authors</h2>
+
+<ul>
+<li><a href="http://github.com/leah">Leah Culver</a></li>
+<li><a href="http://github.com/defunkt">Chris Wanstrath</a></li>
+</ul>
+
+
+
+            <!--h2>About</h2>
+            <p>
+                Hurl was created for the <a href="http://r09.railsrumble.com/">Rails Rumble 2009</a> in 48 hours and won Most Complete.
+                Now Hurl is an open source project for your enjoyment.
+            </p>
+
+            <h2>Code</h2>
+            <p>Clone with <a href="http://git-scm.com">Git</a>:
+                <pre>$ git clone git://github.com/defunkt/hurl</pre>
+            </p>
+            <p>
+                Download in either
+                <a href="http://github.com/defunkt/hurl/zipball/master">zip</a> or
+                <a href="http://github.com/defunkt/hurl/tarball/master">tar</a> formats.
+            </p>
+            <p>See our <a href="http://github.com/defunkt/hurl#readme">README</a> for installation instructions.</p>
+
+            <h2>Issues</h2>
+            <p>
+                Find a bug? Want a feature? Submit an <a href="http://github.com/defunkt/hurl/issues">issue here</a>. Patches welcome!
+            </p-->
+        </div>
+    </div>
+</body>
+</html>
