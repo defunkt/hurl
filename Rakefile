@@ -20,7 +20,7 @@ namespace :hurl do
   end
   
   desc "Generate GitHub pages."
-  task :pages do
+  task :pages => :check_dirty do
     require "mustache"
     require "rdiscount"
     view = Mustache.new
@@ -34,6 +34,12 @@ namespace :hurl do
     system "git commit -a -m 'auto update docs'"
     system "git push origin gh-pages"
     system "git checkout master"
+  end
+   
+  task :check_dirty do
+    if !`git status`.include?('nothing to commit')
+      abort "dirty index - not publishing!"
+    end
   end
 end
 
