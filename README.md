@@ -2,7 +2,7 @@ Hurl
 ====
 
 Kinda like Curl. Created for the [Rails Rumble 2009][1] in 48 hours by
-Leah Culver and Chris Wanstrath.
+[Leah Culver][2] and [Chris Wanstrath][3].
 
 Live site: <http://hurl.it/>
 
@@ -44,8 +44,13 @@ And finally Redis.
 Run Locally
 -----------
 
-    $ redis-server
-    $ rackup config.ru
+    $ rake start
+
+If you have [shotgun](http://github.com/rtomayko/shotgun) installed:
+
+Visit <http://localhost:9393> in your browser.
+
+If not:
 
 Visit <http://localhost:9292> in your browser.
 
@@ -64,7 +69,9 @@ Then visit <http://localhost:9292> in your browser.
 Authors
 -------
 
-* [Leah Culver](http://leahculver.com)
-* [Chris Wanstrath](http://ozmm.org)
+* [Leah Culver][2]
+* [Chris Wanstrath][3]
 
 [1]: http://r09.railsrumble.com/
+[2]: http://github.com/leah
+[3]: http://github.com/defunkt
