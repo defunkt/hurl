@@ -1,6 +1,8 @@
 module Hurl
   class User < Model
     attr_accessor :email, :password, :crypted_password
+
+    # change this in your app
     SALT = '==asdaga3hg8hwg98w4h9hg8ohsrg8hsklghsdgl=='
 
     # find_by_email
