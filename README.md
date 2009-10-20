@@ -56,7 +56,9 @@ Clone with Git:
 
     $ git clone git://github.com/defunkt/hurl
 
-Or download in either [zip](http://github.com/defunkt/hurl/zipball/master) or [tar](http://github.com/defunkt/hurl/tarball/master) formats.
+Or download in either
+[zip](http://github.com/defunkt/hurl/zipball/master) or
+[tar](http://github.com/defunkt/hurl/tarball/master) formats.
 
 
 Run Locally
@@ -72,7 +74,14 @@ If not: <http://localhost:9292>
 Issues
 ------
 
-Find a bug? Want a feature? Submit an [issue here](http://github.com/defunkt/hurl/issues). Patches welcome!
+Find a bug? Want a feature? Submit an [issue
+here](http://github.com/defunkt/hurl/issues). Patches welcome!
+
+
+Source
+------
+
+Grab the code on GitHub: <http://github.com/defunkt/hurl>
 
 
 Authors
