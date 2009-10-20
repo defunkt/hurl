@@ -1,6 +1,5 @@
 module Hurl
   class Model
-    undef_method :id
     attr_accessor :id
 
     #
