@@ -1,7 +1,7 @@
 Hurl
 ====
 
-Kinda like Curl.
+Kinda like [Curl](http://curl.haxx.se/).
 
 Hurl was created for the Rails Rumble 2009 in 48 hours by [Leah Culver][2] and [Chris Wanstrath][3].
 Now Hurl is an open source project for your enjoyment. 
@@ -58,7 +58,7 @@ Clone with Git:
 
     $ git clone git://github.com/defunkt/hurl
 
-Download in either [zip](http://github.com/defunkt/hurl/zipball/master) or [tar](http://github.com/defunkt/hurl/tarball/master) formats.
+Or download in either [zip](http://github.com/defunkt/hurl/zipball/master) or [tar](http://github.com/defunkt/hurl/tarball/master) formats.
 
 
 Run Locally
