@@ -20,6 +20,7 @@ module Hurl
 
   class App < Sinatra::Base
     register Mustache::Sinatra
+    helpers Hurl::Helpers
 
     dir = File.dirname(File.expand_path(__FILE__))
 
@@ -51,8 +52,6 @@ module Hurl
       end
       @flash = session.delete('flash')
     end
-
-    helpers Hurl::Helpers
 
     get '/' do
       @hurl = {}
@@ -206,6 +205,84 @@ module Hurl
 
     error do
       mustache :"500"
+    end
+
+
+    #
+    # route helpers
+    #
+
+    # is this a url hurl can handle. basically a spam check.
+    def invalid_url?(url)
+      url.include? 'hurl.it'
+    end
+
+    # update auth based on auth type
+    def add_auth(auth, curl, params)
+      if auth == 'basic'
+        username, password = params.values_at(:username, :password)
+        encoded = Base64.encode64("#{username}:#{password}").strip
+        curl.headers['Authorization'] = "Basic #{encoded}"
+      end
+    end
+
+    # headers from non-empty keys and values
+    def add_headers_from_arrays(curl, keys, values)
+      keys, values = Array(keys), Array(values)
+
+      keys.each_with_index do |key, i|
+        next if values[i].to_s.empty?
+        curl.headers[key] = values[i]
+      end
+    end
+
+    # post params from non-empty keys and values
+    def make_fields(method, keys, values)
+      return [] unless method == 'POST'
+
+      fields = []
+      keys, values = Array(keys), Array(values)
+      keys.each_with_index do |name, i|
+        value = values[i]
+        next if name.to_s.empty? || value.to_s.empty?
+        fields << Curl::PostField.content(name, value)
+      end
+      fields
+    end
+
+    def save_view(header, body, request)
+      hash = { 'header' => header, 'body' => body, 'request' => request }
+      id = sha(hash.to_s)
+      json = encode(hash)
+      redis.set(id, json)
+      id
+    end
+
+    def save_hurl(params)
+      id = sha(params.to_s)
+      json = encode(params.merge(:id => id))
+      was_set = redis.setnx(id, json)
+      stat :hurls if was_set
+      @user.add_hurl(id) if @user
+      id
+    end
+
+    def find_hurl_or_view(id)
+      decode redis.get(id)
+    end
+
+    # has this person made too many requests?
+    def rate_limited?
+      tries = redis.get(key="tries:#{@env['REMOTE_ADDR']}").to_i
+
+      if tries > 10
+        true
+      else
+        # give the key a new value and tell it to expire in 30 seconds
+        redis.set(key, tries+1)
+        redis.expire(key, 30)
+        false
+      end
     end
   end
 end
