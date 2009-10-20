@@ -54,17 +54,9 @@ $ emerge dev-libs/libxml2
 
 <p>Then the Rubygems:</p>
 
-<pre><code>$ gem install yajl-ruby sinatra curb mustache
+<pre><code>$ gem install yajl-ruby sinatra curb
+$ gem install mustache --source=http://gemcutter.org
 </code></pre>
-
-<p>If any of the gems can't be found (<em>cough</em> mustache <em>cough</em>) you need
-to setup Gemcutter:</p>
-
-<pre><code>$ gem install gemcutter
-$ gem tumble
-</code></pre>
-
-<p>Now try to install the gems again.</p>
 
 <p>And finally Redis.</p>
 
@@ -79,6 +71,8 @@ $ rake -f vendor/redis-rb/tasks/redis.tasks.rb redis:install
 </code></pre>
 
 <h2>Get Hurl</h2>
+
+<p>Browse the source on GitHub: <a href="http://github.com/defunkt/hurl">http://github.com/defunkt/hurl</a></p>
 
 <p>Clone with Git:</p>
 
@@ -102,10 +96,6 @@ $ rake -f vendor/redis-rb/tasks/redis.tasks.rb redis:install
 
 <p>Find a bug? Want a feature? Submit an <a href="http://github.com/defunkt/hurl/issues">issue
 here</a>. Patches welcome!</p>
-
-<h2>Source</h2>
-
-<p>Grab the code on GitHub: <a href="http://github.com/defunkt/hurl">http://github.com/defunkt/hurl</a></p>
 
 <h2>Authors</h2>
 
