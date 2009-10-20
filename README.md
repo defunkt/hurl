@@ -55,17 +55,6 @@ If not:
 Visit <http://localhost:9292> in your browser.
 
 
-Development
------------
-
-We recommend Shotgun.
-
-    $ gem install shotgun
-    $ shotgun config.ru
-
-Then visit <http://localhost:9292> in your browser.
-
-
 Authors
 -------
 
