@@ -1,6 +1,7 @@
 require 'helpers/sessions'
 require 'helpers/pretty_printing'
 require 'helpers/sinatra'
+require 'yaml'
 
 module Hurl
   module Helpers
