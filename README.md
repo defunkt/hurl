@@ -1,10 +1,12 @@
 Hurl
 ====
 
-Kinda like Curl. Created for the [Rails Rumble 2009][1] in 48 hours by
-[Leah Culver][2] and [Chris Wanstrath][3].
+Kinda like Curl.
 
-Live site: <http://hurl.it/>
+Hurl was created for the Rails Rumble 2009 in 48 hours by [Leah Culver][2] and [Chris Wanstrath][3].
+Now Hurl is an open source project for your enjoyment. 
+
+<http://hurl.it/>
 
 
 Installation
@@ -48,6 +50,16 @@ And finally Redis.
     * Other
     $ rake -f vendor/redis-rb/tasks/redis.tasks.rb redis:install
 
+  
+Get Hurl
+--------
+
+Clone with Git:
+
+    $ git clone git://github.com/defunkt/hurl
+
+Download in either [zip](http://github.com/defunkt/hurl/zipball/master) or [tar](http://github.com/defunkt/hurl/tarball/master) formats.
+
 
 Run Locally
 -----------
@@ -63,20 +75,17 @@ If not:
 Visit <http://localhost:9292> in your browser.
 
 
+Issues
+------
+
+Find a bug? Want a feature? Submit an [issue here](http://github.com/defunkt/hurl/issues). Patches welcome! 
+
+
 Authors
 -------
 
 * [Leah Culver][2]
 * [Chris Wanstrath][3]
-
-
-Meta
-----
-
-* Code: `git clone git://github.com/defunkt/hurl.git`
-* Home: <http://github.com/defunkt/hurl>
-* Site: <http://hurl.it>
-* Bugs: <http://github.com/defunkt/hurl/issues>
 
 
 [1]: http://r09.railsrumble.com/
