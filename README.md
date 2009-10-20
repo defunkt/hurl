@@ -29,6 +29,14 @@ Then the Rubygems:
 
     $ gem install yajl-ruby sinatra curb mustache
 
+If any of the gems can't be found (*cough* mustache *cough*) you need
+to setup Gemcutter:
+
+    $ gem install gemcutter
+    $ gem tumble
+
+Now try to install the gems again.
+
 And finally Redis.
 
     * Homebrew
