@@ -18,6 +18,23 @@ namespace :hurl do
   def installed?(app)
     not `which #{app}`.chomp.empty?
   end
+  
+  desc "Generate GitHub pages."
+  task :pages do
+    require "mustache"
+    require "rdiscount"
+    view = Mustache.new
+    view.template = File.read("docs/index.mustache")
+    view[:content] = Markdown.new(File.read("README.md")).to_html
+    File.open("new_index.html", "w") do |f|
+      f.puts view.render
+    end
+    system "git checkout gh-pages"
+    system "mv new_index.html index.html"
+    system "git commit -a -m 'auto update docs'"
+    system "git push origin gh-pages"
+    system "git checkout master"
+  end
 end
 
 desc "Start everything."

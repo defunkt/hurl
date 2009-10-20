@@ -1,8 +1,6 @@
 Hurl
 ====
 
-Kinda like [Curl](http://curl.haxx.se/).
-
 Hurl was created for the Rails Rumble 2009 in 48 hours by [Leah Culver][2] and [Chris Wanstrath][3].
 Now Hurl is an open source project for your enjoyment. 
 
