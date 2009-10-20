@@ -14,21 +14,21 @@ module Hurl
     #
 
     def add_hurl(hurl)
-      redis.sadd(key(id, :hurls), hurl)
-      redis.set(key(id, :hurls, hurl), Time.now.to_i)
+      redis.sadd(key, hurl)
+      redis.set(key(hurl), Time.now.to_i)
     end
 
     def remove_hurl(hurl)
-      redis.srem(key(id, :hurls), hurl)
-      redis.del(key(id, :hurls, hurl))
+      redis.srem(key, hurl)
+      redis.del(key(hurl))
     end
 
     def unsorted_hurls
-      redis.smembers key(id, :hurls)
+      redis.smembers(key)
     end
 
     def any_hurls?
-      redis.scard(key(id, :hurls)).to_i > 0
+      redis.scard(key).to_i > 0
     end
 
     def latest_hurl
@@ -50,7 +50,7 @@ module Hurl
     def hurls!(start = 0, limit = 100)
       return [] unless any_hurls?
 
-      hurls = redis.sort key(id, :hurls),
+      hurls = redis.sort key,
         :by    => "#{key(id, :hurls)}:*",
         :order => 'DESC',
         :get   => "*",
@@ -61,7 +61,7 @@ module Hurl
 
       # find and set the corresponding timestamps for
       # each hurl (scoped to this user)
-      keys = hurls.map { |h| key(id, :hurls, h['id']) }
+      keys = hurls.map { |h| key(h['id']) }
       redis.mget(keys).each_with_index do |date, i|
         hurls[i]['date'] = Time.at(date.to_i)
       end
@@ -119,6 +119,10 @@ module Hurl
         'email'            => email,
         'crypted_password' => crypted_password
       }
+    end
+
+    def key(*parts)
+      super(*[id, :hurls, parts].flatten)
     end
   end
 end
