@@ -122,7 +122,7 @@ module Hurl
     end
 
     def key(*parts)
-      super(*[id, :hurls, parts].flatten)
+      @id ? super(*[@id, :hurls, parts].flatten) : super
     end
   end
 end
