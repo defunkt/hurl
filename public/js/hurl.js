@@ -99,6 +99,18 @@ $.fn.hurlAjaxSubmit = function(callback) {
   })
 }
 
+$.fn.textFieldChange = function(callback) {
+  var timeout = null, delay = 400, value = $(this).attr('value')
+  return $(this).keyup(function() {
+    var current = $(this).attr('value')
+    if (current != value) {
+      if (timeout) clearTimeout(timeout)
+      timeout = setTimeout(function(){ callback(current) }, delay)
+      value = current
+    }
+  })
+}
+
 $(document).ready(function() {
   // select method
   $('#select-method').change(function() {
@@ -123,6 +135,25 @@ $(document).ready(function() {
     }
   })
   $('#auth-selection :checked').change()
+  
+  $('input[name=url]').textFieldChange(function(url) {
+    if (/\{.+\}/.test(url)) {
+      $.post('/url-template', { url: url }, function(data) {
+        var container = $('#uri-template-params').show().empty()
+        
+        $.each(data.variables, function(i, key) {
+          var label = key.replace(/[_-]/g, ' ')
+          var value = data.defaults[key] || ''
+          container.append(
+            '<p><label for="url_params_' + key + '">' + label + ':</label>\
+            <input type="text" name="url_params[' + key + ']" value="' + value + '" id="url_params_' + key + '"></p>'
+          )
+        })
+      }, 'json')
+    } else if (!/\S/.test(url)) {
+      $('#uri-template-params').empty().hide()
+    }
+  })
 
   // add post param
   $('#add-param').click(function() {

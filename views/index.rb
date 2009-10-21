@@ -119,7 +119,30 @@ module Views
     def follows_redirects?
       @hurl['follows_redirects']
     end
-
+    
+    def url_template?
+      hurl_url.to_s =~ /\{.+\}/
+    end
+    
+    def url_template
+      @url_template ||= Addressable::Template.new(hurl_url)
+    end
+    
+    def url_params?
+      @hurl['url_params'] && !@hurl['url_params'].empty?
+    end
+    
+    def hurl_url_template_params
+      if url_template?
+        template = url_template
+        defaults = template.variable_defaults
+        defaults = defaults.merge(@hurl['url_params']) if url_params?
+        
+        template.variables.map do |var|
+          { :key => var, :value => defaults[var], :label => var.tr('_-', ' ') }
+        end
+      end
+    end
 
     #
     # view related

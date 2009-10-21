@@ -19,6 +19,7 @@ rubygem 'mustache/sinatra'
 
 $LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor'
 require 'albino'
+require 'addressable/template'
 
 $LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor/redis-rb/lib'
 require 'redis'

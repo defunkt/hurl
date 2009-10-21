@@ -145,6 +145,8 @@ module Hurl
       url, method, auth = params.values_at(:url, :method, :auth)
 
       return json(:error => "That's... wait.. what?!") if invalid_url?(url)
+      
+      url = expand_url_template(url, params[:url_params]) if params[:url_params]
 
       curl = Curl::Easy.new(url)
 
@@ -192,6 +194,13 @@ module Hurl
       rescue => e
         json :error => e.to_s
       end
+    end
+    
+    post '/url-template' do
+      template = Addressable::Template.new params[:url]
+      
+      json :variables => template.variables,
+           :defaults  => template.variable_defaults
     end
 
 
@@ -283,6 +292,10 @@ module Hurl
         redis.expire(key, 30)
         false
       end
+    end
+    
+    def expand_url_template(url, data)
+      Addressable::Template.new(url).expand(data)
     end
   end
 end

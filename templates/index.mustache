@@ -22,6 +22,14 @@
 
     <input type="text" name="url" title="URL" value="{{ hurl_url }}"/>
   </p>
+  <div id="uri-template-params" style="display: none;">
+    {{# hurl_url_template_params }}
+      <p>
+        <label for="url_params_{{ key }}">{{ label }}:</label>
+        <input type="text" name="url_params[{{ key }}]" value="{{ value }}" id="url_params_{{ key }}">
+      </p>
+    {{/ hurl_url_template_params }}
+  </div>
   <p>
     <select id="select-method" name="method" class="form-alpha">
       <option value="GET" {{# method_is_GET? }}selected="selected"{{/ method_is_GET? }}>GET</option>

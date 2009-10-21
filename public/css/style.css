@@ -61,6 +61,19 @@ input[type=password].form-beta {
 .form-beta {
   margin-left: 6px !important;
 }
+#uri-template-params {
+  margin: 1em 0;
+  font-size: 80%;
+}
+#uri-template-params label {
+  display: block;
+  font-size: inherit;
+  text-transform: capitalize;
+}
+#uri-template-params input[type=text] {
+  width: 280px;
+  font-size: inherit;
+}
 /* buttons */
 button {
   font: 1em "Helvetica Neue", Arial, sans-serif;
