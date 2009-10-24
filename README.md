@@ -21,13 +21,16 @@ First install xmllint:
     * Gentoo
     $ emerge dev-libs/libxml2
 
+    * Ubuntu/Debian
+    $ apt-get install libxml2-utils
+
 Next install the Python eggs:
 
     $ easy_install simplejson Pygments
 
-Then the Rubygems:
+Then the RubyGems:
 
-    $ gem install yajl-ruby sinatra curb
+    $ gem install yajl-ruby sinatra curb rack
     $ gem install mustache --source=http://gemcutter.org
 
 And finally Redis.
