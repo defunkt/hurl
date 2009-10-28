@@ -26,6 +26,7 @@ module Hurl
 
     set :views,     "#{dir}/templates"
     set :mustaches, "#{dir}/views"
+    set :namespace, Object
     set :public,    "#{dir}/public"
     set :static,    true
 
