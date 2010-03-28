@@ -24,11 +24,13 @@ module Hurl
 
     dir = File.dirname(File.expand_path(__FILE__))
 
-    set :views,     "#{dir}/templates"
-    set :mustaches, "#{dir}/views"
-    set :namespace, Object
     set :public,    "#{dir}/public"
     set :static,    true
+    set :mustache, {
+      :namespace => Object,
+      :views => 'views/',
+      :templates => 'templates/'
+    }
 
     enable :sessions
 
