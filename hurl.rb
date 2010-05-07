@@ -224,7 +224,7 @@ module Hurl
     def add_auth(auth, curl, params)
       if auth == 'basic'
         username, password = params.values_at(:username, :password)
-        encoded = Base64.encode64("#{username}:#{password}").strip
+        encoded = Base64.encode64("#{username}:#{password}").gsub("\n",'')
         curl.headers['Authorization'] = "Basic #{encoded}"
       end
     end
