@@ -62,6 +62,10 @@ module Views
       @hurl['method'] == 'GET'
     end
 
+    def method_is_HEAD?
+      @hurl['method'] == 'HEAD'
+    end
+
     def method_is_POST?
       @hurl['method'] == 'POST'
     end

@@ -25,6 +25,7 @@
   <p>
     <select id="select-method" name="method" class="form-alpha">
       <option value="GET" {{# method_is_GET? }}selected="selected"{{/ method_is_GET? }}>GET</option>
+      <option value="HEAD" {{# method_is_HEAD? }}selected="selected"{{/ method_is_HEAD? }}>HEAD</option>
       <option value="POST" {{# method_is_POST? }}selected="selected"{{/ method_is_POST? }}>POST</option>
       <option value="PUT" {{# method_is_PUT? }}selected="selected"{{/ method_is_PUT? }}>PUT</option>
       <option value="DELETE" {{# method_is_DELETE? }}selected="selected"{{/ method_is_DELETE? }}>DELETE</option>
