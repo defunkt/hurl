@@ -34,6 +34,12 @@ module Hurl
 
     enable :sessions
 
+    set :github_options, { :client_id => ENV['GH_CLIENT_ID'],
+                           :secret    => ENV['GH_SECRET'],
+                           :scopes    => 'user' }
+
+    register Sinatra::Auth::Github
+
     def initialize(*args)
       super
       @debug = ENV['DEBUG']
@@ -112,6 +118,7 @@ module Hurl
     end
 
     get '/logout/?' do
+      logout!
       clear_session
       session['flash'] = 'see you later!'
       redirect '/'
