@@ -16,7 +16,7 @@ Installation
 First install xmllint:
 
     * Homebrew
-    $ brew install xmllint
+    $ brew install libxml2
 
     * Gentoo
     $ emerge dev-libs/libxml2
