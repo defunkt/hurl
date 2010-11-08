@@ -2,7 +2,7 @@ require 'fileutils'
 
 module Hurl
   class DB
-    DIR = File.expand_path("db")
+    DIR = File.expand_path(ENV['HURL_DB_DIR'] || "db")
 
     def self.find(scope, id)
       decode File.read(dir(scope, id) + id) if id && id.is_a?(String)

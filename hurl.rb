@@ -17,8 +17,8 @@ module Hurl
 
     enable :sessions
 
-    set :github_options, { :client_id    => ENV['GH_CLIENT_ID'],
-                           :secret       => ENV['GH_SECRET'],
+    set :github_options, { :client_id    => ENV['HURL_CLIENT_ID'],
+                           :secret       => ENV['HURL_SECRET'],
                            :scopes       => '',
                            :callback_url => '/login/callback/' }
 
