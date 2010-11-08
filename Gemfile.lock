@@ -1,0 +1,48 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    addressable (2.2.2)
+    albino (1.0)
+    curb (0.7.8)
+    faraday (0.4.6)
+      addressable (>= 2.1.1)
+      rack (>= 1.0.1)
+    json (1.4.6)
+    mime-types (1.16)
+    multi_json (0.0.5)
+    mustache (0.11.2)
+    oauth2 (0.0.13)
+      faraday (~> 0.4.1)
+      multi_json (>= 0.0.4)
+    rack (1.2.1)
+    rest-client (1.5.1)
+      mime-types (>= 1.16)
+    shotgun (0.8)
+      rack (>= 1.0)
+    sinatra (1.1.0)
+      rack (~> 1.1)
+      tilt (~> 1.1)
+    sinatra_auth_github (0.0.11)
+      rest-client (~> 1.5.1)
+      sinatra (~> 1.0)
+      warden-github (~> 0.0.5)
+    tilt (1.1)
+    warden (0.10.7)
+      rack (>= 1.0.0)
+    warden-github (0.0.6)
+      json (>= 1.0.0)
+      oauth2 (~> 0.0.8)
+      warden (~> 0.10)
+    yajl-ruby (0.7.8)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  albino (~> 1.0)
+  curb (~> 0.7.8)
+  mustache (~> 0.11.2)
+  shotgun
+  sinatra (~> 1.0)
+  sinatra_auth_github
+  yajl-ruby (~> 0.7.8)
