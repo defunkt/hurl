@@ -157,7 +157,8 @@ module Hurl
         end
 
         header  = pretty_print_headers(curl.header_str)
-        body    = pretty_print(curl.content_type, curl.body_str)
+        type    = url =~ /(\.js)/ ? 'js' : curl.content_type
+        body    = pretty_print(type, curl.body_str)
         request = pretty_print_requests(sent_headers, fields)
 
         json :header    => header,

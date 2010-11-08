@@ -7,6 +7,8 @@ module Hurl
 
         if type =~ /json|javascript/
           pretty_print_json(content)
+        elsif type == 'js'
+          pretty_print_js(content)
         elsif type.include? 'xml'
           pretty_print_xml(content)
         elsif type.include? 'html'
@@ -17,7 +19,11 @@ module Hurl
       end
 
       def pretty_print_json(content)
-        colorize :js => shell("python -msimplejson.tool", :stdin => content)
+        pretty_print_js shell("python -msimplejson.tool", :stdin => content)
+      end
+
+      def pretty_print_js(content)
+        colorize :js => content
       end
 
       def pretty_print_xml(content)
