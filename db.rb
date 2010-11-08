@@ -4,14 +4,14 @@ module Hurl
   class DB
     DIR = File.expand_path("db")
 
-    def self.find(id)
-      decode File.read(dir(id) + id) if id && id.is_a?(String)
+    def self.find(scope, id)
+      decode File.read(dir(scope, id) + id) if id && id.is_a?(String)
     rescue Errno::ENOENT
       nil
     end
 
-    def self.save(id, content)
-      File.open(dir(id) + id, 'w') do |f|
+    def self.save(scope, id, content)
+      File.open(dir(scope, id) + id, 'w') do |f|
         f.puts encode(content)
       end
 
@@ -19,8 +19,8 @@ module Hurl
     end
 
   private
-    def self.dir(id)
-      FileUtils.mkdir_p DIR + '/' + id[0...2].to_s + '/' + id[2...4].to_s + '/'
+    def self.dir(scope, id)
+      FileUtils.mkdir_p "#{DIR}/#{scope}/#{id[0...2]}/#{id[2...4]}/"
     end
 
     def self.encode(object)
