@@ -100,6 +100,10 @@ module Hurl
       mustache :about
     end
 
+    get '/stats/?' do
+      mustache :stats
+    end
+
     get '/login/?' do
       authenticate!
       redirect '/'
