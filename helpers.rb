@@ -21,14 +21,6 @@ module Hurl
       Digest::SHA1.hexdigest(thing.to_s)
     end
 
-    def encode(object)
-      Hurl.encode object
-    end
-
-    def decode(object)
-      Hurl.decode object
-    end
-
     def logged_in?
       !!@user
     end
