@@ -26,14 +26,13 @@ module Hurl
     end
 
     def add_hurl(id)
-      hurl_ids = DB.find(:users, db_id) || []
-      hurl_ids << id
-      hurl_ids.uniq!
+      hurl_ids = DB.find(:users, db_id) || {}
+      hurl_ids[id] = Time.now
       DB.save(:users, db_id, hurl_ids)
     end
 
     def remove_hurl(id)
-      hurl_ids = DB.find(:users, db_id) || []
+      hurl_ids = DB.find(:users, db_id) || {}
       hurl_ids.delete(id)
       DB.save(:users, db_id, hurl_ids)
     end
@@ -43,8 +42,8 @@ module Hurl
     end
 
     def hurls(start = 0, limit = 100)
-      Array(DB.find(:users, db_id)).map do |id|
-        id ? DB.find(:hurls, id) : nil
+      Array(DB.find(:users, db_id)).map do |id, date|
+        DB.find(:hurls, id).merge('date' => date) if id
       end.compact
     end
     alias_method :unsorted_hurls, :hurls
