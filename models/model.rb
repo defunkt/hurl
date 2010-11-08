@@ -18,8 +18,17 @@ module Hurl
       indices << field
 
       sing = (class << self; self end)
+
       sing.send(:define_method, "find_by_#{field}") do |value|
         from_json redis.get(key(field, value))
+      end
+
+      sing.send(:define_method, "find_or_create_by_#{field}") do |value|
+        if obj = send("find_by_#{field}", value)
+          obj
+        else
+          create(field => value)
+        end
       end
     end
 
@@ -47,6 +56,7 @@ module Hurl
     #
     # instance methods
     #
+
     def initialize(attributes = {})
       attributes.each do |key, value|
         send "#{key}=", value
