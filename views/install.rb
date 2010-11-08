@@ -6,22 +6,32 @@ module Views
     end
 
     def xmllint_installed?
-      system("which xmllint")
-      $?.exitstatus == 0
+      command? "which xmllint"
     end
 
     def simplejson_installed?
-      system("python -msimplejson.tool 0 2> /dev/null")
-      $?.exitstatus != 1
+      command?("python -msimplejson.tool 0 2> /dev/null") ||
+        $?.exitstatus == 255
     end
 
     def pygments_installed?
-      system("which #{Albino.bin}")
-      $?.exitstatus == 0
+      command? "which #{Albino.bin}"
+    end
+
+    def xmllint_install_command
+      if command? "brew"
+        "brew install"
+      elsif command? "apt-get"
+        "apt-get install"
+      elsif command? "emerge"
+        "emerge"
+      else
+        "to get xmllint please install"
+      end
     end
 
     def xmllint_install
-      "brew install libxml2"
+      "#{xmllint_install_command} libxml2"
     end
 
     def simplejson_install
@@ -30,6 +40,11 @@ module Views
 
     def pygments_install
       "easy_install pygments"
+    end
+
+    def command?(command)
+      system(command)
+      $?.exitstatus == 0
     end
   end
 end
