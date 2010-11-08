@@ -126,8 +126,15 @@ $(document).ready(function() {
 
   // add post param
   $('#add-param').click(function() {
+    // toggle if post body is being shown
+    if ( $('#set-post-body .link-icon').text() == '-' ) {
+      $('#set-post-body').click()
+      return false
+    }
+
     var newField = $('#param-fields').clone()
     newField.toggle().attr('id', '')
+    newField.addClass('param-field')
     newField.find('.form-alpha').attr('title', 'name')
     newField.find('.form-beta').attr('title', 'value')
     Hurl.labelHints( newField.find('input[title]') )
@@ -135,6 +142,27 @@ $(document).ready(function() {
     $(this).parent().append( newField )
     return false
   })
+
+  // set post body
+  $('#set-post-body').click(function() {
+    var icon = $(this).find('.link-icon')
+
+    if ( icon.text() == '+' ) {
+      icon.text('-')
+      $('.param-field').hide()
+      $('#post-body').show().find('textarea').attr('disabled', false)
+    } else {
+      icon.text('+')
+      $('.param-field').show()
+      $('#post-body').hide().find('textarea').attr('disabled', true)
+    }
+
+    return false
+  })
+
+  if ( $('#post-body').is(':visible') ) {
+    $('#set-post-body').click()
+  }
 
   // add header
   $('#add-header').click(function() {

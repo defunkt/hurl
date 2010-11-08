@@ -142,24 +142,28 @@ module Hurl
       # arbitrary headers
       add_headers_from_arrays(curl, params["header-keys"], params["header-vals"])
 
-      # arbitrary params
-      fields = make_fields(method, params["param-keys"], params["param-vals"])
+      # arbitrary post params
+      if params['post-body']
+        post_data = Array(Rack::Utils.escape params['post-body'])
+      else
+        post_data = make_fields(method, params["param-keys"], params["param-vals"])
+      end
 
       begin
         debug { puts "#{method} #{url}" }
 
-        curl.send("http_#{method.downcase}", *fields)
+        curl.send("http_#{method.downcase}", *post_data)
 
         debug do
           puts sent_headers.join("\n")
-          puts fields.join('&') if fields.any?
+          puts post_data.join('&') if post_data.any?
           puts curl.header_str
         end
 
         header  = pretty_print_headers(curl.header_str)
         type    = url =~ /(\.js)/ ? 'js' : curl.content_type
         body    = pretty_print(type, curl.body_str)
-        request = pretty_print_requests(sent_headers, fields)
+        request = pretty_print_requests(sent_headers, post_data)
 
         json :header    => header,
              :body      => body,

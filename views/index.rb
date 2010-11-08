@@ -40,6 +40,10 @@ module Views
       @hurl && @hurl.any?
     end
 
+    def hurl_post_body
+      @hurl['post-body'] if @hurl
+    end
+
     def hurl_url
       @hurl['url'] if @hurl
     end
