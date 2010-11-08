@@ -212,37 +212,6 @@ $(document).ready(function() {
     return false
   })
 
-  // log in
-  function registerLoginFormHandlers() {
-    $('#facebox .sign-up-submit').click(function() {
-      var form = $('#facebox form'), action = form.attr('action')
-      form.attr('action', '/signup/')
-      form.submit()
-      return false
-    })
-
-    $('#facebox .log-in-submit').click(function() {
-      var form = $('#facebox form'), action = form.attr('action')
-      form.attr('action', '/login/')
-      form.submit()
-      return false
-    })
-
-    $('#facebox form').submit(function() {
-      $(this).hurlAjaxSubmit(function(res) {
-        var data = JSON.parse(res)
-
-        if (data.error) {
-          $('.error-msg').html(data.error).show()
-        } else if (data.success) {
-          $(document).trigger('close.facebox')
-          window.location = location.pathname
-        }
-      })
-      return false
-    })
-  }
-
   // flash close
   $('.flash-close').click(function (){
     $(this).parent().fadeOut()
@@ -253,7 +222,6 @@ $(document).ready(function() {
   $('a[rel*=facebox]').facebox({ opacity: 0.4 })
   $(document).bind('reveal.facebox', function() {
     Hurl.labelHints('#facebox input[title]')
-//     registerLoginFormHandlers()
     $('#facebox .footer').remove()
   })
 
