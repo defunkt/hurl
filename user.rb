@@ -26,14 +26,14 @@ module Hurl
     end
 
     def add_hurl(id)
-      hurl_ids = DB.find(:users, db_id)
+      hurl_ids = DB.find(:users, db_id) || []
       hurl_ids << id
       hurl_ids.uniq!
       DB.save(:users, db_id, hurl_ids)
     end
 
     def remove_hurl(id)
-      hurl_ids = DB.find(:users, db_id)
+      hurl_ids = DB.find(:users, db_id) || []
       hurl_ids.delete(id)
       DB.save(:users, db_id, hurl_ids)
     end
