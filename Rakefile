@@ -1,10 +1,3 @@
-namespace :redis do
-  desc "Start Redis for development"
-  task :start do
-    system "redis-server"
-  end
-end
-
 namespace :hurl do
   desc "Start Hurl for development"
   task :start do
@@ -45,4 +38,4 @@ namespace :hurl do
 end
 
 desc "Start everything."
-multitask :start => [ 'redis:start', 'hurl:start' ]
+multitask :start => [ 'hurl:start' ]

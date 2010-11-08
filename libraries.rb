@@ -20,9 +20,6 @@ rubygem 'mustache/sinatra'
 $LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor'
 require 'albino'
 
-$LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor/redis-rb/lib'
-require 'redis'
-
 $LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor/sinatra_auth_github/lib'
 require 'sinatra/auth/github'
 

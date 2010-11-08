@@ -1,15 +1,6 @@
 require 'libraries'
 
 module Hurl
-  def self.redis
-    return @redis if @redis
-    @redis = Redis.new(:host => '127.0.0.1', :port => 6379, :thread_safe => true)
-  end
-
-  def self.redis=(redis)
-    @redis = redis
-  end
-
   class App < Sinatra::Base
     register Mustache::Sinatra
     helpers Hurl::Helpers
@@ -37,10 +28,6 @@ module Hurl
       super
       @debug = ENV['DEBUG']
       setup_default_hurls
-    end
-
-    def redis
-      Hurl.redis
     end
 
 
@@ -254,17 +241,7 @@ module Hurl
 
     # has this person made too many requests?
     def rate_limited?
-      return false
-      tries = redis.get(key="tries:#{@env['REMOTE_ADDR']}").to_i
-
-      if tries > 10
-        true
-      else
-        # give the key a new value and tell it to expire in 30 seconds
-        redis.set(key, tries+1)
-        redis.expire(key, 30)
-        false
-      end
+      false
     end
   end
 end
