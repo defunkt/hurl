@@ -83,6 +83,10 @@ module Hurl
       }
     end
 
+    def login
+      @login ||= github_user.login
+    end
+
     def gravatar_url
       "http://www.gravatar.com/avatar/%s" % github_user.attribs['gravatar_id']
     end

@@ -57,8 +57,8 @@ module Hurl
     #
 
     before do
-      if load_session
-        @user = User.find_or_create_by_login(@session['login'])
+      if authenticated?
+        @user = User.new
         @user.github_user = github_user
       end
 
@@ -127,13 +127,11 @@ module Hurl
 
     get '/login/callback/?' do
       authenticate!
-      create_session(:login => github_user.login)
       redirect '/'
     end
 
     get '/logout/?' do
       logout!
-      clear_session
       session['flash'] = 'see you later!'
       redirect '/'
     end

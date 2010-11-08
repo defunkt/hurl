@@ -1,11 +1,9 @@
-require 'helpers/sessions'
 require 'helpers/pretty_printing'
 require 'helpers/sinatra'
 require 'yaml'
 
 module Hurl
   module Helpers
-    include Hurl::Helpers::Sessions
     include Hurl::Helpers::PrettyPrinting
     include Hurl::Helpers::Sinatra
 
