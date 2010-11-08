@@ -17,9 +17,7 @@ rubygem 'yajl' => 'yajl-ruby'
 rubygem 'curb'
 rubygem 'mustache/sinatra'
 rubygem 'sinatra/auth/github'
-
-$LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor'
-require 'albino'
+rubygem 'albino'
 
 require 'db'
 
