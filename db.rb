@@ -18,11 +18,11 @@ module Hurl
       true
     end
 
-  private
     def self.dir(scope, id)
       FileUtils.mkdir_p "#{DIR}/#{scope}/#{id[0...2]}/#{id[2...4]}/"
     end
 
+  private
     def self.encode(object)
       Zlib::Deflate.deflate Yajl::Encoder.encode(object)
     end
