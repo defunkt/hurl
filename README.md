@@ -40,6 +40,9 @@ And finally Redis.
     * Gentoo
     $ emerge redis
 
+    * Ubuntu/Debian
+    $ apt-get install redis-server
+
     * Other
     $ rake -f vendor/redis-rb/tasks/redis.tasks.rb redis:install
 
