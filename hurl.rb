@@ -253,21 +253,20 @@ module Hurl
       hash = { 'header' => header, 'body' => body, 'request' => request }
       id = sha(hash.to_s)
       json = encode(hash)
-      redis.set(id, json)
+      DB.save(id, json)
       id
     end
 
     def save_hurl(params)
       id = sha(params.to_s)
       json = encode(params.merge(:id => id))
-      was_set = redis.setnx(id, json)
-      stat :hurls if was_set
+      stat :hurls if DB.save(id, json)
       @user.add_hurl(id) if @user
       id
     end
 
     def find_hurl_or_view(id)
-      decode redis.get(id)
+      decode DB.find(id)
     end
 
     # has this person made too many requests?
