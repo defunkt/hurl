@@ -44,27 +44,6 @@ module Hurl
     end
     alias_method :unsorted_hurls, :hurls
 
-    def hurls!(start = 0, limit = 100)
-      return [] unless hurls.any?
-
-      hurls = redis.sort hurls_key,
-        :by    => "#{hurls_key}:*",
-        :order => 'DESC',
-        :get   => "*",
-        :limit => [start, limit]
-
-      # convert hurls to ruby objects
-      hurls.map! { |hurl| Hurl.decode(hurl) }
-
-      # find and set the corresponding timestamps for
-      # each hurl (scoped to this user)
-      keys = hurls.map { |h| hurls_key(h['id']) }
-      redis.mget(keys).each_with_index do |date, i|
-        hurls[i]['date'] = Time.at(date.to_i)
-      end
-      hurls
-    end
-
 
     #
     # instance methods
