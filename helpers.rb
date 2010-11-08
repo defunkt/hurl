@@ -29,12 +29,6 @@ module Hurl
       @user
     end
 
-    def login_partial
-      instance = Mustache.new
-      instance.template = File.read(Hurl::App.views + '/login.mustache')
-      instance.to_html
-    end
-
     # for sorting hashes with symbol keys
     def sort_hash(hash)
       hash.to_a.sort_by { |a, b| a.to_s }
