@@ -1,7 +1,12 @@
 module Hurl
-  class User < Model
-    attr_accessor :login, :github_user
-    index :login
+  class User
+    attr_accessor :id, :login, :github_user
+
+    def initialize(github_user)
+      @github_user = github_user
+      @login       = github_user.login
+      @id          = github_user.attribs['id']
+    end
 
     #
     # each user has an associated list
@@ -9,21 +14,13 @@ module Hurl
     #
 
     def add_hurl(hurl)
-      redis.sadd(hurls_key, hurl)
-      redis.set(hurls_key(hurl), Time.now.to_i)
+      hurls << hurl
+      DB.save db_file, hurls.uniq
     end
 
     def remove_hurl(hurl)
-      redis.srem(hurls_key, hurl)
-      redis.del(hurls_key(hurl))
-    end
-
-    def unsorted_hurls
-      redis.smembers(hurls_key)
-    end
-
-    def any_hurls?
-      redis.scard(hurls_key).to_i > 0
+      hurls.delete(hurl)
+      DB.save db_file, hurls
     end
 
     def latest_hurl
@@ -31,19 +28,24 @@ module Hurl
     end
 
     def second_to_last_hurl_id
-      any_hurls? and hurls(0, 2).size == 2 and hurls(0, 2)[1]['id']
+      hurls.any? and hurls(0, 2).size == 2 and hurls(0, 2)[1]['id']
     end
 
     def latest_hurl_id
-      any_hurls? and latest_hurl['id']
+      hurls.any? and latest_hurl['id']
+    end
+
+    def db_file
+      Digest::MD5.hexdigest(id.to_s)
     end
 
     def hurls(start = 0, limit = 100)
-      @hurls ||= hurls!(start, limit)
+      DB.find(db_file) || []
     end
+    alias_method :unsorted_hurls, :hurls
 
     def hurls!(start = 0, limit = 100)
-      return [] unless any_hurls?
+      return [] unless hurls.any?
 
       hurls = redis.sort hurls_key,
         :by    => "#{hurls_key}:*",
@@ -89,10 +91,6 @@ module Hurl
 
     def gravatar_url
       "http://www.gravatar.com/avatar/%s" % github_user.attribs['gravatar_id']
-    end
-
-    def hurls_key(*parts)
-      key(id, :hurls, *parts)
     end
   end
 end

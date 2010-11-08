@@ -6,13 +6,5 @@ module Views
         hurl
       end
     end
-
-    def any_hurls?
-      hurls.any?
-    end
-
-    def no_hurls
-      not any_hurls?
-    end
   end
 end

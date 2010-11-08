@@ -84,7 +84,7 @@ module Hurl
     def prev_hurl
       return unless logged_in?
 
-      if @hurl.empty? && @user.any_hurls?
+      if @hurl.empty? && @user.hurls.any?
         @user.latest_hurl_id
       elsif @hurl.any?
         hurls = @user.hurls
