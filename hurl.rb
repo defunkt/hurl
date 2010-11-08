@@ -107,10 +107,6 @@ module Hurl
       mustache :about
     end
 
-    get '/stats/?' do
-      mustache :stats
-    end
-
     get '/login/?' do
       authenticate!
       redirect '/'
@@ -247,7 +243,7 @@ module Hurl
 
     def save_hurl(params)
       id = sha(params.to_s)
-      stat :hurls if DB.save(id, params.merge(:id => id))
+      DB.save(id, params.merge(:id => id))
       @user.add_hurl(id) if @user
       id
     end
@@ -258,6 +254,7 @@ module Hurl
 
     # has this person made too many requests?
     def rate_limited?
+      return false
       tries = redis.get(key="tries:#{@env['REMOTE_ADDR']}").to_i
 
       if tries > 10
