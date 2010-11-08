@@ -1,24 +1,26 @@
 <form id="hurl-form" method="post" action="/">
   <p>
-    {{# previous_hurl }}
+    {{# previous_hurl}}
       <a href="/hurls/{{ hurl }}" id="page-prev" title="previous">&lang;</a>
-    {{/ previous_hurl }}
+    {{/ previous_hurl}}
 
-    {{# no_previous_hurl }}
+    {{^ previous_hurl}}
       <a href="#" style="display:none; "id="page-prev" title="previous">&lang;</a>
-    {{/ no_previous_hurl }}
+    {{/ previous_hurl}}
 
-    {{# next_hurl }}
+    {{# next_hurl}}
       <a href="/hurls/{{ hurl }}" id="page-next" title="next">&rang;</a>
-    {{/ next_hurl }}
+    {{/ next_hurl}}
 
-    {{# no_next_hurl_and_logged_in }}
-      <a href="/" id="page-next" title="next">&rang;</a>
-    {{/ no_next_hurl_and_logged_in }}
+    {{^ next_hurl}}
+      {{# logged_in?}}
+        <a href="/" id="page-next" title="next">&rang;</a>
+      {{/ logged_in?}}
 
-    {{# no_next_hurl_and_anonymous }}
-      <a href="/" style="display:none;" id="page-next" title="next">&rang;</a>
-    {{/ no_next_hurl_and_anonymous }}
+      {{^ logged_in?}}
+        <a href="/" style="display:none;" id="page-next" title="next">&rang;</a>
+      {{/ logged_in?}}
+    {{/ next_hurl}}
 
     <input type="text" name="url" title="URL" value="{{ hurl_url }}"/>
   </p>

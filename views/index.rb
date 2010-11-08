@@ -6,26 +6,10 @@ module Views
       end
     end
 
-    def no_previous_hurl
-      not previous_hurl
-    end
-
     def next_hurl
       if nxt = super
         [ :hurl => nxt.to_s ]
       end
-    end
-
-    def no_next_hurl
-      not next_hurl
-    end
-
-    def no_next_hurl_and_logged_in
-      logged_in? && @hurl.any?
-    end
-
-    def no_next_hurl_and_anonymous
-      no_next_hurl && !logged_in?
     end
 
     def help_blurb_hidden?
