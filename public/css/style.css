@@ -21,6 +21,12 @@ h2 {
 .clearwrap {
   overflow: hidden;
 }
+img.gravatar {
+  width: 14px;
+  height: 14px;
+  padding: 1px;
+  border: 1px solid #c0c0c0;
+}
 /* forms */
 label {
   font-size: 16px;
@@ -48,7 +54,7 @@ select.form-alpha {
   width: 290px;
 }
 input[type=text].form-alpha {
-  width: 280px;    
+  width: 280px;
 }
 .facebox input[type=text],
 .facebox input[type=password] {

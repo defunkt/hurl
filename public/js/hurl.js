@@ -253,7 +253,7 @@ $(document).ready(function() {
   $('a[rel*=facebox]').facebox({ opacity: 0.4 })
   $(document).bind('reveal.facebox', function() {
     Hurl.labelHints('#facebox input[title]')
-    registerLoginFormHandlers()
+//     registerLoginFormHandlers()
     $('#facebox .footer').remove()
   })
 

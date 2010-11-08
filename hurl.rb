@@ -57,8 +57,10 @@ module Hurl
 
     before do
       if load_session
-        @user = User.find_by_email(@session['email'])
+        @user = User.find_or_create_by_login(@session['login'])
+        @user.github_user = github_user
       end
+
       @flash = session.delete('flash')
     end
 
@@ -115,6 +117,12 @@ module Hurl
 
     get '/stats/?' do
       mustache :stats
+    end
+
+    get '/login/?' do
+      authenticate!
+      create_session(:login => github_user.login)
+      redirect '/'
     end
 
     get '/logout/?' do

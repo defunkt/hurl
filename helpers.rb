@@ -35,6 +35,10 @@ module Hurl
       !!@user
     end
 
+    def user
+      @user
+    end
+
     def login_partial
       instance = Mustache.new
       instance.template = File.read(Hurl::App.views + '/login.mustache')
