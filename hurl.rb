@@ -250,21 +250,19 @@ module Hurl
     def save_view(header, body, request)
       hash = { 'header' => header, 'body' => body, 'request' => request }
       id = sha(hash.to_s)
-      json = encode(hash)
-      DB.save(id, json)
+      DB.save(id, hash)
       id
     end
 
     def save_hurl(params)
       id = sha(params.to_s)
-      json = encode(params.merge(:id => id))
-      stat :hurls if DB.save(id, json)
+      stat :hurls if DB.save(id, params.merge(:id => id))
       @user.add_hurl(id) if @user
       id
     end
 
     def find_hurl_or_view(id)
-      decode DB.find(id)
+      DB.find(id)
     end
 
     # has this person made too many requests?

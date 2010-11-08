@@ -9,17 +9,25 @@ module Hurl
     end
 
     def self.find(id)
-      File.read dir(id) + id
+      decode File.read(dir(id) + id)
     rescue Errno::ENOENT
       nil
     end
 
     def self.save(id, content)
       File.open(dir(id) + id, 'w') do |f|
-        f.puts content
+        f.puts encode(content)
       end
 
       true
+    end
+
+    def self.encode(object)
+      Zlib::Deflate.deflate Yajl::Encoder.encode(object)
+    end
+
+    def self.decode(object)
+      Yajl::Parser.parse(Zlib::Inflate.inflate(object)) rescue nil
     end
   end
 end
