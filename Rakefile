@@ -35,6 +35,11 @@ namespace :hurl do
       abort "dirty index - not publishing!"
     end
   end
+
+  desc "Please pardon our dust."
+  task :deploy do
+    exec "ssh deploy@hurl.it 'cd /www/hurl && git fetch origin && git reset --hard origin/oauth && touch tmp/restart.txt'"
+  end
 end
 
 desc "Start everything."
