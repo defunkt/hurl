@@ -5,7 +5,7 @@ module Hurl
     DIR = File.expand_path("db")
 
     def self.dir(id)
-      FileUtils.mkdir_p DIR + '/' + id[0].to_s + '/' + id[1].to_s + '/'
+      FileUtils.mkdir_p DIR + '/' + id[0...2].to_s + '/' + id[2...4].to_s + '/'
     end
 
     def self.find(id)
