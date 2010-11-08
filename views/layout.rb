@@ -9,5 +9,9 @@ module Views
     def flash
       @flash
     end
+
+    def deployed_sha
+      @deployed_sha ||= `git rev-parse --short HEAD`
+    end
   end
 end
