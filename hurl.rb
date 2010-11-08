@@ -34,9 +34,10 @@ module Hurl
 
     enable :sessions
 
-    set :github_options, { :client_id => ENV['GH_CLIENT_ID'],
-                           :secret    => ENV['GH_SECRET'],
-                           :scopes    => 'user' }
+    set :github_options, { :client_id    => ENV['GH_CLIENT_ID'],
+                           :secret       => ENV['GH_SECRET'],
+                           :scopes       => '',
+                           :callback_url => '/login/callback/' }
 
     register ::Sinatra::Auth::Github
 
@@ -120,6 +121,11 @@ module Hurl
     end
 
     get '/login/?' do
+      authenticate!
+      redirect '/'
+    end
+
+    get '/login/callback/?' do
       authenticate!
       create_session(:login => github_user.login)
       redirect '/'
