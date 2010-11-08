@@ -6,5 +6,9 @@ module Views
         hurl
       end
     end
+
+    def any_hurls?
+      @user.hurls.any?
+    end
   end
 end

@@ -14,8 +14,7 @@ module Hurl
     #
 
     def add_hurl(hurl)
-      hurls << hurl
-      DB.save db_file, hurls.uniq
+      DB.save db_file, (hurls + [hurl]).uniq
     end
 
     def remove_hurl(hurl)
@@ -40,7 +39,9 @@ module Hurl
     end
 
     def hurls(start = 0, limit = 100)
-      DB.find(db_file) || []
+      Array(DB.find(db_file)).map do |hurl|
+        hurl ? DB.find(hurl['id']) : nil
+      end
     end
     alias_method :unsorted_hurls, :hurls
 
