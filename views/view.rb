@@ -1,7 +1,5 @@
 module Views
-  class View < Mustache
-    include Hurl::Helpers
-
+  class View < Layout
     def view_request
       @view['request']
     end

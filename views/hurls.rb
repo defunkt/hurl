@@ -1,7 +1,5 @@
 module Views
-  class Hurls < Mustache
-    include Hurl::Helpers
-
+  class Hurls < Layout
     def hurls
       @user.hurls.map do |hurl|
         hurl['auth'] = hurl['auth'] == 'none' ? 'no auth' : 'HTTP basic'

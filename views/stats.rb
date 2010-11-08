@@ -1,7 +1,5 @@
 module Views
-  class Stats < Mustache
-    include Hurl::Helpers
-
+  class Stats < Layout
     def hurl_stats
       stat_value_hash stats
     end

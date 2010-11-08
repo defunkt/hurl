@@ -1,7 +1,5 @@
 module Views
-  class Index < Mustache
-    include Hurl::Helpers
-
+  class Index < Layout
     def previous_hurl
       if prev = prev_hurl
         [ :hurl => prev.to_s ]

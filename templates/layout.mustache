@@ -29,9 +29,9 @@
           <a href="/logout/" class="nav-item">log out</a>
         {{/ logged_in? }}
 
-        {{# anonymous? }}
+        {{^ logged_in?}}
          <a href="#facebox-log-in" rel="facebox">log in</a> to save your hurls
-        {{/ anonymous? }}
+        {{/ logged_in?}}
      </div>
       <a href="/"><img src="/img/logo.png" title="hurl" /></a>
     </div>
