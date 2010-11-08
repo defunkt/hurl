@@ -27,14 +27,6 @@ img.gravatar {
   padding: 1px;
   border: 1px solid #c0c0c0;
 }
-pre {
-    background: #444;
-    color: #fff;
-    font-family:'Bitstream Vera Sans Mono','Courier',monospace;
-    padding: 15px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-}
 /* forms */
 label {
   font-size: 16px;
@@ -281,4 +273,12 @@ td.date {
 /* install */
 #install li {
   margin-bottom: 15px;
+}
+#install pre {
+    background: #444;
+    color: #fff;
+    font-family:'Bitstream Vera Sans Mono','Courier',monospace;
+    padding: 15px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
 }
