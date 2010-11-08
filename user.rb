@@ -13,17 +13,6 @@ module Hurl
     # of hurls
     #
 
-    def add_hurl(id)
-      hurls << id
-      hurls.uniq!
-      DB.save db_file, hurls
-    end
-
-    def remove_hurl(id)
-      hurls.delete(id)
-      DB.save db_file, hurls
-    end
-
     def latest_hurl
       hurls(0, 1).first
     end
@@ -36,8 +25,23 @@ module Hurl
       hurls.any? and latest_hurl['id']
     end
 
+    def add_hurl(id)
+      hurl_ids << id
+      hurl_ids.uniq!
+      DB.save db_file, hurl_ids
+    end
+
+    def remove_hurl(id)
+      hurl_ids.delete(id)
+      DB.save db_file, hurl_ids
+    end
+
     def db_file
       Digest::MD5.hexdigest(id.to_s)
+    end
+
+    def hurl_ids
+      @hurl_ids ||= DB.find(db_file)
     end
 
     def hurls(start = 0, limit = 100)
@@ -46,7 +50,7 @@ module Hurl
     alias_method :unsorted_hurls, :hurls
 
     def hurls!(start = 0, limit = 100)
-      Array(DB.find(db_file)).map do |id|
+      Array(hurl_ids).map do |id|
         id ? DB.find(id) : nil
       end.compact
     end
