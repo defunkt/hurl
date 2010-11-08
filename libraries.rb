@@ -28,8 +28,6 @@ require 'sinatra/auth/github'
 
 require 'db'
 
-require 'models/model'
-require 'models/user'
-
+require 'user'
 require 'helpers'
 require 'views/layout'
