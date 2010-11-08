@@ -41,7 +41,7 @@ module Hurl
     def hurls(start = 0, limit = 100)
       Array(DB.find(db_file)).map do |hurl|
         hurl ? DB.find(hurl['id']) : nil
-      end
+      end.compact
     end
     alias_method :unsorted_hurls, :hurls
 
