@@ -36,6 +36,8 @@ module Hurl
     #
 
     before do
+      check_for_dependencies
+
       if authenticated?
         @user = User.new(github_user)
       end
@@ -88,6 +90,10 @@ module Hurl
     get '/test.xml' do
       content_type 'application/xml'
       File.read('test/xml')
+    end
+
+    get '/install/?' do
+      mustache :install
     end
 
     get '/about/?' do

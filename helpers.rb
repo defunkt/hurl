@@ -76,5 +76,19 @@ module Hurl
       path = File.expand_path(File.dirname(__FILE__) + '/hurls.yaml')
       @default_hurls = YAML.load_file(path)
     end
+
+    # ensure we have everything installed (on boot)
+    def check_for_dependencies
+      return if @checked || request.path_info == "/install"
+      @checked = true
+
+      if missing_dependencies?
+        throw(:halt, [ 302, {'Location' => '/install'}, [ ]])
+      end
+    end
+
+    def missing_dependencies?
+      not Views::Install.new.everything_installed?
+    end
   end
 end
