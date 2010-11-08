@@ -38,7 +38,7 @@ module Hurl
                            :secret    => ENV['GH_SECRET'],
                            :scopes    => 'user' }
 
-    register Sinatra::Auth::Github
+    register ::Sinatra::Auth::Github
 
     def initialize(*args)
       super
