@@ -30,8 +30,7 @@ Next install the Python eggs:
 
 Then the RubyGems:
 
-    $ gem install yajl-ruby sinatra curb rack
-    $ gem install mustache --source=http://gemcutter.org
+    $ gem install yajl-ruby sinatra curb rack mustache
 
 And finally Redis.
 
