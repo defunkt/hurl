@@ -1,15 +1,7 @@
 namespace :hurl do
   desc "Start Hurl for development"
   task :start do
-    if installed? :shotgun
-      system "shotgun config.ru"
-    else
-      system "rackup config.ru"
-    end
-  end
-
-  def installed?(app)
-    `which #{app}`; $?.success?
+    exec "bundle exec shotgun config.ru"
   end
 
   desc "Generate GitHub pages."
