@@ -36,6 +36,10 @@ module Views
     # @hurl related
     #
 
+    def hurl?
+      @hurl && @hurl.any?
+    end
+
     def hurl_url
       @hurl['url'] if @hurl
     end
