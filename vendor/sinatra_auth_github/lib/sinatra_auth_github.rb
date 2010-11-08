@@ -1,1 +1,0 @@
-require 'sinatra/auth/github'

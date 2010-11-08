@@ -16,12 +16,10 @@ rubygem 'sinatra/base'
 rubygem 'yajl' => 'yajl-ruby'
 rubygem 'curb'
 rubygem 'mustache/sinatra'
+rubygem 'sinatra/auth/github'
 
 $LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor'
 require 'albino'
-
-$LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor/sinatra_auth_github/lib'
-require 'sinatra/auth/github'
 
 require 'db'
 
