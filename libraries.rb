@@ -26,6 +26,8 @@ require 'redis'
 $LOAD_PATH.unshift File.dirname(__FILE__) + '/vendor/sinatra_auth_github/lib'
 require 'sinatra/auth/github'
 
+require 'db'
+
 require 'models/model'
 require 'models/user'
 
