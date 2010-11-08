@@ -138,31 +138,6 @@ module Hurl
       redirect '/'
     end
 
-    post '/login/?' do
-      email, password = params.values_at(:email, :password)
-
-      if User.authenticate(email, password)
-        create_session(:email => email)
-        json :success => true
-      else
-        json :error => 'incorrect email or password'
-      end
-    end
-
-    post '/signup/?' do
-      email, password = params.values_at(:email, :password)
-      user = User.create(:email => email, :password => password)
-
-      if user.valid?
-        create_session(:email => email)
-        stat :users
-        session['flash'] = 'welcome to hurl!'
-        json :success => true
-      else
-        json :error => user.errors.to_s
-      end
-    end
-
     post '/' do
       return json(:error => "Calm down and try my margarita!") if rate_limited?
 
