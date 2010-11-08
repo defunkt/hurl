@@ -53,21 +53,6 @@ module Hurl
       login
     end
 
-    def validate
-      true
-    end
-
-    def to_hash
-      return {
-        'id'    => id,
-        'login' => login
-      }
-    end
-
-    def login
-      @login ||= github_user.login
-    end
-
     def gravatar_url
       "http://www.gravatar.com/avatar/%s" % github_user.attribs['gravatar_id']
     end
