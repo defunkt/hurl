@@ -41,12 +41,15 @@ module Hurl
       Digest::MD5.hexdigest(id.to_s)
     end
 
-    def hurls(start = 0, limit = 100)
+    def unsorted_hurls(start = 0, limit = 100)
       Array(DB.find(:users, db_id)).map do |id, date|
-        DB.find(:hurls, id).merge('date' => date) if id
+        DB.find(:hurls, id).merge('date' => Time.parse(date)) if id
       end.compact
     end
-    alias_method :unsorted_hurls, :hurls
+
+    def hurls(start = 0, limit = 100)
+      unsorted_hurls(start, limit).sort_by { |h| -h['date'].to_i }
+    end
 
     #
     # instance methods
