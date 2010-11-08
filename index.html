@@ -38,59 +38,44 @@ Now Hurl is an open source project for your enjoyment.</p>
 </ul>
 
 
-<p>First install xmllint:</p>
+<p>First download hurl and cd into the directory:</p>
 
-<pre><code>* Homebrew
-$ brew install xmllint
-
-* Gentoo
-$ emerge dev-libs/libxml2
-</code></pre>
-
-<p>Next install the Python eggs:</p>
-
-<pre><code>$ easy_install simplejson Pygments
-</code></pre>
-
-<p>Then the Rubygems:</p>
-
-<pre><code>$ gem install yajl-ruby sinatra curb
-$ gem install mustache --source=http://gemcutter.org
-</code></pre>
-
-<p>And finally Redis.</p>
-
-<pre><code>* Homebrew
-$ brew install redis
-
-* Gentoo
-$ emerge redis
-
-* Other
-$ rake -f vendor/redis-rb/tasks/redis.tasks.rb redis:install
-</code></pre>
-
-<h2>Get Hurl</h2>
-
-<p>Browse the source on GitHub: <a href="http://github.com/defunkt/hurl">http://github.com/defunkt/hurl</a></p>
-
-<p>Clone with Git:</p>
-
-<pre><code>$ git clone git://github.com/defunkt/hurl
+<pre><code>git clone git://github.com/defunkt/hurl
+cd hurl
 </code></pre>
 
 <p>Or download in either
 <a href="http://github.com/defunkt/hurl/zipball/master">zip</a> or
 <a href="http://github.com/defunkt/hurl/tarball/master">tar</a> formats.</p>
 
-<h2>Run Locally</h2>
+<p>Then install xmllint:</p>
 
-<pre><code>$ rake start
+<pre><code>* Homebrew
+brew install libxml2
+
+* Gentoo
+emerge dev-libs/libxml2
+
+* Ubuntu/Debian
+apt-get install libxml2-utils
 </code></pre>
 
-<p>If you have <a href="http://github.com/rtomayko/shotgun">shotgun</a> installed: <a href="http://localhost:9393">http://localhost:9393</a></p>
+<p>Next install the Python eggs:</p>
 
-<p>If not: <a href="http://localhost:9292">http://localhost:9292</a></p>
+<pre><code>easy_install simplejson Pygments
+</code></pre>
+
+<p>Then the RubyGems (you may need to <code>gem install bundler</code>):</p>
+
+<pre><code>bundle install
+</code></pre>
+
+<h2>Run Locally</h2>
+
+<pre><code>bundle exec shotgun config.ru
+</code></pre>
+
+<p>Now visit <a href="http://localhost:9393">http://localhost:9393</a></p>
 
 <h2>Issues</h2>
 
