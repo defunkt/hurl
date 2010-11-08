@@ -9,7 +9,7 @@ module Hurl
     end
 
     def self.find(id)
-      decode File.read(dir(id) + id) if id
+      decode File.read(dir(id) + id) if id && id.is_a?(String)
     rescue Errno::ENOENT
       nil
     end

@@ -13,12 +13,14 @@ module Hurl
     # of hurls
     #
 
-    def add_hurl(hurl)
-      DB.save db_file, (hurls + [hurl]).uniq
+    def add_hurl(id)
+      hurls << id
+      hurls.uniq!
+      DB.save db_file, hurls
     end
 
-    def remove_hurl(hurl)
-      hurls.delete(hurl)
+    def remove_hurl(id)
+      hurls.delete(id)
       DB.save db_file, hurls
     end
 
@@ -39,12 +41,15 @@ module Hurl
     end
 
     def hurls(start = 0, limit = 100)
-      Array(DB.find(db_file)).map do |hurl|
-        hurl ? DB.find(hurl['id']) : nil
-      end.compact
+      @hurls ||= hurls!(start = 0, limit = 100)
     end
     alias_method :unsorted_hurls, :hurls
 
+    def hurls!(start = 0, limit = 100)
+      Array(DB.find(db_file)).map do |id|
+        id ? DB.find(id) : nil
+      end.compact
+    end
 
     #
     # instance methods
