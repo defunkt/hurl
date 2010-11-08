@@ -6,7 +6,6 @@ group :runtime do
   gem 'yajl-ruby', '~>0.7.8'
   gem 'mustache',  '~>0.11.2'
   gem 'curb',      '~>0.7.8'
-  gem 'redis',     '=0.1'
 
   gem 'sinatra_auth_github'
 end

@@ -41,20 +41,6 @@ Then the RubyGems (you may need to `gem install bundler`):
 
     bundle install
 
-And finally Redis.
-
-    * Homebrew
-    brew install redis
-
-    * Gentoo
-    emerge redis
-
-    * Ubuntu/Debian
-    apt-get install redis-server
-
-    * Other
-    rake -f vendor/redis-rb/tasks/redis.tasks.rb redis:install
-
 
 Run Locally
 -----------
