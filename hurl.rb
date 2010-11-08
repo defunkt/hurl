@@ -28,7 +28,7 @@ module Hurl
     set :static,    true
     set :mustache, {
       :namespace => Object,
-      :views => 'views/',
+      :views     => 'views/',
       :templates => 'templates/'
     }
 
