@@ -224,7 +224,7 @@ module Hurl
 
     # post params from non-empty keys and values
     def make_fields(method, keys, values)
-      return [] unless method == 'POST'
+      return [] unless (method == 'POST' || method == 'PUT')
 
       fields = []
       keys, values = Array(keys), Array(values)
