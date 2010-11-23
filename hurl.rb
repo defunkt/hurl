@@ -152,11 +152,6 @@ module Hurl
       else
         post_data = make_fields(method, params["param-keys"], params["param-vals"])
       end
-      
-      if post_data.is_a? String
-        post_data = [post_data]
-        
-      end
 
       begin
         debug { puts "#{method} #{url}" }
@@ -164,13 +159,7 @@ module Hurl
         puts sent_headers.join("\n")
 
         if method == 'PUT'
-          curl.http_put(post_data.map do |x|
-            if (x.is_a? String) 
-              x
-            else
-              x.content.to_s 
-            end
-          end.join("&"))
+          curl.http_put(stringify(post_data))
         else
           curl.send("http_#{method.downcase}", *post_data)
       end
@@ -275,5 +264,18 @@ module Hurl
     def rate_limited?
       false
     end
+    
+    def stringify(post_data)
+      if post_data.is_a? String
+        post_data
+      elsif post_data.is_a? Array
+        post_data.map{ |x| stringify(x) }.join("&")
+      elsif post_data.is_a? Curl::PostField
+        post_data.to_s
+      else
+        "ERRRROOOOO"
+      end
+    end
+    
   end
 end
