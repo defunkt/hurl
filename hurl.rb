@@ -152,11 +152,28 @@ module Hurl
       else
         post_data = make_fields(method, params["param-keys"], params["param-vals"])
       end
+      
+      if post_data.is_a? String
+        post_data = [post_data]
+        
+      end
 
       begin
         debug { puts "#{method} #{url}" }
+        
+        puts sent_headers.join("\n")
 
-        curl.send("http_#{method.downcase}", *post_data)
+        if method == 'PUT'
+          curl.http_put(post_data.map do |x|
+            if (x.is_a? String) 
+              x
+            else
+              x.content.to_s 
+            end
+          end.join("&"))
+        else
+          curl.send("http_#{method.downcase}", *post_data)
+      end
 
         debug do
           puts sent_headers.join("\n")
