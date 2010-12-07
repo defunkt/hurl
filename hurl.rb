@@ -147,8 +147,8 @@ module Hurl
       add_headers_from_arrays(curl, params["header-keys"], params["header-vals"])
 
       # arbitrary post params
-      if params['post-body']
-        post_data = Array(params['post-body'])
+      if params['post-body'] && ['POST', 'PUT'].index(method)
+        post_data = [params['post-body']]
       else
         post_data = make_fields(method, params["param-keys"], params["param-vals"])
       end
