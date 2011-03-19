@@ -8,6 +8,6 @@ rescue LoadError
   nil
 end
 
-require 'hurl'
+require 'app/app'
 
 run Hurl::App.new

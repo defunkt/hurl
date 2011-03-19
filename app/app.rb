@@ -1,4 +1,4 @@
-require 'libraries'
+require 'app/libraries'
 
 module Hurl
   class App < Sinatra::Base
@@ -7,12 +7,17 @@ module Hurl
 
     dir = File.dirname(File.expand_path(__FILE__))
 
-    set :public,    "#{dir}/public"
-    set :static,    true
+    set :public,   "#{dir}/public"
+    set :root,     RACK_ROOT
+    set :app_file, __FILE__
+    set :static,   true
+
+    set :views, "#{dir}/templates"
+
     set :mustache, {
       :namespace => Object,
-      :views     => 'views/',
-      :templates => 'templates/'
+      :views     => "#{dir}/views",
+      :templates => "#{dir}/templates"
     }
 
     enable :sessions

@@ -73,7 +73,7 @@ module Hurl
 
     def default_hurls
       return @default_hurls if @default_hurls
-      path = File.expand_path(File.dirname(__FILE__) + '/hurls.yaml')
+      path = File.expand_path(App.root + '/hurls.yaml')
       @default_hurls = YAML.load_file(path)
     end
 

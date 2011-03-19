@@ -1,3 +1,6 @@
+RACK_ENV  = ENV['RACK_ENV'] || ENV['RAILS_ENV'] || 'development'
+RACK_ROOT = File.expand_path(File.dirname(__FILE__) + '/..')
+
 # std lib
 require 'tempfile'
 require 'open3'
@@ -14,9 +17,13 @@ require 'mustache/sinatra'
 require 'sinatra/auth/github'
 require 'albino'
 
+$LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__))
+
 # hurl
-require 'db'
-require 'user'
 require 'helpers'
+
+require 'models/db'
+require 'models/user'
+
 require 'views/layout'
 require 'views/install'
