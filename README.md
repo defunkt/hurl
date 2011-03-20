@@ -35,7 +35,7 @@ Then install xmllint:
 
 Next install the Python eggs:
 
-    easy_install simplejson Pygments
+    easy_install Pygments
 
 Then the RubyGems (you may need to `gem install bundler`):
 

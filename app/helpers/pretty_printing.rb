@@ -19,7 +19,8 @@ module Hurl
       end
 
       def pretty_print_json(content)
-        pretty_print_js shell("python -msimplejson.tool", :stdin => content)
+        json = Yajl::Parser.parse(content)
+        pretty_print_js Yajl::Encoder.new(:pretty => true).encode(json)
       end
 
       def pretty_print_js(content)
