@@ -1,25 +1,32 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-    "http://www.w3.org/TR/html4/strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html>
 <head>
     <title>hurl</title>
     <meta content="Hurl makes HTTP requests and is the perfect tool for testing APIs." name="description" />
 
-    <link rel="stylesheet" type="text/css" href="/css/reset.css">
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/css/pygment_trac.css">
-    <link rel="stylesheet" type="text/css" href="/css/jquery.autocomplete.css">
-    <link rel="stylesheet" type="text/css" href="/css/facebox.css">
+    {{# bundled?}}
+      <link type="text/css" href="/css/bundle.css" rel="stylesheet">
+      <script type="text/javascript" src="/js/bundle.js"></script>
+    {{/ bundled?}}
 
-    <script src="/js/jquery.min.js" type="text/javascript"></script>
-    <script src="/js/jquery.form.js" type="text/javascript"></script>
-    <script src="/js/jquery.autocomplete.js" type="text/javascript"></script>
-    <script src="/js/jquery.relatize_date.js" type="text/javascript"></script>
-    <script src="/js/json2.js" type="text/javascript"></script>
-    <script src="/js/hurl.js" type="text/javascript"></script>
-    <script src="/js/hurl.headers.js" type="text/javascript"></script>
-    <script src="/js/facebox.js"type="text/javascript"></script>
+    {{^ bundled?}}
+      <link rel="stylesheet" type="text/css" href="/css/reset.css">
+      <link rel="stylesheet" type="text/css" href="/css/style.css">
+      <link rel="stylesheet" type="text/css" href="/css/pygment_trac.css">
+      <link rel="stylesheet" type="text/css" href="/css/jquery.autocomplete.css">
+      <link rel="stylesheet" type="text/css" href="/css/facebox.css">
+
+      <script src="/js/jquery.min.js" type="text/javascript"></script>
+      <script src="/js/jquery.form.js" type="text/javascript"></script>
+      <script src="/js/jquery.autocomplete.js" type="text/javascript"></script>
+      <script src="/js/jquery.relatize_date.js" type="text/javascript"></script>
+      <script src="/js/json2.js" type="text/javascript"></script>
+      <script src="/js/hurl.js" type="text/javascript"></script>
+      <script src="/js/hurl.headers.js" type="text/javascript"></script>
+      <script src="/js/facebox.js"type="text/javascript"></script>
+    {{/ bundled?}}
 </head>
+
 <body>
   <div id="inset">
     <div id="header">

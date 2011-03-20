@@ -30,8 +30,16 @@ namespace :hurl do
 
   desc "Please pardon our dust."
   task :deploy do
-    exec "ssh deploy@hurl.it 'cd /www/hurl && git fetch origin && git reset --hard origin/master && bundle install && touch tmp/restart.txt'"
+    exec "ssh deploy@hurl.it 'cd /www/hurl && git fetch origin && git reset --hard origin/master && rake bundle && touch tmp/restart.txt'"
   end
+end
+
+task :bundle do
+  system "bundle install"
+  rm "public/js/bundle.js"   rescue nil # >:O
+  rm "public/css/bundle.css" rescue nil
+  system "cat public/js/*.js | uglifyjs -nc > public/js/bundle.js"
+  system "uglifycss public/css/*.css > public/css/bundle.css"
 end
 
 desc "Start everything."
