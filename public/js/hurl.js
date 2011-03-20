@@ -258,4 +258,4 @@ $(document).ready(function() {
 
   // relatize dates
   $('.relatize').relatizeDate()
-})
+});
