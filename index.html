@@ -32,11 +32,7 @@ Now Hurl is an open source project for your enjoyment.</p>
 
 <h2>Installation</h2>
 
-<ul>
-<li>Ruby 1.8.6+</li>
-<li>Python 2.5+</li>
-</ul>
-
+<p>Hurl requires Ruby 1.8.6+</p>
 
 <p>First download hurl and cd into the directory:</p>
 
@@ -44,28 +40,16 @@ Now Hurl is an open source project for your enjoyment.</p>
 cd hurl
 </code></pre>
 
-<p>Or download in either
-<a href="http://github.com/defunkt/hurl/zipball/master">zip</a> or
-<a href="http://github.com/defunkt/hurl/tarball/master">tar</a> formats.</p>
+<p>Or download <a href="http://github.com/defunkt/hurl/zipball/master">the zip</a>.</p>
 
-<p>Then install xmllint:</p>
+<p>Next make sure you have <a href="https://rubygems.org/pages/download">RubyGems</a> installed.</p>
 
-<pre><code>* Homebrew
-brew install libxml2
+<p>Then install <a href="http://gembundler.com/">Bundler</a>:</p>
 
-* Gentoo
-emerge dev-libs/libxml2
-
-* Ubuntu/Debian
-apt-get install libxml2-utils
+<pre><code>gem install bundler
 </code></pre>
 
-<p>Next install the Python eggs:</p>
-
-<pre><code>easy_install simplejson Pygments
-</code></pre>
-
-<p>Then the RubyGems (you may need to <code>gem install bundler</code>):</p>
+<p>Now install Hurl's dependencies:</p>
 
 <pre><code>bundle install
 </code></pre>
