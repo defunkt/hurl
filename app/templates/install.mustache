@@ -6,28 +6,6 @@
   <h2>You're almost done installing Hurl...</h2>
 
   <ul id="install">
-    {{^ xmllint_installed?}}
-      <li>
-        <p>
-          xmllint isn't installed!
-          install it:
-        </p>
-
-        <pre><code>{{ xmllint_install }}</code></pre>
-      </li>
-    {{/ xmllint_installed?}}
-
-    {{^ simplejson_installed?}}
-      <li>
-        <p>
-          simplejson isn't installed!
-          install it:
-        </p>
-
-        <pre><code>{{ simplejson_install }}</code></pre>
-      </li>
-    {{/ simplejson_installed?}}
-
     {{^ pygments_installed?}}
       <li>
         <p>

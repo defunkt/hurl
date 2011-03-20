@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<repositories type="array">
-  <repository>
-    <owner>defunkt</owner>
-    <url>http://github.dev/defunkt/facebox</url>
-    <fork type="boolean">false</fork>
-    <private type="boolean">false</private>
-    <name>facebox</name>
-    <watchers type="integer">1</watchers>
-    <forks type="integer">0</forks>
-    <open-issues type="integer">1</open-issues>
-  </repository>
+<repositories type="array"><repository><owner>defunkt</owner><url>http://github.dev/defunkt/facebox</url>
+    <fork type="boolean">false</fork><private type="boolean">false</private><name>facebox</name>
+    <watchers type="integer">1</watchers><forks type="integer">0</forks><open-issues type="integer">1</open-issues></repository>
   <repository>
     <owner>defunkt</owner>
     <url>http://github.dev/defunkt/github</url>

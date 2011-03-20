@@ -28,12 +28,10 @@ module Hurl
       end
 
       def pretty_print_xml(content)
-        temp = Tempfile.new(['xmlcontent', '.xml'])
-        temp.print content
-        temp.flush
-        colorize :xml => shell("xmllint --format #{temp.path}")
-      ensure
-        temp.close!
+        out = StringIO.new
+        doc = REXML::Document.new(content)
+        doc.write(out, 2)
+        colorize :xml => out.string
       end
 
       def pretty_print_headers(content)

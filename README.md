@@ -22,17 +22,6 @@ Or download in either
 [zip](http://github.com/defunkt/hurl/zipball/master) or
 [tar](http://github.com/defunkt/hurl/tarball/master) formats.
 
-Then install xmllint:
-
-    * Homebrew
-    brew install libxml2
-
-    * Gentoo
-    emerge dev-libs/libxml2
-
-    * Ubuntu/Debian
-    apt-get install libxml2-utils
-
 Next install the Python eggs:
 
     easy_install Pygments

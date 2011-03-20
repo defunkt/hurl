@@ -2,12 +2,12 @@ RACK_ENV  = ENV['RACK_ENV'] || ENV['RAILS_ENV'] || 'development'
 RACK_ROOT = File.expand_path(File.dirname(__FILE__) + '/..')
 
 # std lib
-require 'tempfile'
 require 'open3'
 require 'uri'
 require 'base64'
 require 'digest'
 require 'zlib'
+require "rexml/document"
 
 # bundled gems
 require 'sinatra/base'
