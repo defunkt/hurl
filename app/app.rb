@@ -155,7 +155,11 @@ module Hurl
       begin
         debug { puts "#{method} #{url}" }
 
-        curl.send("http_#{method.downcase}", *post_data)
+        if method == 'PUT'
+          curl.http_put(stringify_data(post_data))
+        else
+          curl.send("http_#{method.downcase}", *post_data)
+        end
 
         debug do
           puts sent_headers.join("\n")
@@ -223,7 +227,7 @@ module Hurl
 
     # post params from non-empty keys and values
     def make_fields(method, keys, values)
-      return [] unless method == 'POST'
+      return [] unless %w( POST PUT ).include? method
 
       fields = []
       keys, values = Array(keys), Array(values)
@@ -256,6 +260,19 @@ module Hurl
     # has this person made too many requests?
     def rate_limited?
       false
+    end
+
+    # turn post_data into a string for PUT requests
+    def stringify_data(data)
+      if data.is_a? String
+        data
+      elsif data.is_a? Array
+        data.map { |x| stringify_data(x) }.join("&")
+      elsif data.is_a? Curl::PostField
+        data.to_s
+      else
+        raise "Cannot stringify #{data.inspect}"
+      end
     end
   end
 end
