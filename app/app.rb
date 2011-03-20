@@ -170,7 +170,7 @@ module Hurl
         end
 
         header  = pretty_print_headers(curl.header_str)
-        type    = url =~ /(\.js)/ ? 'js' : curl.content_type
+        type    = url =~ /(\.js)$/ ? 'js' : curl.content_type
         body    = pretty_print(type, curl.body_str)
         request = pretty_print_requests(sent_headers, post_data)
 
