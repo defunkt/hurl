@@ -11,7 +11,8 @@ module Hurl
 
       # colorize :js => '{ "blah": true }'
       def colorize(hash = {})
-        Albino.colorize(hash.values.first, hash.keys.first)
+        tokens = CodeRay.scan(hash.values.first, hash.keys.first)
+        tokens.html.div.sub('CodeRay', 'highlight')
       end
 
       # shell "cat", :stdin => "file.rb"

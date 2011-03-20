@@ -3,6 +3,7 @@ GEM
   specs:
     addressable (2.2.2)
     albino (1.0)
+    coderay (0.8.357)
     curb (0.7.8)
     faraday (0.4.6)
       addressable (>= 2.1.1)
@@ -40,6 +41,7 @@ PLATFORMS
 
 DEPENDENCIES
   albino (~> 1.0)
+  coderay (~> 0.8.357)
   curb (~> 0.7.8)
   mustache (~> 0.11.2)
   shotgun
