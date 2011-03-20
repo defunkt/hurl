@@ -41,8 +41,6 @@ module Hurl
     #
 
     before do
-      check_for_dependencies
-
       if authenticated?
         @user = User.new(github_user)
       end
