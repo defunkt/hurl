@@ -1,9 +1,5 @@
 module Views
   class Stats < Layout
-    def deployed_sha
-      @deployed_sha ||= `git rev-parse --short HEAD`
-    end
-
     def hurl_stats
       return [
         count(:users),

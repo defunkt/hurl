@@ -5,9 +5,9 @@
     <meta content="Hurl makes HTTP requests and is the perfect tool for testing APIs." name="description" />
 
     {{# bundled?}}
-      <link type="text/css" href="/css/bundle.css" rel="stylesheet">
+      <link type="text/css" href="/css/bundle.css?{{deployed_sha}}" rel="stylesheet">
       <script type="text/javascript" src="/js/jquery.js?1.3.2"></script>
-      <script type="text/javascript" src="/js/bundle.js"></script>
+      <script type="text/javascript" src="/js/bundle.js?{{deployed_sha}}"></script>
     {{/ bundled?}}
 
     {{^ bundled?}}
