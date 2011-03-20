@@ -11,7 +11,7 @@ module Views
     end
 
     def deployed_sha
-      @deployed_sha ||= `git rev-parse --short HEAD`
+      @deployed_sha ||= `git rev-parse --short HEAD`.chomp
     end
 
     def bundled?
