@@ -27,4 +27,3 @@ require 'models/db'
 require 'models/user'
 
 require 'views/layout'
-require 'views/install'

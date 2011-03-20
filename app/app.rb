@@ -97,10 +97,6 @@ module Hurl
       File.read('test/xml')
     end
 
-    get '/install/?' do
-      mustache :install
-    end
-
     get '/about/?' do
       mustache :about
     end

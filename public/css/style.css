@@ -270,15 +270,3 @@ td.date {
 .unicorn {
   text-align: center;
 }
-/* install */
-#install li {
-  margin-bottom: 15px;
-}
-#install pre {
-    background: #444;
-    color: #fff;
-    font-family:'Bitstream Vera Sans Mono','Courier',monospace;
-    padding: 15px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-}
