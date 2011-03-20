@@ -168,7 +168,7 @@ $(document).ready(function() {
   $('#add-header').click(function() {
     var newField = $('#header-fields').clone()
     newField.toggle().attr('id', '')
-    Hurl.autocompleteHeaders( newField.find('.form-alpha') )
+    newField.find('.form-alpha').hurlHeaders()
     newField.find('.form-alpha').attr('title', 'name')
     newField.find('.form-beta').attr('title', 'value')
     Hurl.labelHints( newField.find('input[title]') )

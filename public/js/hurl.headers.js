@@ -1,16 +1,16 @@
 (function() {
-  Hurl.autocompleteHeaders = function(el) {
-    $(el).autocompleteArray(keyNames( Hurl.Headers ), {
+  $.fn.hurlHeaders = function(el) {
+    $(el).autocompleteArray(keyNames( Headers ), {
       delay: 40,
       onItemSelect: function(e) {
         var header = $(e).text(), next = $(el).siblings('input')
-        var more = Hurl.Headers[header]
+        var more = Headers[header]
 
         if ( header == "User-Agent" ) {
-          next.autocompleteArray(keyNames( Hurl.Headers['User-Agent'] ), {
+          next.autocompleteArray(keyNames( Headers['User-Agent'] ), {
             delay: 40,
             onItemSelect: function(row) {
-              next.val( Hurl.Headers['User-Agent'][$(row).text()] )
+              next.val( Headers['User-Agent'][$(row).text()] )
             }
           })
         } else if ( more == "date" ) {
@@ -32,7 +32,7 @@
     return names
   }
 
-  Hurl.Headers = {
+  var Headers = {
     "Accept": ["*/*", "text/plain", "text/html, text/plain", "application/xml", "application/json"],
     "Accept-Encoding": [ "compress", "deflate", "gzip", "compress, gzip", "gzip, deflate"],
     "Accept-Language": [ "en", "es", "de", "fr", "*" ],
