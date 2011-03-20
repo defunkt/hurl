@@ -34,6 +34,14 @@ namespace :hurl do
   end
 end
 
+# Needs bundler, uglifyjs, and uglifycss installed on the server.
+#
+# Bundler:
+#   gem install bundler
+# uglifyjs:
+#   npm install uglify-js
+# uglifycss:
+#   curl https://github.com/fmarcia/UglifyCSS/raw/master/uglifycss > /usr/bin/uglifcss
 task :bundle do
   system "bundle install"
   rm "public/js/bundle.js"   rescue nil # >:O
