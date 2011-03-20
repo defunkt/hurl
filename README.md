@@ -10,23 +10,22 @@ Now Hurl is an open source project for your enjoyment.
 Installation
 ------------
 
-* Ruby 1.8.6+
-* Python 2.5+
+Hurl requires Ruby 1.8.6+
 
 First download hurl and cd into the directory:
 
     git clone git://github.com/defunkt/hurl
     cd hurl
 
-Or download in either
-[zip](http://github.com/defunkt/hurl/zipball/master) or
-[tar](http://github.com/defunkt/hurl/tarball/master) formats.
+Or download [the zip](http://github.com/defunkt/hurl/zipball/master).
 
-Next install the Python eggs:
+Next make sure you have [RubyGems](https://rubygems.org/pages/download) installed.
 
-    easy_install Pygments
+Then install [Bundler](http://gembundler.com/):
 
-Then the RubyGems (you may need to `gem install bundler`):
+    gem install bundler
+
+Now install Hurl's dependencies:
 
     bundle install
 
