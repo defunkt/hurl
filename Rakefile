@@ -30,7 +30,7 @@ namespace :hurl do
 
   desc "Please pardon our dust."
   task :deploy do
-    exec "ssh deploy@hurl.it 'cd /www/hurl && git fetch origin && git reset --hard origin/master && touch tmp/restart.txt'"
+    exec "ssh deploy@hurl.it 'cd /www/hurl && git fetch origin && git reset --hard origin/master && bundle install && touch tmp/restart.txt'"
   end
 end
 
