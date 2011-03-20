@@ -1,5 +1,5 @@
 # The default Hurls shown on the home page
-Twitter API (public timeline): 
+Twitter API (public timeline):
   url: http://twitter.com/statuses/public_timeline.json
   method: GET
   auth: none
@@ -10,11 +10,11 @@ Vimeo API (video):
   auth: none
 
 GitHub API (repository):
-  url: http://github.com/api/v2/json/user/show/defunkt
+  url: http://github.com/api/v2/json/repos/show/defunkt/hurl
   method: GET
   auth: none
-  
-Baconfile API (public files):
-  url: http://baconfile.com/public.atom
+
+Convore API (user):
+  url: https://convore.com/api/users/140.json
   method: GET
   auth: none

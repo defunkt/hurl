@@ -208,6 +208,9 @@ ul.examples li.vimeo {
 ul.examples li.github {
   background: #fff url(http://github.com/favicon.ico) 0 40% no-repeat;
 }
+ul.examples li.convore {
+  background: #fff url(http://convore.com/favicon.ico) 0 40% no-repeat;
+}
 ul.examples li.baconfile {
   background: #fff url(http://baconfile.com/favicon.ico) 0 40% no-repeat;
 }
