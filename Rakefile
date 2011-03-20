@@ -38,7 +38,7 @@ task :bundle do
   system "bundle install"
   rm "public/js/bundle.js"   rescue nil # >:O
   rm "public/css/bundle.css" rescue nil
-  system "cat public/js/*.js | uglifyjs -nc > public/js/bundle.js"
+  system "cat $(ls -1 public/js/*.js | grep -v jquery.js) | uglifyjs -nc > public/js/bundle.js"
   system "uglifycss public/css/*.css > public/css/bundle.css"
 end
 
