@@ -38,6 +38,28 @@ Run Locally
 Now visit <http://localhost:9393>
 
 
+Proxy Support
+-------------
+
+Run hurl through a proxy by just adding the URL and port of the proxy.
+
+Use a public proxy from: http://www.hidemyass.com/proxy-list/
+
+or create a proxy tunnel to a secure server: 
+
+	ssh -D <port> -f -C -v -N <username>@<some.proxy.server>
+
+
+
+For example, if I used HideMyAss IP and Port, the UI would look like this:
+
+[![Hide My Ass](https://img.skitch.com/20110519-fq6rercxgy4xt5wtkxt5y3q3s8.jpg)](https://img.skitch.com/20110519-fq6rercxgy4xt5wtkxt5y3q3s8.jpg)
+
+and if I use a proxy tunnel with socks5 and port 9999 with the ssh command above, the UI would look like this:
+
+[![Proxy](https://img.skitch.com/20110519-frcu27a2rd455381mb4s3a5a4g.jpg)](https://img.skitch.com/20110519-frcu27a2rd455381mb4s3a5a4g.jpg)
+
+
 Issues
 ------
 

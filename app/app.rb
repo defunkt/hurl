@@ -123,10 +123,23 @@ module Hurl
       return json(:error => "Calm down and try my margarita!") if rate_limited?
 
       url, method, auth = params.values_at(:url, :method, :auth)
+      proxy_url, proxy_port, proxy_socks5 = params.values_at(:proxy_url, :proxy_port, :use_socks_5)
 
       return json(:error => "That's... wait.. what?!") if invalid_url?(url)
 
-      curl = Curl::Easy.new(url)
+      if !proxy_url.nil?
+        # proxy = "localhost:9999"
+        # http://curb.rubyforge.org/svn/BRANCHES/curb-multi/ext/curb.c
+        curl = Curl::Easy.new(url) do |curl|
+          curl.proxy_url = "#{proxy_url}:#{proxy_port}"
+          curl.proxy_type = 5 if proxy_socks5
+          curl.follow_location = true
+          curl.ssl_verify_peer = false
+          curl.max_redirects = 3
+        end
+      else
+        curl = Curl::Easy.new(url)
+      end
 
       sent_headers = []
       curl.on_debug do |type, data|

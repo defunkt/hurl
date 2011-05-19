@@ -1,3 +1,4 @@
+
 /* general */
 body {
   font: 1em "lucida Grande",arial,sans-serif;
@@ -67,6 +68,21 @@ input[type=password].form-beta {
 .form-beta {
   margin-left: 6px !important;
 }
+
+#proxy-url{
+	width: 387px;
+}
+#proxy-port{
+	width: 79px;
+}
+#socks_5_container{
+	display: inline;
+	width: 98px;
+	margin-top: 3px;
+	float: right;
+	margin-right: 150px;
+}
+
 /* buttons */
 button {
   font: 1em "Helvetica Neue", Arial, sans-serif;

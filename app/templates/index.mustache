@@ -63,7 +63,15 @@
         <textarea rows="15" name="post-body">{{ hurl_post_body }}</textarea>
       </p>
     </div>
+
+    <a id="use-proxy" href="#"><span class="link-icon">+</span> use proxy</a>
+    <div id="proxy-fields" {{^ hurl_use_proxy}}style="display:none;"{{/ hurl_use_proxy}}>
+		<input type="text" name="proxy_url" id="proxy-url" class="form-alpha" title="url"/>
+		<input type="text" name="proxy_port" id="proxy-port" class="form-beta" title="port"/>
+		<div id="socks_5_container"><input type="checkbox" name="use_socks_5" value="1" id="use_socks_5"></div>
+    </div>
   </p>
+
   <p id="auth-selection">
     <label>
       <input type="radio" name="auth" value="none" checked="checked"/>

@@ -1,3 +1,4 @@
 db/
 .bundle/
 bin/
+.DS_Store

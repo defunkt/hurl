@@ -177,6 +177,18 @@ $(document).ready(function() {
     return false
   })
 
+  $('#use-proxy').click(function() {
+	if ($('#proxy-fields').css('display') ==  'block'){
+		$('#proxy-fields').css({'display' : 'none'});
+		$('#use-proxy').html('+ use proxy');
+	}else {
+		$('#proxy-fields').css({'display' : 'block'});	
+		$('#socks_5_container :checkbox').iphoneStyle({ checkedLabel: 'Socks 5 On', uncheckedLabel: 'Socks 5 Off' });
+		$('#use-proxy').html('- do not use proxy');
+	}
+    return false;
+  })
+
   // remove header / param
   function registerRemoveHandlers(el, klass) {
     $(el).find(klass).click(function() {
@@ -258,4 +270,5 @@ $(document).ready(function() {
 
   // relatize dates
   $('.relatize').relatizeDate()
+  
 });
