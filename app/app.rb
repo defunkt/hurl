@@ -146,7 +146,7 @@ module Hurl
       add_headers_from_arrays(curl, params["header-keys"], params["header-vals"])
 
       # arbitrary post params
-      if params['post-body'] && ['POST', 'PUT'].index(method)
+      if params['post-body'] && ['POST', 'PUT', 'PATCH'].index(method)
         post_data = [params['post-body']]
       else
         post_data = make_fields(method, params["param-keys"], params["param-vals"])
@@ -155,11 +155,11 @@ module Hurl
       begin
         debug { puts "#{method} #{url}" }
 
-        if method == 'PUT'
-          curl.http_put(stringify_data(post_data))
-        else
-          curl.send("http_#{method.downcase}", *post_data)
+        if post_data
+          curl.post_body = stringify_data(post_data)
         end
+
+        curl.http(method.upcase)
 
         debug do
           puts sent_headers.join("\n")
@@ -227,7 +227,7 @@ module Hurl
 
     # post params from non-empty keys and values
     def make_fields(method, keys, values)
-      return [] unless %w( POST PUT ).include? method
+      return [] unless %w( POST PUT PATCH ).include? method
 
       fields = []
       keys, values = Array(keys), Array(values)
