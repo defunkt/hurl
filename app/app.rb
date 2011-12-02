@@ -49,7 +49,7 @@ module Hurl
     end
 
     get '/' do
-      @hurl = {}
+      @hurl = params
       mustache :index
     end
 
