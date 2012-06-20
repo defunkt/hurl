@@ -44,6 +44,10 @@ module Views
       @hurl['post-body'] if @hurl
     end
 
+    def hurl_use_proxy
+      @hurl['proxy-url'] if @hurl
+    end
+
     def hurl_url
       @hurl['url'] if @hurl
     end
