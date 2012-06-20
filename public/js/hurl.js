@@ -104,7 +104,7 @@ $(document).ready(function() {
   $('#select-method').change(function() {
     $('#select-method option:selected').each(function() {
       var method = $(this).attr('value')
-      if (method == 'POST' || method == 'PUT'){
+      if (method == 'POST' || method == 'PUT' || method == 'PATCH'){
         $('#post-params').show()
       } else {
         $('#post-params').hide()

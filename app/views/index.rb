@@ -68,6 +68,10 @@ module Views
       @hurl['method'] == 'DELETE'
     end
 
+    def method_is_PATCH?
+      @hurl['method'] == 'PATCH'
+    end
+
     def hurl_param_keys
       return if @hurl['param-keys'].nil?
       arr = []
