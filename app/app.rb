@@ -42,7 +42,7 @@ module Hurl
 
     before do
       if authenticated?
-        @user = User.new(github_user)
+        @user = Hurl::User.new(github_user)
       end
 
       @flash = session.delete('flash')
