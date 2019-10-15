@@ -7,7 +7,7 @@ GEM
     faraday (0.4.6)
       addressable (>= 2.1.1)
       rack (>= 1.0.1)
-    json (1.4.6)
+    json (1.8.6)
     mime-types (1.16)
     multi_json (0.0.5)
     mustache (0.11.2)
