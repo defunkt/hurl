@@ -14,7 +14,7 @@ GEM
     oauth2 (0.0.13)
       faraday (~> 0.4.1)
       multi_json (>= 0.0.4)
-    rack (1.2.1)
+    rack (1.6.13)
     rest-client (1.5.1)
       mime-types (>= 1.16)
     shotgun (0.8)
